@@ -1,0 +1,19 @@
+.navigation {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 1.2rem;
+    font-family: "Roboto Light", sans-serif;
+}
+
+.navigation__item {
+    color: rgba(25, 25, 29, 0.8);
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-left: 5px;
+
+    &:hover {
+        color: rgb(132, 132, 223);
+        text-decoration: underline;
+    }
+}

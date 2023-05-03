@@ -1,0 +1,14 @@
+.page__title {
+    text-align: center;
+    padding: 2px;
+    height: 40px;
+    font-family: 'Roboto Bold', sans-serif;
+    background-color: rgba(#19191D, $alpha: 0.8);
+    border: 1px #ffffff solid;
+    border-radius: 10px;
+    color: white;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
