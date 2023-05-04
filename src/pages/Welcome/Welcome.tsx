@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import style from './welcome.module.scss';
 
 function WelcomePage(): JSX.Element {
   const { t } = useTranslation();
-  return <div className={style.welcome}>{t('Welcome')}</div>;
+  return <div className="text-teal-500 text-center text-2xl">{t('Welcome')}</div>;
 }
 
 export default WelcomePage;

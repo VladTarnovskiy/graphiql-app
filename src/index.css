@@ -47,6 +47,7 @@
 }
 
 body {
-    font-family: 'Roboto Regular', sans-serif;
+    font-family: 'Roboto Light', sans-serif;
     font-size: 1.3rem;
+    background-color: #e5e5e5;
 }

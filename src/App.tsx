@@ -4,14 +4,12 @@ import Header from './components/Header/Header';
 import WelcomePage from './pages/Welcome/Welcome';
 import GraphiQLPage from './pages/GraphiQL/GraphiQL';
 import AuthorizationPage from './pages/Authorization/Authorization';
-import Navigation from './components/Navigation/Navigation';
 import Footer from './components/Footer/Footer';
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
       <>
-        <Navigation />
         <Header />
         <Routes>
           <Route path="/" element={<WelcomePage />} />

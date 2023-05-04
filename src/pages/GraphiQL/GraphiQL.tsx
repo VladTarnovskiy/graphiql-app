@@ -1,7 +1,5 @@
-import style from './graphiQL.module.scss';
-
 function GraphiQLPage(): JSX.Element {
-  return <div className={style['graphi-ql']}>GraphiQL Page</div>;
+  return <div className="text-teal-500 text-center text-2xl">GraphiQL Page</div>;
 }
 
 export default GraphiQLPage;
