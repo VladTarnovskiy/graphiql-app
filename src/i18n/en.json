@@ -1,3 +1,14 @@
 {
-    "Welcome": "Welcome!"
+    "Welcome": "Welcome!",
+    "GraphQL": {
+        "Variables": "Variables",
+        "Headers": "Headers"
+    },
+    "Setting": {
+        "Title": "Settings",
+        "Language": "Language",
+        "Theme": "Theme",
+        "Dark": "Dark",
+        "Light": "Light"
+    }
 }
