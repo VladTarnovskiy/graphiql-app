@@ -1,7 +1,21 @@
-import { IFormComponent } from '../../types/interfaces';
+/* eslint-disable react/jsx-props-no-spreading */
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { IFormComponent, ISubmitData } from '../../types/interfaces';
+import checkEmail from '../../utils/validation';
 
 export default function FormComponent(props: IFormComponent): JSX.Element {
   const { headerTitle, buttonTitle } = props;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ISubmitData>({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
+
+  const onSubmit: SubmitHandler<ISubmitData> = (data) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+  };
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -10,21 +24,24 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
+        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
               Email address
               <div className="mt-2">
                 <input
+                  {...register('email', {
+                    required: 'Input email',
+                    validate: checkEmail,
+                  })}
                   id="email"
                   name="email"
                   type="email"
-                  autoComplete="email"
-                  required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </label>
+            {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
           </div>
 
           <div>
@@ -33,13 +50,17 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
             </div>
             <div className="mt-2">
               <input
+                {...register('password', {
+                  required: 'Input password',
+                })}
                 id="password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
-                required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+              {errors.password && (
+                <span className="text-red-500 text-sm">{errors.password.message}</span>
+              )}
             </div>
           </div>
 
