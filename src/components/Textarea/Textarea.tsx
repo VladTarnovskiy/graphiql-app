@@ -1,8 +1,3 @@
-import { NavLink } from 'react-router-dom';
-import Navigation from '../Navigation/Navigation';
-import Button from '../Button/Button';
-import LogoImg from '../../assets/logo.png';
-
 interface MyProps {
   value: string;
   setVariables: (value: string) => void;
