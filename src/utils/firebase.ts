@@ -20,9 +20,7 @@ const auth = getAuth(app);
 
 const registerNewUser = async (email: string, password: string) => {
   try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    // eslint-disable-next-line no-console
-    console.log(res);
+    await createUserWithEmailAndPassword(auth, email, password);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);
@@ -30,16 +28,14 @@ const registerNewUser = async (email: string, password: string) => {
 };
 const loginUser = async (email: string, password: string) => {
   try {
-    const res = await signInWithEmailAndPassword(auth, email, password);
-    // eslint-disable-next-line no-console
-    console.log(res);
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);
   }
 };
 
-const logout = () => {
+const logout = async () => {
   signOut(auth);
 };
-export default { registerNewUser, loginUser, logout };
+export { registerNewUser, loginUser, logout, auth };

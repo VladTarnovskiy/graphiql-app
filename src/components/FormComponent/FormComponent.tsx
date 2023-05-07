@@ -1,19 +1,31 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { IFormComponent, ISubmitData } from '../../types/interfaces';
 import checkEmail from '../../utils/validation';
+import { loginUser, registerNewUser } from '../../utils/firebase';
+import { RootState } from '../../app/store';
 
 export default function FormComponent(props: IFormComponent): JSX.Element {
   const { headerTitle, buttonTitle } = props;
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ISubmitData>({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
 
-  const onSubmit: SubmitHandler<ISubmitData> = (data) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+  const authorizationText = useSelector((state: RootState) => state.authorization.page);
+
+  const onSubmit: SubmitHandler<ISubmitData> = async (data) => {
+    if (authorizationText === 'Registration') {
+      registerNewUser(data.email, data.password);
+    } else {
+      loginUser(data.email, data.password);
+    }
+    navigate('/graphi-ql');
   };
 
   return (
