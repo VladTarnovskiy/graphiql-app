@@ -1,11 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { authorizationPageText } from '../../app/slice/AuthorizationPage.slice';
+import { IButtonProps } from '../../types/interfaces';
+import { logout } from '../../utils/firebase';
 
-interface MyProps {
-  text: string;
-}
-
-function Button(prop: MyProps): JSX.Element {
+function Button(prop: IButtonProps): JSX.Element {
   const dispatch = useDispatch();
 
   const { text } = prop;
@@ -13,14 +11,16 @@ function Button(prop: MyProps): JSX.Element {
   const changePage = () => {
     if (text === 'Sign In') {
       dispatch(authorizationPageText('Login'));
-    } else {
+    } else if (text === 'Sign Up') {
       dispatch(authorizationPageText('Registration'));
+    } else {
+      logout();
     }
   };
 
   return (
     <div
-      onClick={() => changePage()}
+      onClick={changePage}
       onKeyPress={changePage}
       role="button"
       tabIndex={0}

@@ -7,3 +7,7 @@ export interface ISubmitData {
   email: string;
   password: string;
 }
+
+export interface IButtonProps {
+  text: string;
+}
