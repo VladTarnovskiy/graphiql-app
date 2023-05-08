@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     fontFamily: {
       thin: ['ui-sans-serif', 'Roboto Thin'],
@@ -8,6 +9,15 @@ export default {
       bold: ['ui-sans-serif', 'Roboto Regular'],
     },
     extend: {
+      screens: {
+        xs: { max: '480px' },
+        sm: { max: '576px' },
+        md: { max: '768px' },
+        lg: { max: '992px' },
+        xl: { max: '1200px' },
+        '2xl': { max: '1336px' },
+        '3xl': { max: '1576px' },
+      },
       colors: {
         base_green: '#14b8a6',
         base_green_light: '#2dd4bf',

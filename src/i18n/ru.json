@@ -1,3 +1,14 @@
 {
-    "Welcome": "Привет!"
+    "Welcome": "Привет!",
+    "GraphQL": {
+        "Variables": "Переменные",
+        "Headers": "Хедеры"
+    },
+    "Setting": {
+        "Title": "Настройки",
+        "Language": "Язык",
+        "Theme": "Тема",
+        "Dark": "Темная",
+        "Light": "Светлая"
+    }
 }

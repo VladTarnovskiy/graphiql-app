@@ -9,7 +9,7 @@ function Header(): JSX.Element {
       <div className="header__logo overflow-hidden">
         <img src={LogoImg} alt="Rick and Morty" className="block w-60 h-20 mt-[-10px]" />
         <div className="text-sm font-thin text-teal-500 shadow-yellow-300/60 shadow-lg mt-[-3px]">
-          GraphQL IDE
+          Playground
         </div>
       </div>
       <Navigation />
