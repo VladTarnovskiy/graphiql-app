@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { Suspense, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
@@ -133,9 +133,12 @@ function GraphiQLPage(): JSX.Element {
           {fieldFlag && <Textarea value={headersInput} setVariables={setHeadersInputs} />}
         </div>
       </div>
-      <div className="response border-[1px] border-base_green_light shadow-xl p-4 w-full rounded-md bg-base_white">
-        {JSON.stringify(responseData)}
-      </div>
+
+      <Suspense fallback={<div>Load</div>}>
+        <div className="response border-[1px] border-base_green_light shadow-xl p-4 w-full rounded-md bg-base_white">
+          {JSON.stringify(responseData)}
+        </div>
+      </Suspense>
     </div>
   );
 }
