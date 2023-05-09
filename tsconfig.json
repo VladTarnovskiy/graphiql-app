@@ -18,7 +18,7 @@
     "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
-    "path": {"src/*": ["src/*"]}
+    "paths": {"src/*": ["src/*"]}
   },
   "include": ["src",
 "vite.config.ts", "tailwind.config.js", "postcss.config.js", ".eslintrc.cjs"],
