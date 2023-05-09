@@ -2,12 +2,14 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { IFormComponent, ISubmitData } from '../../types/interfaces';
 import checkEmail from '../../utils/validation';
-import { loginUser, registerNewUser } from '../../utils/firebase';
+import { auth, loginUser, registerNewUser } from '../../utils/firebase';
 import { RootState } from '../../app/store';
 
 export default function FormComponent(props: IFormComponent): JSX.Element {
+  const [user] = useAuthState(auth);
   const { headerTitle, buttonTitle } = props;
   const navigate = useNavigate();
 
@@ -21,11 +23,13 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
 
   const onSubmit: SubmitHandler<ISubmitData> = async (data) => {
     if (authorizationText === 'Registration') {
-      registerNewUser(data.email, data.password);
+      await registerNewUser(data.email, data.password);
     } else {
-      loginUser(data.email, data.password);
+      await loginUser(data.email, data.password);
     }
-    navigate('/graphi-ql');
+    if (user) {
+      navigate('/graphi-ql');
+    }
   };
 
   return (
