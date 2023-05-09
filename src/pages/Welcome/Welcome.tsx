@@ -7,11 +7,7 @@ function WelcomePage(): JSX.Element {
 
   const changeRequestInputs = (e: React.MouseEvent<HTMLButtonElement>) => {
     const el = e.target as HTMLElement;
-    el.classList.contains('project')
-      ? setFieldFlag('project')
-      : el.classList.contains('developers')
-      ? setFieldFlag('developers')
-      : setFieldFlag('course');
+    setFieldFlag(el.className.split(' ')[0]);
   };
 
   return (
@@ -21,7 +17,7 @@ function WelcomePage(): JSX.Element {
           <div className="relative request__nav flex justify-left pl-4 pr-4 mb-4 text-sm bg-base_white pb-2">
             {(fieldFlag === 'project' && (
               <button
-                className="request__nav__item project underline underline-offset-4 decoration-base_green w-16 mr-4 hover:text-base_green cursor-pointer"
+                className="project underline underline-offset-4 decoration-base_green w-16 mr-4 hover:text-base_green cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -29,7 +25,7 @@ function WelcomePage(): JSX.Element {
               </button>
             )) || (
               <button
-                className="request__nav__item project w-16 mr-4 hover:text-base_green cursor-pointer"
+                className="project w-16 mr-4 hover:text-base_green cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -38,7 +34,7 @@ function WelcomePage(): JSX.Element {
             )}
             {(fieldFlag === 'developers' && (
               <button
-                className="request__nav__item developers underline underline-offset-4 decoration-base_green w-24 mr-4 hover:text-base_green cursor-pointer"
+                className="developers underline underline-offset-4 decoration-base_green w-24 mr-4 hover:text-base_green cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -46,7 +42,7 @@ function WelcomePage(): JSX.Element {
               </button>
             )) || (
               <button
-                className="request__nav__item developers w-24 mr-4 hover:text-base_green cursor-pointer"
+                className="developers w-24 mr-4 hover:text-base_green cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -55,7 +51,7 @@ function WelcomePage(): JSX.Element {
             )}
             {(fieldFlag === 'course' && (
               <button
-                className="request__nav__item w-16 underline underline-offset-4 decoration-base_green course hover:text-base_green cursor-pointer"
+                className="course w-16 underline underline-offset-4 decoration-base_green hover:text-base_green cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -63,7 +59,7 @@ function WelcomePage(): JSX.Element {
               </button>
             )) || (
               <button
-                className="request__nav__item w-16 course hover:text-base_green cursor-pointer"
+                className="course w-16 hover:text-base_green cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
