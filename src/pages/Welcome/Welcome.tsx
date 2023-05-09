@@ -16,7 +16,7 @@ function WelcomePage(): JSX.Element {
 
   return (
     <div className="graphql flex justify-center">
-      <div className="response border-[1px] border-base_green_light shadow-xl p-4 w-[80vw] rounded-md bg-base_white">
+      <div className="response border-[1px] border-base_green_light shadow-xl p-4 w-[65vw] min-h-[80vh] rounded-md bg-base_white">
         <div className="request mr-4 w-full flex flex-col">
           <div className="relative request__nav flex justify-left pl-4 pr-4 mb-4 text-sm bg-base_white pb-2">
             {(fieldFlag === 'project' && (
@@ -73,7 +73,7 @@ function WelcomePage(): JSX.Element {
           </div>
         </div>
         {fieldFlag === 'project' && (
-          <div className="RSSchoolInfo text-teal-500 flex flex-col justify-center items-center text-center text-xl">
+          <div className="RSSchoolInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZXcF6GSCd-jCOOT-GFYFhHuUHWf-pYgATGEiqDxzkAQF-Lec65LBsDn-FwYSwmAH-4M&usqp=CAU"
               className="border-[1px] max-w-[300px] border-base_green_light shadow-xl rounded-md"
@@ -85,12 +85,24 @@ function WelcomePage(): JSX.Element {
               {t(
                 `GraphQL is a query language for your API, and a server-side runtime for executing queries using a type system you define for your data. GraphQL isn't tied to any specific database or storage engine and is instead backed by your existing code and data.`
               )}
+              <br />
+              {t(
+                `GraphQL queries always return predictable results. Apps using GraphQL are fast and stable because they control the data they get, not the server`
+              )}
+              <br />
+              {t(
+                `GraphQL queries access not just the properties of one resource but also smoothly follow references between them. While typical REST APIs require loading from multiple URLs, GraphQL APIs get all the data your app needs in a single request. Apps using GraphQL can be quick even on slow mobile network connections`
+              )}
+              <br />
+              {t(
+                `GraphQL APIs are organized in terms of types and fields, not endpoints. Access the full capabilities of your data from a single endpoint. GraphQL uses types to ensure Apps only ask for what’s possible and provide clear and helpful errors. Apps can use types to avoid writing manual parsing code.`
+              )}
             </div>
           </div>
         )}
         {fieldFlag === 'developers' && (
-          <section className="developersSection text-teal-500 flex flex-col justify-center items-center text-center text-2xl">
-            <h1 className="text-3xl mb-4">Our team</h1>
+          <section className="developersSection text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-2xl">
+            <h1 className="text-4xl mb-4">Our team</h1>
             <div className="developersCards text-teal-500 flex flex-row justify-center text-center text-2xl">
               <div className="vladCard max-w-[300px] flex flex-col items-center">
                 <img
@@ -131,7 +143,7 @@ function WelcomePage(): JSX.Element {
           </section>
         )}
         {fieldFlag === 'course' && (
-          <div className="RSSchoolInfo text-teal-500 flex flex-col justify-center items-center text-center text-xl">
+          <div className="RSSchoolInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl">
             <img
               src="https://rs.school/images/partners/logo-rs.svg"
               className="border-[1px] max-w-[200px] border-base_green_light pr-6 shadow-xl rounded-md"
