@@ -18,7 +18,7 @@ function Header(): JSX.Element {
       </div>
       <Navigation />
       {user ? (
-        <Button text="Logout" />
+        <Button title="Logout" />
       ) : (
         <NavLink className="header__buttons flex" to="/authorization">
           <Button title="Sign In" />
