@@ -47,6 +47,14 @@ module.exports = {
     'react/function-component-definition': 'off',
     'react/prefer-stateless-function': 'off',
     'class-methods-use-this': 'off',
+    'jsx-a11y/label-has-for': [
+      'error',
+      {
+        required: {
+          some: ['nesting', 'id'],
+        },
+      },
+    ],
   },
   settings: {
     react: {
