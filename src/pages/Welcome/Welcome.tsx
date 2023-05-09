@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import DeveloperCard from './DeveloperCard';
 
 function WelcomePage(): JSX.Element {
   const { t } = useTranslation();
@@ -97,44 +98,12 @@ function WelcomePage(): JSX.Element {
           </div>
         )}
         {fieldFlag === 'developers' && (
-          <section className="developersSection text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-2xl">
-            <h1 className="text-4xl mb-4">Our team</h1>
-            <div className="developersCards text-teal-500 flex flex-row justify-center text-center text-2xl">
-              <div className="vladCard max-w-[300px] flex flex-col items-center">
-                <img
-                  src="https://avatars.githubusercontent.com/u/93903876?v=4"
-                  className="border-[1px] border-base_green_light max-w-[200px] shadow-xl rounded-md"
-                  alt=""
-                />
-                <div>
-                  {t(`Vlad Tarnovskiy`)}
-                  <br />
-                  {t(`Front-end developer`)}
-                </div>
-              </div>
-              <div className="alexCard max-w-[300px] ml-4 mr-4 flex flex-col items-center">
-                <img
-                  src="https://avatars.githubusercontent.com/u/88935233?v=4"
-                  className="border-[1px] border-base_green_light max-w-[200px] shadow-xl rounded-md"
-                  alt=""
-                />
-                <div>
-                  {t(`Aleksei Gromov`)} <br />
-                  {t(`Front-end developer`)}
-                </div>
-              </div>
-              <div className="denisCard max-w-[300px] flex flex-col items-center">
-                <img
-                  src="https://avatars.githubusercontent.com/u/106694274?v=4"
-                  className="border-[1px] border-base_green_light max-w-[200px] shadow-xl rounded-md"
-                  alt=""
-                />
-                <div>
-                  {t(`Denis Karnachenko`)}
-                  <br />
-                  {t(`Front-end developer`)}
-                </div>
-              </div>
+          <section className="developersSection text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-2xl sm:text-xl">
+            <h1 className="text-4xl sm:text-2xl mb-4">Our team</h1>
+            <div className="developersCards text-teal-500 grid gap-4 grid-cols-3 grid-rows-1 lg:grid-cols-1 grid-rows-3 text-center text-2xl">
+              {['Vlad', 'Aleksei', 'Denis'].map((dev) => (
+                <DeveloperCard developer={dev} key={dev} />
+              ))}
             </div>
           </section>
         )}
