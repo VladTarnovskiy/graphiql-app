@@ -1,4 +1,4 @@
-import { Suspense, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
@@ -20,25 +20,46 @@ function GraphiQLPage(): JSX.Element {
   const [docs, setDocs] = useState(false);
 
   const getData = async () => {
+    const varRemoveQuotes = variables.slice(1, -1).replace(/"/gi, '').split(',');
+    const varData = varRemoveQuotes.map((item: string) => item.split(':'));
+
+    const indexOfBracketOne = inputData.indexOf('(');
+    const indexOfBracketTwo = inputData.indexOf('{');
+    let removingVarBracket = '';
+    let endpointData = '';
+    if (indexOfBracketOne < indexOfBracketTwo) {
+      const indexOfBracketStart = inputData.indexOf('(');
+      const indexOfBracketEnd = inputData.indexOf(')');
+      removingVarBracket =
+        inputData.slice(0, indexOfBracketStart) + inputData.slice(indexOfBracketEnd + 1);
+      varData.forEach((item) => {
+        const regular = `[$]${item[0]}`;
+        const reg = new RegExp(regular, 'gi');
+        removingVarBracket = removingVarBracket.replace(reg, `${item[1]}`);
+      });
+      endpointData = removingVarBracket;
+    }
+
+    console.log(varData);
+    console.log(endpointData);
+
     try {
       const response = await fetch('https://rickandmortyapi.com/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          headersInput,
+          // headersInput,
         },
         body: JSON.stringify({
-          query: `${inputData}`,
+          query: `${endpointData}`,
           variables: `${variables}`,
         }),
       });
-      const res = await response.json();
-      // const res = await JSON.stringify(resx, null, 't');
+      const data = await response.json();
+      const editData = JSON.stringify(data, null, '\t');
 
-      setResponseData(res);
-      console.log(res);
-      console.log(headersInput);
-      console.log(variables);
+      setResponseData(editData);
+      // console.log(x);
     } catch (e) {
       setResponseData(`${e}`);
     }
@@ -135,12 +156,9 @@ function GraphiQLPage(): JSX.Element {
           {fieldFlag && <Textarea value={headersInput} setVariables={setHeadersInputs} />}
         </div>
       </div>
-
-      <Suspense fallback={<div>Load</div>}>
-        <div className="response border-[1px] border-base_green_light shadow-xl p-4 w-full rounded-md bg-base_white">
-          {JSON.stringify(responseData)}
-        </div>
-      </Suspense>
+      <div className="response border-[1px] max-h-[80vh] whitespace-break-spaces border-base_green_light shadow-xl p-4 w-full rounded-md bg-base_white overflow-y-scroll">
+        {responseData}
+      </div>
     </div>
   );
 }

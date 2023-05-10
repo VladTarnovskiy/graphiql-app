@@ -1,26 +1,23 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import NotFound from './pages/NotFound/NotFound';
-import Header from './components/Header/Header';
-import WelcomePage from './pages/Welcome/Welcome';
-import GraphiQLPage from './pages/GraphiQL/GraphiQL';
-import AuthorizationPage from './pages/Authorization/Authorization';
-import Footer from './components/Footer/Footer';
+import React from 'react';
+import Layout from './pages/Layout/Layout';
+
+const WelcomePage = React.lazy(() => import('./pages/Welcome/Welcome'));
+const GraphiQLPage = React.lazy(() => import('./pages/GraphiQL/GraphiQL'));
+const AuthorizationPage = React.lazy(() => import('./pages/Authorization/Authorization'));
+const NotFound = React.lazy(() => import('./pages/NotFound/NotFound'));
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <>
-        <Header />
-        <div className="wrapper pl-[2%] pr-[2%] w-full">
-          <Routes>
-            <Route path="/" element={<WelcomePage />} />
-            <Route path="/graphi-ql" element={<GraphiQLPage />} />
-            <Route path="/authorization" element={<AuthorizationPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-        <Footer />
-      </>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="" element={<WelcomePage />} />
+          <Route path="graphi-ql" element={<GraphiQLPage />} />
+          <Route path="authorization" element={<AuthorizationPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
