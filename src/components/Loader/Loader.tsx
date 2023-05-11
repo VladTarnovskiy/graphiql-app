@@ -2,7 +2,7 @@ import './loader.scss';
 
 function Loader(): JSX.Element {
   return (
-    <div className="lds-roller">
+    <div className="lds-roller m-auto">
       <div />
       <div />
       <div />
