@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IFormComponent, ISubmitData } from '../../types/interfaces';
 import checkEmail from '../../utils/validation';
 import { auth, loginUser, registerNewUser } from '../../utils/firebase';
@@ -14,6 +15,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
   const [errorMessage, setErrorMessage] = useState<string | undefined>('');
   const { headerTitle, buttonTitle } = props;
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const {
     register,
@@ -44,14 +46,14 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
     <div className="form flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-base_green">
-          {headerTitle}
+          {t(`AuthorizationPage.${headerTitle}.headerTitle`)}
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="form__item">
             <label htmlFor="email" className="block text-sm font-medium text-gray-900">
-              <p className="block text-sm text-gray-900">Email address:</p>
+              <p className="block text-sm text-gray-900">{t(`AuthorizationPage.Email`)}</p>
               <input
                 {...register('email', {
                   required: 'Input email',
@@ -67,7 +69,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
           </div>
           <div className="form__item">
             <label htmlFor="password" className="block text-sm font-medium text-gray-900">
-              <p className="block text-sm text-gray-900">Password:</p>
+              <p className="block text-sm text-gray-900">{t(`AuthorizationPage.Password`)}</p>
               <input
                 {...register('password', {
                   required: 'Input password',
@@ -88,7 +90,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
               type="submit"
               className="flex w-full justify-center rounded-md p-2 bg-teal-400 px-3 text-sm font-semibold leading-6 text-white shadow-sm hover:shadow-yellow-300/60 hover:cursor-pointer active:scale-[95%] transition ease-in-out delay-75"
             >
-              {buttonTitle}
+              {t(`AuthorizationPage.${buttonTitle}.headerTitle`)}
             </button>
           </div>
         </form>
