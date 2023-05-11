@@ -8,7 +8,7 @@ function Layout(): JSX.Element {
   return (
     <>
       <Header />
-      <div className="wrapper pl-[2%] pr-[2%] w-full mb-[80px]">
+      <div className="wrapper pl-[2%] pr-[2%] w-full mb-[75px]">
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
