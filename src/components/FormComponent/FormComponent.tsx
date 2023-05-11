@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useState } from 'react';
 import { IFormComponent, ISubmitData } from '../../types/interfaces';
 import checkEmail from '../../utils/validation';
 import { auth, loginUser, registerNewUser } from '../../utils/firebase';
@@ -10,6 +11,7 @@ import { RootState } from '../../app/store';
 
 export default function FormComponent(props: IFormComponent): JSX.Element {
   const [user] = useAuthState(auth);
+  const [errorMessage, setErrorMessage] = useState<string | undefined>('');
   const { headerTitle, buttonTitle } = props;
   const navigate = useNavigate();
 
@@ -23,9 +25,15 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
 
   const onSubmit: SubmitHandler<ISubmitData> = async (data) => {
     if (authorizationText === 'Registration') {
-      await registerNewUser(data.email, data.password);
+      const error = await registerNewUser(data.email, data.password);
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      }
     } else {
-      await loginUser(data.email, data.password);
+      const error = await loginUser(data.email, data.password);
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      }
     }
     if (user) {
       navigate('/graphi-ql');
@@ -84,6 +92,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
             </button>
           </div>
         </form>
+        {errorMessage && <span>{errorMessage.replace('Firebase:', '')}</span>}
       </div>
     </div>
   );
