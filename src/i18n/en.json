@@ -10,7 +10,13 @@
       "2": "GraphQL is a query language for your API, and a server-side runtime for executing queries using a type system you define for your data. GraphQL isn't tied to any specific database or storage engine and is instead backed by your existing code and data.",
       "3": "GraphQL queries always return predictable results. Apps using GraphQL are fast and stable because they control the data they get, not the server",
       "4": "GraphQL queries access not just the properties of one resource but also smoothly follow references between them. While typical REST APIs require loading from multiple URLs, GraphQL APIs get all the data your app needs in a single request. Apps using GraphQL can be quick even on slow mobile network connections",
-      "5": "GraphQL APIs are organized in terms of types and fields, not endpoints. Access the full capabilities of your data from a single endpoint. GraphQL uses types to ensure Apps only ask for what’s possible and provide clear and helpful errors. Apps can use types to avoid writing manual parsing code."
+      "5": "GraphQL APIs are organized in terms of types and fields, not endpoints. Access the full capabilities of your data from a single endpoint. GraphQL uses types to ensure Apps only ask for what’s possible and provide clear and helpful errors. Apps can use types to avoid writing manual parsing code.",
+      "6": "GraphQL was developed by Facebook, which first began using it for mobile applications in 2012. The GraphQL specification was open sourced in 2015. It is now overseen by the GraphQL Foundation.",
+      "7": "There are a variety of open source projects that involve GraphQL. The list below is not exhaustive, but includes projects designed to facilitate the adoption of GraphQL.",
+      "Apollo": "Apollo, a GraphQL platform that includes a frontend client library (Apollo Client) and backend server framework (Apollo Server).",
+      "Offfix": "Offix, an offline client that allows GraphQL mutations and queries to execute even when an application is unreachable.",
+      "Graphback": "Graphback, a command line-client for generating GraphQL-enabled Node.js servers.",
+      "OpenAPI-to-GraphQL": "OpenAPI-to-GraphQL, a command-line interface and library for translating APIs described by OpenAPI Specifications or Swagger into GraphQL."
     },
     "DevelopersAbout": {
       "Vlad": "Vlad Tarnovskiy",
@@ -23,7 +29,23 @@
     "RSSAbout": {
       "1": "RS School is free-of-charge and community-based education program conducted by The Rolling Scopes developer community since 2013.",
       "2": "Everyone can study at RS School, regardless of age, professional employment, or place of residence. The mentors and trainers of our school are front-end and javascript developers from different companies and countries.",
-      "3": "The RS School is working by the principle of 'Teach it forward.' According to this principle, students study at school for free, but we request that they return as mentors to pass on their knowledge to the next generation of students."
+      "3": "The RS School is working by the principle of 'Teach it forward.' According to this principle, students study at school for free, but we request that they return as mentors to pass on their knowledge to the next generation of students.",
+      "4": "Advantages of RS School:",
+      "Advantages1": "Free course, no obligations or contracts. All you need is your time and inclination.",
+      "Advantages2": "Huge, vibrant and active community",
+      "Advantages3": "A multi-faceted training program. Always up to date program. Challenging and interesting tasks. High intensity of material and practice. You will need about 20-40 hours a week.",
+      "Advantages4": "All materials are publicly available on YouTube and GitHub.",
+      "Advantages5": "Trainers from different companies and countries. Overwhelmingly programmers, not teachers",
+      "Advantages6": "Your own mentor from the second stage of training",
+      "Advantages7": "Online classes. Possibility to watch the lectures on YouTube at any time",
+      "Advantages8": "Offline meetings, mitups, interviews",
+      "Advantages9": "Employment opportunity",
+      "Advantages10": "Opportunity to have various educational interviews",
+      "Advantages11": "Sea of opportunities for communication. Studying together is more interesting and effective.",
+      "Advantages12": "The spirit of competition and rivalry",
+      "Advantages13": "No age restrictions",
+      "Advantages14": "Friendly atmosphere, there are always people willing to help",
+      "Advantages15": "Courses can be taken more than once. Usually about 15% of our students repeat the course."
     }
   },
   "GraphQL": {
