@@ -1,6 +1,9 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 // import { getIntrospectionQuery, buildSchema, printSchema } from 'graphql';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import { auth } from 'src/utils/firebase';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
 import Docs from '../../assets/docs.svg';
@@ -24,6 +27,15 @@ function GraphiQLPage(): JSX.Element {
   const [docs, setDocs] = useState(false);
   const [variablesBlock, setVariablesBlock] = useState(true);
   // console.log(buildSchema('rickandmortyapi.com/graphql'));
+
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/authorization');
+    }
+  });
 
   const getData = async () => {
     // const varRemoveQuotes = variables.slice(1, -1).replace(/"/gi, '').split(',');
