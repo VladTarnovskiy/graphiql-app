@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getIntrospectionQuery, buildSchema, printSchema } from 'graphql';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
 import Docs from '../../assets/docs.svg';
@@ -7,18 +8,22 @@ import Settings from '../../assets/settings.svg';
 import Modal from '../../components/Modal/Modal';
 import SettingModal from '../../components/SettingModal/SettingModal';
 
+// function buildSchema(source: string | Source): GraphQLSchema {}
+
 function GraphiQLPage(): JSX.Element {
   const sliderRef = useRef<HTMLDivElement>(null);
+  const variablesFieldRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
   const { t } = useTranslation();
   const [settingsFlag, setSettingsFlag] = useState(false);
   const [fieldFlag, setFieldFlag] = useState(false);
-  const [variables, setVariables] = useState('');
+  const [variables, setVariables] = useState('{}');
   const [headersInput, setHeadersInputs] = useState('{}');
   const [inputData, setInputData] = useState('');
   const [responseData, setResponseData] = useState('');
   const [docs, setDocs] = useState(false);
   const [variablesBlock, setVariablesBlock] = useState(true);
+  // console.log(buildSchema('rickandmortyapi.com/graphql'));
 
   const getData = async () => {
     // const varRemoveQuotes = variables.slice(1, -1).replace(/"/gi, '').split(',');
@@ -48,7 +53,6 @@ function GraphiQLPage(): JSX.Element {
     console.log(JSON.parse(headersInput));
 
     try {
-      const varx = { page: 5, id: 4 };
       const response = await fetch('https://rickandmortyapi.com/graphql', {
         method: 'POST',
         headers: {
@@ -102,8 +106,7 @@ function GraphiQLPage(): JSX.Element {
             className="docs rounded-full w-12 h-12 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             onClick={() => {
-              // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-              docs ? setDocs(false) : setDocs(true);
+              setDocs(!docs);
             }}
           >
             <img src={Docs} alt="Docs" />
@@ -125,26 +128,33 @@ function GraphiQLPage(): JSX.Element {
         )}
       </div>
       <div className="request mr-4 w-full flex flex-col min-h-[80vh]">
-        <div className="request__wrap shadow-xl border-[1px] relative mb-1 border-base_green_light rounded-md">
+        <div className="request__wrap h-full shadow-xl border-[1px] border-b-0 relative border-base_green_light rounded-tr-md rounded-tl-md">
           <textarea
             ref={textRef}
-            className="w-full h-[53vh] query p-4 rounded-md bg-base_white outline-0 mb-[-8px]"
+            className="w-full h-full query p-4 rounded-tr-md rounded-tl-md bg-base_white outline-0 mb-[-8px] resize-none"
             defaultValue="query"
             onChange={(e) => {
               setInputData(e.target.value);
             }}
           />
         </div>
-        <div className="request__inputs h-fit border-[1px] border-base_green_light shadow-xl rounded-md flex flex-col">
-          <div className="relative request__nav flex justify-left pl-4 pr-4 text-sm rounded-md bg-base_white pb-2">
+        <div className="request__inputs h-fit border-[1px] border-base_green_light shadow-xl rounded-br-md rounded-bl-md flex flex-col">
+          <div className="relative request__nav flex justify-left pl-4 pr-4 text-sm bg-base_white pb-2">
             <button
               type="button"
-              className="butShow absolute top-1 right-2 text-2xl"
-              onChangeCapture={() => {
-                setVariablesBlock(false);
+              className="butShow absolute top-1 right-2 text-2xl transition ease-in-out"
+              onClick={(e) => {
+                setVariablesBlock(!variablesBlock);
+                if (variablesBlock) {
+                  e.currentTarget.classList.add('rotate-180');
+                } else {
+                  e.currentTarget.classList.remove('rotate-180');
+                }
               }}
             >
-              ^
+              <svg className="w-6 h-6" focusable="false" aria-hidden="true" viewBox="0 0 24 24">
+                <path fill="#14b8a6" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+              </svg>
             </button>
             <button
               className="request__nav__item variables w-24 mr-4 hover:text-base_green cursor-pointer text-center"
@@ -165,12 +175,14 @@ function GraphiQLPage(): JSX.Element {
               ref={sliderRef}
             />
           </div>
-          {variablesBlock && !fieldFlag && (
-            <Textarea value={variables} setVariables={setVariables} />
-          )}
-          {variablesBlock && fieldFlag && (
-            <Textarea value={headersInput} setVariables={setHeadersInputs} />
-          )}
+          <div ref={variablesFieldRef}>
+            {variablesBlock && !fieldFlag && (
+              <Textarea value={variables} setVariables={setVariables} />
+            )}
+            {variablesBlock && fieldFlag && (
+              <Textarea value={headersInput} setVariables={setHeadersInputs} />
+            )}
+          </div>
         </div>
       </div>
       <div className="response border-[1px] max-h-[80vh] whitespace-break-spaces border-base_green_light shadow-xl p-4 w-full rounded-md bg-base_white overflow-y-auto">
