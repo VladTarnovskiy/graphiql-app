@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getIntrospectionQuery, buildSchema, printSchema } from 'graphql';
+// import { getIntrospectionQuery, buildSchema, printSchema } from 'graphql';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
 import Docs from '../../assets/docs.svg';
