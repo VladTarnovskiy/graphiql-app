@@ -1,0 +1,16 @@
+.header.is-sticky {
+    height: 60px;
+    position: sticky;
+}
+
+.is-sticky {
+    .header__title {
+        display: none;
+    }
+
+    .logo {
+        margin-top: -15px;
+        width: 180px;
+        height: 70px;
+    }
+}
