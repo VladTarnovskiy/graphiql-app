@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import DeveloperCard from './DeveloperCard';
+import DeveloperCard from '../../components/WelcomeCards/DeveloperCard';
 
 function WelcomePage(): JSX.Element {
   const { t } = useTranslation();
@@ -73,7 +73,7 @@ function WelcomePage(): JSX.Element {
           <div className="RSSchoolInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZXcF6GSCd-jCOOT-GFYFhHuUHWf-pYgATGEiqDxzkAQF-Lec65LBsDn-FwYSwmAH-4M&usqp=CAU"
-              className="border-[1px] max-w-[300px] border-base_green_light shadow-xl rounded-md"
+              className="border-[1px] max-w-[350px] sm:max-w-[200px] border-base_green_light shadow-xl rounded-md"
               alt=""
             />
             <div className="text-teal-500 text-center text-2xl">
@@ -86,11 +86,21 @@ function WelcomePage(): JSX.Element {
               {t(`Welcome.GraphiQLAbout.4`)}
               <br />
               {t(`Welcome.GraphiQLAbout.5`)}
+              <br />
+              {t(`Welcome.GraphiQLAbout.6`)}
+              <br />
+              {t(`Welcome.GraphiQLAbout.7`)}
+              <ul>
+                <li>{t(`Welcome.GraphiQLAbout.Apollo`)}</li>
+                <li>{t(`Welcome.GraphiQLAbout.Offfix`)}</li>
+                <li>{t(`Welcome.GraphiQLAbout.Graphback`)}</li>
+                <li>{t(`Welcome.GraphiQLAbout.OpenAPI-to-GraphQL`)}</li>
+              </ul>
             </div>
           </div>
         )}
         {fieldFlag === 'developers' && (
-          <section className="developersSection text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-2xl sm:text-xl">
+          <section className="developersSection text-teal-500 h-4/5 pl-4 pr-4 flex flex-col justify-center items-center text-center text-2xl sm:text-xl">
             <h1 className="text-4xl sm:text-2xl mb-4">{t(`Welcome.DevelopersAbout.Team`)}</h1>
             <div className="developersCards text-teal-500 grid gap-4 grid-cols-3 grid-rows-1 lg:grid-cols-1 lg:grid-rows-3 text-center text-2xl">
               {['Vlad', 'Aleksei', 'Denis'].map((dev) => (
@@ -103,7 +113,7 @@ function WelcomePage(): JSX.Element {
           <div className="RSSchoolInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl">
             <img
               src="https://rs.school/images/partners/logo-rs.svg"
-              className="border-[1px] max-w-[200px] border-base_green_light pr-6 shadow-xl rounded-md"
+              className="border-[1px] max-w-[300px] sm:max-w-[200px] border-base_green_light pr-6 shadow-xl rounded-md"
               alt=""
             />
             <div>
@@ -112,6 +122,25 @@ function WelcomePage(): JSX.Element {
               {t(`Welcome.RSSAbout.2`)}
               <br />
               {t(`Welcome.RSSAbout.3`)}
+              <br />
+              {t(`Welcome.RSSAbout.4`)}
+              <ul className="text-base">
+                <li>{t(`Welcome.RSSAbout.Advantages1`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages2`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages3`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages4`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages5`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages6`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages7`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages8`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages9`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages10`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages11`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages12`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages13`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages14`)}</li>
+                <li>{t(`Welcome.RSSAbout.Advantages15`)}</li>
+              </ul>
             </div>
           </div>
         )}
