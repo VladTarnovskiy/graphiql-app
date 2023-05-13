@@ -29,7 +29,7 @@ function DeveloperCard({ developer }: { developer: string }): JSX.Element {
       <div className="max-w-[300px] sm:max-w-[200px] flex flex-col items-center">
         <img
           src={developerInfo[0].logoLink}
-          className="border-[1px] border-base_green_light max-w-[180px] sm:max-w-[150px] shadow-xl rounded-md"
+          className="border-[1px] max-w-[150px] sm:max-w-[130px] shadow-xl rounded-md"
           alt=""
         />
         <div>
