@@ -18,7 +18,7 @@ function Footer(): JSX.Element {
           to="https://github.com/DenisKa13051992"
         />
       </div>
-      <div className="account__img text-teal-500 dark:font-semibold dark:text-stone-600 font-thin h-fit">
+      <div className="account__img text-teal-500 dark:font-semibold dark:text-base_green_light font-thin h-fit">
         ©2023
       </div>
       <NavLink

@@ -13,9 +13,9 @@ function WelcomePage(): JSX.Element {
 
   return (
     <div className="graphql flex justify-center">
-      <div className="response flex flex-col border-[1px] shadow-xl p-4 w-[65vw] sm:w-[95vw] md:w-[80vw] min-h-[80vh] rounded-md bg-base_white">
-        <div className="request mr-4 w-full flex flex-col">
-          <div className="relative request__nav flex justify-left pl-4 pr-4 mb-4 text-sm bg-base_white pb-2">
+      <div className="flex flex-col border-[1px] shadow-xl p-4 w-[65vw] sm:w-[95vw] md:w-[80vw] min-h-[80vh] rounded-md bg-base_white dark:bg-dark_black">
+        <div className="mr-4 w-full flex flex-col dark:text-base_white">
+          <div className="relative graphql__nav flex justify-left pl-4 pr-4 mb-4 text-sm bg-base_white dark:bg-dark_black pb-2">
             {(fieldFlag === 'project' && (
               <button
                 className="project underline underline-offset-4 decoration-base_green w-16 mr-4 hover:text-base_green cursor-pointer"
@@ -26,7 +26,7 @@ function WelcomePage(): JSX.Element {
               </button>
             )) || (
               <button
-                className="project w-16 mr-4 hover:text-base_green cursor-pointer"
+                className="project w-16 mr-4 hover:text-base_green_light cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -35,7 +35,7 @@ function WelcomePage(): JSX.Element {
             )}
             {(fieldFlag === 'developers' && (
               <button
-                className="developers underline underline-offset-4 decoration-base_green w-24 mr-4 hover:text-base_green cursor-pointer"
+                className="developers underline underline-offset-4 decoration-base_green w-24 mr-4 hover:text-base_green_light cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -43,7 +43,7 @@ function WelcomePage(): JSX.Element {
               </button>
             )) || (
               <button
-                className="developers w-24 mr-4 hover:text-base_green cursor-pointer"
+                className="developers w-24 mr-4 hover:text-base_green_light cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >

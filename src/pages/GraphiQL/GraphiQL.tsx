@@ -83,8 +83,8 @@ function GraphiQLPage(): JSX.Element {
           <SettingModal />
         </Modal>
       )}
-      <div className="relative flex justify-start p-1 docs-nav h-full min-w-[58px] min-h-[80vh] shadow-xl border-[1px] border-base_green_light rounded-r-md mr-1 pt-2 bg-base_white">
-        <div className="max-w-[58px] flex flex-col justify-start">
+      <div className="relative flex justify-start p-1 docs-nav h-full min-w-[58px] min-h-[80vh] shadow-xl border-[1px] border-base_green_light rounded-r-md mr-1 pt-2 bg-base_white dark:bg-dark_textarea">
+        <div className="max-w-[58px] flex flex-col justify-start dark:bg-dark_textarea">
           <button
             className="play rounded-full w-12 h-12 mb-6 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
             type="button"
@@ -124,7 +124,7 @@ function GraphiQLPage(): JSX.Element {
         <div className="request__wrap shadow-xl border-[1px] relative mb-1 basis-4/6 border-base_green_light rounded-md">
           <textarea
             ref={textRef}
-            className="w-full h-full query p-4 rounded-md bg-base_white outline-0"
+            className="w-full h-full query p-4 rounded-md bg-base_white outline-0 dark:bg-dark_textarea dark:text-base_white"
             defaultValue="query"
             onChange={(e) => {
               setInputData(e.target.value);
@@ -132,7 +132,7 @@ function GraphiQLPage(): JSX.Element {
           />
         </div>
         <div className="request__inputs border-[1px] border-base_green_light shadow-xl basis-2/6 rounded-md flex flex-col">
-          <div className="relative request__nav flex justify-left pl-4 pr-4 text-sm rounded-md bg-base_white pb-2">
+          <div className="relative request__nav flex justify-left pl-4 pr-4 text-sm rounded-md bg-base_white pb-2 dark:bg-dark_textarea dark:text-base_white">
             <button
               className="request__nav__item variables w-24 mr-4 hover:text-base_green cursor-pointer text-center"
               onClick={changeRequestInputs}
@@ -156,7 +156,7 @@ function GraphiQLPage(): JSX.Element {
           {fieldFlag && <Textarea value={headersInput} setVariables={setHeadersInputs} />}
         </div>
       </div>
-      <div className="response border-[1px] max-h-[80vh] whitespace-break-spaces border-base_green_light shadow-xl p-4 w-full rounded-md bg-base_white overflow-y-scroll">
+      <div className="response border-[1px] max-h-[80vh] whitespace-break-spaces border-base_green_light shadow-xl p-4 w-full rounded-md bg-base_white overflow-y-scroll dark:bg-dark_textarea dark:text-base_white">
         {responseData}
       </div>
     </div>

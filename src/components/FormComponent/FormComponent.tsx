@@ -43,7 +43,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="form__item">
             <label htmlFor="email" className="block text-sm font-medium text-gray-900">
-              <p className="block text-sm text-gray-900">Email address:</p>
+              <p className="block text-sm text-gray-900 dark:text-base_white">Email address:</p>
               <input
                 {...register('email', {
                   required: 'Input email',
@@ -59,7 +59,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
           </div>
           <div className="form__item">
             <label htmlFor="password" className="block text-sm font-medium text-gray-900">
-              <p className="block text-sm text-gray-900">Password:</p>
+              <p className="block text-sm text-gray-900 dark:text-base_white">Password:</p>
               <input
                 {...register('password', {
                   required: 'Input password',
