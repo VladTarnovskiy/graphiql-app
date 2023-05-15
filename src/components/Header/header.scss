@@ -1,6 +1,8 @@
 .header.is-sticky {
     height: 60px;
     position: sticky;
+    animation: fadeInDown 0.5s ease-out;
+
 }
 
 .is-sticky {
@@ -14,3 +16,13 @@
         height: 70px;
     }
 }
+
+// @keyframes slideDown {
+//     from {
+//         transform: translateY(-100%);
+//     }
+
+//     to {
+//         transform: translateY(0);
+//     }
+// }
