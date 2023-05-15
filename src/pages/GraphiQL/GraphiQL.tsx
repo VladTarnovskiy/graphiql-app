@@ -16,14 +16,19 @@ import {
   selectVariablesValue,
   selectInputDataValue,
   selectResponseValue,
+  selectResponseStatus,
+  selectResponseError,
   setInputData,
   setHeaders,
   setVariables,
   setResponse,
+  fetchDataRequest,
 } from 'src/app/slice/GraphiqlPageSlice';
 
+import Loader from 'src/components/Loader/Loader';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
+import Stop from '../../assets/stop.svg';
 import Docs from '../../assets/docs.svg';
 import Settings from '../../assets/settings.svg';
 import Modal from '../../components/Modal/Modal';
@@ -47,6 +52,8 @@ function GraphiQLPage(): JSX.Element {
   const variablesValueFromStorage = useAppSelector(selectVariablesValue);
   const inputDataValueFromStorage = useAppSelector(selectInputDataValue);
   const responseValueFromStorage = useAppSelector(selectResponseValue);
+  const responseStatusFromStorage = useAppSelector(selectResponseStatus);
+  const responseErrorFromStorage = useAppSelector(selectResponseError);
 
   const dispatch = useAppDispatch();
 
@@ -60,30 +67,36 @@ function GraphiQLPage(): JSX.Element {
   });
 
   const getData = async () => {
-    try {
-      const response = await fetch('https://rickandmortyapi.com/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // ...JSON.parse(headersInput),
-        },
-        body: JSON.stringify({
-          // query: getIntrospectionQuery(),
-          query: `${inputDataValueFromStorage}`,
-          variables: JSON.parse(variablesValueFromStorage),
-        }),
-      });
-      const data = await response.json();
-      const editData = JSON.stringify(data, null, '\t');
+    // try {
+    //   const response = await fetch('https://rickandmortyapi.com/graphql', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       // ...JSON.parse(headersInput),
+    //     },
+    //     body: JSON.stringify({
+    //       // query: getIntrospectionQuery(),
+    //       query: `${inputDataValueFromStorage}`,
+    //       variables: JSON.parse(variablesValueFromStorage),
+    //     }),
+    //   });
+    //   const data = await response.json();
+    //   const editData = JSON.stringify(data, null, '\t');
 
-      // const x = buildClientSchema(data);
+    //   // const x = buildClientSchema(data);
 
-      // const y = printSchema(x);
-      // console.log(x);
-      dispatch(setResponse(editData));
-    } catch (e) {
-      dispatch(setResponse(`${e}`));
-    }
+    //   // const y = printSchema(x);
+    //   // console.log(x);
+    //   dispatch(setResponse(editData));
+    // } catch (e) {
+    //   dispatch(setResponse(`${e}`));
+    // }
+    await dispatch(
+      fetchDataRequest({
+        query: `${inputDataValueFromStorage}`,
+        variables: variablesValueFromStorage,
+      })
+    );
   };
 
   const changeRequestInputs = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -107,13 +120,18 @@ function GraphiQLPage(): JSX.Element {
       <div className="relative flex justify-start p-1 docs-nav h-full min-w-[58px] min-h-[80vh] shadow-xl border-[1px] border-base_green_light rounded-r-md mr-1 pt-2 bg-base_white">
         <div className="max-w-[58px] flex flex-col justify-start">
           <button
-            className="play rounded-full w-12 h-12 mb-6 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
+            className="play rounded-full pl-[8px] w-12 h-12 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
             type="button"
             onClick={() => {
               getData();
             }}
           >
-            <img src={Play} alt="Play" />
+            {responseStatusFromStorage !== 'loading' && (
+              <img src={Play} alt="Play" className="w-[32px] h-[32px]" />
+            )}
+            {responseStatusFromStorage === 'loading' && (
+              <img src={Stop} alt="Stop" className="w-[32px] h-[32px]" />
+            )}
           </button>
           <button
             className="docs rounded-full w-12 h-12 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
@@ -199,7 +217,13 @@ function GraphiQLPage(): JSX.Element {
         </div>
       </div>
       <div className="response border-[1px] max-h-[80vh] whitespace-break-spaces border-base_green_light shadow-xl p-4 w-full rounded-md bg-base_white overflow-y-auto">
-        {responseValueFromStorage}
+        {responseStatusFromStorage === 'succeeded' && responseValueFromStorage}
+        {responseStatusFromStorage === 'loading' && (
+          <div className="m-auto w-fit mt-[30vh]">
+            <Loader />
+          </div>
+        )}
+        {responseStatusFromStorage === 'failed' && responseErrorFromStorage}
       </div>
     </div>
   );

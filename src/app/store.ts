@@ -10,6 +10,12 @@ export const store = configureStore({
     graphiql: GraphiQLReducer,
     settings: SettingsReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: null,
+      },
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
