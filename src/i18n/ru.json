@@ -58,5 +58,17 @@
     "Theme": "Тема",
     "Dark": "Темная",
     "Light": "Светлая"
+  },
+  "AuthorizationPage": {
+    "Email": "Email адрес:",
+    "Password": "Пароль:",
+    "Registration": {
+      "headerTitle": "Зарегистрироваться",
+      "buttonTitle": "Зарегистрироваться"
+    },
+    "Login": {
+      "headerTitle": "Войти",
+      "buttonTitle": "Войти"
+    }
   }
 }

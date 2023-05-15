@@ -58,5 +58,17 @@
     "Theme": "Theme",
     "Dark": "Dark",
     "Light": "Light"
+  },
+  "AuthorizationPage": {
+    "Email": "Email address:",
+    "Password": "Password:",
+    "Registration": {
+      "headerTitle": "Registration",
+      "buttonTitle": "Registration"
+    },
+    "Login": {
+      "headerTitle": "Login",
+      "buttonTitle": "Login"
+    }
   }
 }

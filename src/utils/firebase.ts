@@ -22,17 +22,17 @@ const registerNewUser = async (email: string, password: string) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
+    return error;
   }
+  return null;
 };
 const loginUser = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
+    return error;
   }
+  return null;
 };
 
 const logout = async () => {
