@@ -9,6 +9,7 @@ import { IFormComponent, ISubmitData } from '../../types/interfaces';
 import { checkEmail, checkPassword } from '../../utils/validation';
 import { auth, loginUser, registerNewUser } from '../../utils/firebase';
 import { RootState } from '../../app/store';
+import ErrorPopUp from '../ErrorPopUp/ErrorPopUp';
 
 export default function FormComponent(props: IFormComponent): JSX.Element {
   const [user] = useAuthState(auth);
@@ -37,13 +38,14 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
         setErrorMessage(error.message);
       }
     }
+    setTimeout(() => setErrorMessage(''), 5000);
     if (user) {
       navigate('/graphi-ql');
     }
   };
 
   return (
-    <div className="form flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <section className="form flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-base_green">
           {t(`AuthorizationPage.${headerTitle}.headerTitle`)}
@@ -78,6 +80,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
                 id="password"
                 name="password"
                 type="password"
+                autoComplete="off"
                 className="block mt-1 w-full bg-base_white text-md p-2 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
               />
             </label>
@@ -95,8 +98,8 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
             </button>
           </div>
         </form>
-        {errorMessage && <span>{errorMessage.replace('Firebase:', '')}</span>}
       </div>
-    </div>
+      {errorMessage && <ErrorPopUp message={errorMessage} />}
+    </section>
   );
 }
