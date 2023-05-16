@@ -22,7 +22,6 @@ export const fetchDocsRequest = createAsyncThunk('docs/fetchDocsRequest', async 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // ...JSON.parse(headersInput),
       },
       body: JSON.stringify({
         query: getIntrospectionQuery(),

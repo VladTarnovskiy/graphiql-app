@@ -30,12 +30,12 @@ function Documents(): JSX.Element {
   }, []);
 
   return (
-    <div className="absolute flex flex-col rounded-r-md text-base docs font-normal text-base_green p-2 docs w-[40vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] bg-base_white border-[1px] border-l-0 border-base_green_light overflow-auto">
-      <div className="docs__title text-2xl">Documents</div>
+    <div className="flex flex-col rounded-r-md text-base docs ml-2 font-normal text-base_green docs xs:text-sm max-w-[42vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] bg-base_white overflow-auto">
+      <div className="docs__title text-2xl pr-8">Documents</div>
       <div className="docs__content text-base_dark whitespace-break-spaces">
         {docsResponseStatusFromStorage === 'succeeded' && docsResponseValueFromStorage}
         {docsResponseStatusFromStorage === 'loading' && (
-          <div className="m-auto w-fit mt-[30vh]">
+          <div className="m-auto w-fit mt-[20vh]">
             <Loader />
           </div>
         )}

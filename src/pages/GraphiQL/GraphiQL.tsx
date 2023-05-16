@@ -75,13 +75,13 @@ function GraphiQLPage(): JSX.Element {
   };
 
   return (
-    <div className="graphql basis-1/8 flex-grow-1 flex justify-center dark:bg-base_dark">
+    <div className="relative graphql basis-1/8 flex-grow-1 flex justify-center pl-[62px] md:pl-[54px]  dark:bg-base_dark">
       {settingsFlag && (
         <Modal setCloseFlag={setSettingsFlag}>
           <SettingModal />
         </Modal>
       )}
-      <div className="instruments relative flex justify-start p-1 docs-nav h-full min-w-[58px] md:min-w-[50px] min-h-[80vh] shadow-xl border-[1px] border-base_green_light rounded-r-md mr-1 pt-2 bg-base_white">
+      <div className="absolute left-0 top-0 instruments z-20 flex justify-start p-1 pl-[5px] docs-nav h-full min-w-[58px] md:min-w-[50px] min-h-[80vh] border-base_green_light border-[1px] rounded-r-md pr-0 pt-2 bg-base_white">
         <div className=" flex flex-col justify-start">
           <button
             className="play rounded-full pl-[8px] w-12 h-12 md:w-10 md:h-10 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
@@ -116,11 +116,11 @@ function GraphiQLPage(): JSX.Element {
             <img src={Settings} alt="Settings" />
           </button>
         </div>
-        {docs && <Documents />}
+        <div className="documents"> {docs && <Documents />}</div>
       </div>
       <div className="flex w-full md:flex-col">
-        <div className="request mr-4 w-full flex flex-col min-h-[80vh] md:mb-1">
-          <div className="request__wrap h-full shadow-xl border-[1px] border-b-0 relative border-base_green_light rounded-tr-md rounded-tl-md">
+        <div className="request mr-4 w-full flex flex-col min-h-[80vh] md:mb-2 shadow-lg shadow-base_green/50">
+          <div className="request__wrap h-full shadow-xl relative rounded-tr-md rounded-tl-md">
             <textarea
               ref={textRef}
               className="w-full h-full query p-4 rounded-tr-md rounded-tl-md bg-base_white outline-0 mb-[-8px] resize-none xs:text-sm"
@@ -130,7 +130,7 @@ function GraphiQLPage(): JSX.Element {
               }}
             />
           </div>
-          <div className="request__inputs h-fit border-[1px] border-base_green_light shadow-xl rounded-br-md rounded-bl-md flex flex-col">
+          <div className="request__inputs h-fit border-t-[1px] border-base_green_light rounded-br-md rounded-bl-md flex flex-col">
             <div className="relative request__nav flex justify-left pl-4 pr-4  rounded-br-md rounded-bl-md text-sm bg-base_white pb-2">
               <button
                 type="button"
@@ -177,7 +177,7 @@ function GraphiQLPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="response border-[1px] max-h-[80vh] xs:text-sm whitespace-break-spaces border-base_green_light shadow-xl p-4 w-full rounded-md bg-base_white overflow-y-auto">
+        <div className="response max-h-[80vh] xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 p-4 w-full rounded-md bg-base_white overflow-y-auto">
           {responseStatusFromStorage === 'succeeded' && responseValueFromStorage}
           {responseStatusFromStorage === 'loading' && (
             <div className="m-auto w-fit mt-[30vh]">
