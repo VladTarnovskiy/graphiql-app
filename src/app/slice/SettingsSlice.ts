@@ -9,8 +9,8 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  language: '',
-  theme: '',
+  language: 'en',
+  theme: 'light',
 };
 
 export const settingsSlice = createSlice({
@@ -26,10 +26,9 @@ export const settingsSlice = createSlice({
   },
 });
 
-export const { setLanguage } = settingsSlice.actions;
-export const { setTheme } = settingsSlice.actions;
-
 export default settingsSlice.reducer;
+
+export const { setLanguage, setTheme } = settingsSlice.actions;
 
 export const selectLanguage = (state: RootState) => state.settings.language;
 export const selectTheme = (state: RootState) => state.settings.theme;

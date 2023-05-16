@@ -79,12 +79,9 @@ export const garphiqlPageSlice = createSlice({
   },
 });
 
-export const { setInputData } = garphiqlPageSlice.actions;
-export const { setHeaders } = garphiqlPageSlice.actions;
-export const { setVariables } = garphiqlPageSlice.actions;
-export const { setResponse } = garphiqlPageSlice.actions;
-
 export default garphiqlPageSlice.reducer;
+
+export const { setInputData, setHeaders, setVariables, setResponse } = garphiqlPageSlice.actions;
 
 export const selectInputDataValue = (state: RootState) => state.graphiql.inputData;
 export const selectVariablesValue = (state: RootState) => state.graphiql.variables;

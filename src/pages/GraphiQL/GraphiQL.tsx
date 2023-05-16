@@ -117,24 +117,24 @@ function GraphiQLPage(): JSX.Element {
           <SettingModal />
         </Modal>
       )}
-      <div className="relative flex justify-start p-1 docs-nav h-full min-w-[58px] min-h-[80vh] shadow-xl border-[1px] border-base_green_light rounded-r-md mr-1 pt-2 bg-base_white">
-        <div className="max-w-[58px] flex flex-col justify-start">
+      <div className="instruments relative flex justify-start p-1 docs-nav h-full min-w-[58px] md:min-w-[50px] min-h-[80vh] shadow-xl border-[1px] border-base_green_light rounded-r-md mr-1 pt-2 bg-base_white">
+        <div className=" flex flex-col justify-start">
           <button
-            className="play rounded-full pl-[8px] w-12 h-12 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
+            className="play rounded-full pl-[8px] w-12 h-12 md:w-10 md:h-10 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
             type="button"
             onClick={() => {
               getData();
             }}
           >
             {responseStatusFromStorage !== 'loading' && (
-              <img src={Play} alt="Play" className="w-[32px] h-[32px]" />
+              <img src={Play} alt="Play" className="w-[32px] md:w-[26px]" />
             )}
             {responseStatusFromStorage === 'loading' && (
-              <img src={Stop} alt="Stop" className="w-[32px] h-[32px]" />
+              <img src={Stop} alt="Stop" className="w-[32px] md:w-[26px]" />
             )}
           </button>
           <button
-            className="docs rounded-full w-12 h-12 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="docs rounded-full w-12 h-12 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             onClick={() => {
               setDocs(!docs);
@@ -143,7 +143,7 @@ function GraphiQLPage(): JSX.Element {
             <img src={Docs} alt="Docs" />
           </button>
           <button
-            className="setting rounded-full w-12 h-12 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
+            className="setting rounded-full w-12 h-12 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
             type="button"
             onClick={() => {
               setSettingsFlag(true);
@@ -158,72 +158,74 @@ function GraphiQLPage(): JSX.Element {
           </div>
         )}
       </div>
-      <div className="request mr-4 w-full flex flex-col min-h-[80vh]">
-        <div className="request__wrap h-full shadow-xl border-[1px] border-b-0 relative border-base_green_light rounded-tr-md rounded-tl-md">
-          <textarea
-            ref={textRef}
-            className="w-full h-full query p-4 rounded-tr-md rounded-tl-md bg-base_white outline-0 mb-[-8px] resize-none"
-            defaultValue={inputDataValueFromStorage}
-            onChange={(e) => {
-              dispatch(setInputData(e.target.value));
-            }}
-          />
-        </div>
-        <div className="request__inputs h-fit border-[1px] border-base_green_light shadow-xl rounded-br-md rounded-bl-md flex flex-col">
-          <div className="relative request__nav flex justify-left pl-4 pr-4  rounded-br-md rounded-bl-md text-sm bg-base_white pb-2">
-            <button
-              type="button"
-              className="butShow absolute top-1 right-2 text-2xl transition ease-in-out"
-              onClick={(e) => {
-                setVariablesBlock(!variablesBlock);
-                if (variablesBlock) {
-                  e.currentTarget.classList.add('rotate-180');
-                } else {
-                  e.currentTarget.classList.remove('rotate-180');
-                }
+      <div className="flex w-full md:flex-col">
+        <div className="request mr-4 w-full flex flex-col min-h-[80vh] md:mb-1">
+          <div className="request__wrap h-full shadow-xl border-[1px] border-b-0 relative border-base_green_light rounded-tr-md rounded-tl-md">
+            <textarea
+              ref={textRef}
+              className="w-full h-full query p-4 rounded-tr-md rounded-tl-md bg-base_white outline-0 mb-[-8px] resize-none xs:text-sm"
+              defaultValue={inputDataValueFromStorage}
+              onChange={(e) => {
+                dispatch(setInputData(e.target.value));
               }}
-            >
-              <svg className="w-6 h-6" focusable="false" aria-hidden="true" viewBox="0 0 24 24">
-                <path fill="#14b8a6" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-              </svg>
-            </button>
-            <button
-              className="request__nav__item variables w-24 mr-4 hover:text-base_green cursor-pointer text-center"
-              onClick={changeRequestInputs}
-              type="button"
-            >
-              {t('GraphQL.Variables')}
-            </button>
-            <button
-              className="request__nav__item w-24 hover:text-base_green cursor-pointer text-center"
-              onClick={changeRequestInputs}
-              type="button"
-            >
-              {t('GraphQL.Headers')}
-            </button>
-            <div
-              className="switcher w-24 h-[1px] absolute left-4 bottom-2 bg-base_green_light transition ease-in-out"
-              ref={sliderRef}
             />
           </div>
-          <div ref={variablesFieldRef}>
-            {variablesBlock && !fieldFlag && (
-              <Textarea value={variablesValueFromStorage} setVariables={setVariables} />
-            )}
-            {variablesBlock && fieldFlag && (
-              <Textarea value={headersValueFromStorage} setVariables={setHeaders} />
-            )}
+          <div className="request__inputs h-fit border-[1px] border-base_green_light shadow-xl rounded-br-md rounded-bl-md flex flex-col">
+            <div className="relative request__nav flex justify-left pl-4 pr-4  rounded-br-md rounded-bl-md text-sm bg-base_white pb-2">
+              <button
+                type="button"
+                className="butShow absolute top-1 right-2 text-2xl transition ease-in-out"
+                onClick={(e) => {
+                  setVariablesBlock(!variablesBlock);
+                  if (variablesBlock) {
+                    e.currentTarget.classList.add('rotate-180');
+                  } else {
+                    e.currentTarget.classList.remove('rotate-180');
+                  }
+                }}
+              >
+                <svg className="w-6 h-6" focusable="false" aria-hidden="true" viewBox="0 0 24 24">
+                  <path fill="#14b8a6" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                </svg>
+              </button>
+              <button
+                className="request__nav__item variables w-24 md:w-20 mr-4 hover:text-base_green cursor-pointer text-center"
+                onClick={changeRequestInputs}
+                type="button"
+              >
+                {t('GraphQL.Variables')}
+              </button>
+              <button
+                className="request__nav__item w-24 md:w-20 hover:text-base_green cursor-pointer text-center"
+                onClick={changeRequestInputs}
+                type="button"
+              >
+                {t('GraphQL.Headers')}
+              </button>
+              <div
+                className="switcher w-24 md:w-20 h-[1px] absolute left-4 bottom-2 bg-base_green_light transition ease-in-out"
+                ref={sliderRef}
+              />
+            </div>
+            <div ref={variablesFieldRef}>
+              {variablesBlock && !fieldFlag && (
+                <Textarea value={variablesValueFromStorage} setVariables={setVariables} />
+              )}
+              {variablesBlock && fieldFlag && (
+                <Textarea value={headersValueFromStorage} setVariables={setHeaders} />
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="response border-[1px] max-h-[80vh] whitespace-break-spaces border-base_green_light shadow-xl p-4 w-full rounded-md bg-base_white overflow-y-auto">
-        {responseStatusFromStorage === 'succeeded' && responseValueFromStorage}
-        {responseStatusFromStorage === 'loading' && (
-          <div className="m-auto w-fit mt-[30vh]">
-            <Loader />
-          </div>
-        )}
-        {responseStatusFromStorage === 'failed' && responseErrorFromStorage}
+        <div className="response border-[1px] max-h-[80vh] xs:text-sm whitespace-break-spaces border-base_green_light shadow-xl p-4 w-full rounded-md bg-base_white overflow-y-auto">
+          {responseStatusFromStorage === 'succeeded' && responseValueFromStorage}
+          {responseStatusFromStorage === 'loading' && (
+            <div className="m-auto w-fit mt-[30vh]">
+              <Loader />
+            </div>
+          )}
+          {responseStatusFromStorage === 'failed' && responseErrorFromStorage}
+        </div>
       </div>
     </div>
   );
