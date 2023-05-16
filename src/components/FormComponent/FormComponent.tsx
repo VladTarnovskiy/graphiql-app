@@ -6,7 +6,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IFormComponent, ISubmitData } from '../../types/interfaces';
-import checkEmail from '../../utils/validation';
+import { checkEmail, checkPassword } from '../../utils/validation';
 import { auth, loginUser, registerNewUser } from '../../utils/firebase';
 import { RootState } from '../../app/store';
 
@@ -56,7 +56,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
               <p className="block text-sm text-gray-900">{t(`AuthorizationPage.Email`)}</p>
               <input
                 {...register('email', {
-                  required: 'Input email',
+                  required: `${t(`AuthorizationPage.ErrorMessage.Email`)}`,
                   validate: checkEmail,
                 })}
                 id="email"
@@ -72,7 +72,8 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
               <p className="block text-sm text-gray-900">{t(`AuthorizationPage.Password`)}</p>
               <input
                 {...register('password', {
-                  required: 'Input password',
+                  required: `${t(`AuthorizationPage.ErrorMessage.Password`)}`,
+                  validate: checkPassword,
                 })}
                 id="password"
                 name="password"

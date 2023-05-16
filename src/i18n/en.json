@@ -69,6 +69,13 @@
     "Login": {
       "headerTitle": "Login",
       "buttonTitle": "Login"
+    },
+    "ErrorMessage": {
+      "Email": "Input Email",
+      "EmailDomain": "Invalided email domain",
+      "ToShort": "Minimum 8 symbols",
+      "Password": "Input Password",
+      "Symbols": "Must be at least one letter, one digit, one special character"
     }
   }
 }
