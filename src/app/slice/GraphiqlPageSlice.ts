@@ -78,7 +78,6 @@ export const garphiqlPageSlice = createSlice({
       });
   },
 });
-
 export default garphiqlPageSlice.reducer;
 
 export const { setInputData, setHeaders, setVariables, setResponse } = garphiqlPageSlice.actions;
