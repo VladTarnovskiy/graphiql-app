@@ -8,11 +8,17 @@ function Layout(): JSX.Element {
   return (
     <>
       <Header />
-      <div className="wrapper pl-[2%] pr-[2%] w-full">
-        <Suspense fallback={<Loader />}>
+      <main className="wrapper pl-[2%] pr-[2%] w-full mb-[75px] mt-[100px]">
+        <Suspense
+          fallback={
+            <div className="m-auto w-fit mt-[30vh]">
+              <Loader />
+            </div>
+          }
+        >
           <Outlet />
         </Suspense>
-      </div>
+      </main>
       <Footer />
     </>
   );
