@@ -31,7 +31,7 @@ function SettingModal(): JSX.Element {
   };
 
   return (
-    <div className="setting-modal border-[1px] border-base_green_light shadow-xl p-4 pb-8 w-full rounded-md bg-base_white">
+    <div className="setting-modal border-[1px] border-base_green_light shadow-xl p-4 pb-8 w-full rounded-md bg-base_white  dark:bg-dark_textarea dark:text-base_white">
       <h1 className="title text-2xl text-center font-normal text-base_green">
         {t('Setting.Title')}
       </h1>

@@ -23,7 +23,7 @@ function Header(): JSX.Element {
 
   return (
     <header
-      className="header absolute top-0 w-full z-20 backdrop-blur-xl header flex justify-between items-center shadow-lg bg-gray-400/20 dark:bg-dark_header pl-[2%] pr-[2%] mb-6 transition ease-in-out delay-75"
+      className="header sticky top-0 w-full z-20 backdrop-blur-xl header flex justify-between items-center shadow-lg bg-gray-400/20 dark:bg-dark_header pl-[2%] pr-[2%] mb-6 transition ease-in-out delay-75"
       ref={headerRef}
     >
       <div className="header__logo overflow-hidden">

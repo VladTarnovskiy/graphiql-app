@@ -134,7 +134,7 @@ function GraphiQLPage(): JSX.Element {
           </button>
         </div>
         {docs && (
-          <div className="absolute rounded-r-md docs text-2xl font-normal text-base_green p-2 docs w-[40vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] bg-base_white border-[1px] border-l-0 border-base_green_light">
+          <div className="absolute rounded-r-md docs text-2xl font-normal text-base_green p-2 docs w-[40vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] bg-base_white border-[1px] border-l-0 border-base_green_light dark:bg-dark_textarea dark:text-base_white">
             Documents
           </div>
         )}
