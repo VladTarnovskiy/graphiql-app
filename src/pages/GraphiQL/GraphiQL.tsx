@@ -1,12 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  IntrospectionQuery,
-  getIntrospectionQuery,
-  buildClientSchema,
-  printSchema,
-  buildSchema,
-} from 'graphql';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from 'src/utils/firebase';
@@ -21,11 +14,11 @@ import {
   setInputData,
   setHeaders,
   setVariables,
-  setResponse,
   fetchDataRequest,
 } from 'src/app/slice/GraphiqlPageSlice';
 
 import Loader from 'src/components/Loader/Loader';
+import Documents from 'src/components/Documents/Documents';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
 import Stop from '../../assets/stop.svg';
@@ -35,8 +28,6 @@ import Modal from '../../components/Modal/Modal';
 import SettingModal from '../../components/SettingModal/SettingModal';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-// function buildSchema(source: string | Source): GraphQLSchema {}
-// console.log(buildSchema('https://rickandmortyapi.com/graphql'));
 function GraphiQLPage(): JSX.Element {
   const sliderRef = useRef<HTMLDivElement>(null);
   const variablesFieldRef = useRef<HTMLDivElement>(null);
@@ -46,8 +37,6 @@ function GraphiQLPage(): JSX.Element {
   const [fieldFlag, setFieldFlag] = useState(false);
   const [docs, setDocs] = useState(false);
   const [variablesBlock, setVariablesBlock] = useState(true);
-  // console.log(buildSchema('rickandmortyapi.com/graphql'));
-
   const headersValueFromStorage = useAppSelector(selectHeadersValue);
   const variablesValueFromStorage = useAppSelector(selectVariablesValue);
   const inputDataValueFromStorage = useAppSelector(selectInputDataValue);
@@ -56,7 +45,6 @@ function GraphiQLPage(): JSX.Element {
   const responseErrorFromStorage = useAppSelector(selectResponseError);
 
   const dispatch = useAppDispatch();
-
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -67,30 +55,6 @@ function GraphiQLPage(): JSX.Element {
   });
 
   const getData = async () => {
-    // try {
-    //   const response = await fetch('https://rickandmortyapi.com/graphql', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       // ...JSON.parse(headersInput),
-    //     },
-    //     body: JSON.stringify({
-    //       // query: getIntrospectionQuery(),
-    //       query: `${inputDataValueFromStorage}`,
-    //       variables: JSON.parse(variablesValueFromStorage),
-    //     }),
-    //   });
-    //   const data = await response.json();
-    //   const editData = JSON.stringify(data, null, '\t');
-
-    //   // const x = buildClientSchema(data);
-
-    //   // const y = printSchema(x);
-    //   // console.log(x);
-    //   dispatch(setResponse(editData));
-    // } catch (e) {
-    //   dispatch(setResponse(`${e}`));
-    // }
     await dispatch(
       fetchDataRequest({
         query: `${inputDataValueFromStorage}`,
@@ -152,11 +116,7 @@ function GraphiQLPage(): JSX.Element {
             <img src={Settings} alt="Settings" />
           </button>
         </div>
-        {docs && (
-          <div className="absolute rounded-r-md docs text-2xl font-normal text-base_green p-2 docs w-[40vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] bg-base_white border-[1px] border-l-0 border-base_green_light">
-            Documents
-          </div>
-        )}
+        {docs && <Documents />}
       </div>
       <div className="flex w-full md:flex-col">
         <div className="request mr-4 w-full flex flex-col min-h-[80vh] md:mb-1">
