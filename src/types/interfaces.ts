@@ -11,3 +11,7 @@ export interface ISubmitData {
 export interface IButtonProps {
   title: string;
 }
+
+export interface IErrorPopUp {
+  message: string;
+}

@@ -50,7 +50,7 @@ function GraphiQLPage(): JSX.Element {
 
   useEffect(() => {
     if (!user) {
-      navigate('/authorization');
+      navigate('/');
     }
   });
 
