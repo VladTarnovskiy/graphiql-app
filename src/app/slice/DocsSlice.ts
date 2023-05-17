@@ -1,7 +1,13 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getIntrospectionQuery } from 'graphql';
+import {
+  IntrospectionQuery,
+  getIntrospectionQuery,
+  buildClientSchema,
+  printSchema,
+  buildSchema,
+} from 'graphql';
 import { RootState } from '../store';
 
 interface InitialState {
