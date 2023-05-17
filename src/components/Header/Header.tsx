@@ -14,7 +14,7 @@ function Header(): JSX.Element {
 
   window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    if (currentScroll > 90) {
+    if (currentScroll > 1) {
       headerRef.current?.classList.add('is-sticky');
     } else {
       headerRef.current?.classList.remove('is-sticky');
@@ -23,7 +23,7 @@ function Header(): JSX.Element {
 
   return (
     <header
-      className="header absolute top-0 w-full z-20 backdrop-blur-xl header flex justify-between items-center shadow-lg bg-gray-400/20 pl-[2%] pr-[2%] mb-6 transition ease-in-out delay-75"
+      className="header animate__animated absolute top-0 w-full z-20 backdrop-blur-xl header flex justify-between items-center shadow-lg bg-gray-400/20 pl-[2%] pr-[2%] mb-6 transition ease-in-out delay-100"
       ref={headerRef}
     >
       <div className="header__logo overflow-hidden">

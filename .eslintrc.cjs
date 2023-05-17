@@ -42,6 +42,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-unused-expressions': ['error', { allowTernary: true }],
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': 'off',

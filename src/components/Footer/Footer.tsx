@@ -18,12 +18,12 @@ function Footer(): JSX.Element {
           to="https://github.com/DenisKa13051992"
         />
       </div>
-      <div className="account__img text-teal-500 dark:font-semibold dark:text-stone-600 font-thin h-fit">
+      <div className="account__img text-teal-500 dark:font-semibold dark:text-stone-600 font-thin h-fit md:hidden">
         ©2023
       </div>
       <NavLink
         className={`${style['rs-logo']} block w-20 h-8 bg-contain bg-no-repeat rs__img hover:cursor-pointer hover:scale-110 hover:transition-all active:scale-100`}
-        to="https://github.com/rolling-scopes-school/tasks/blob/master/tasks/rsclone/rsclone.md"
+        to="https://github.com/rolling-scopes-school/tasks/blob/master/react/modules/graphiql.md"
       />
     </footer>
   );
