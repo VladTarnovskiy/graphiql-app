@@ -52,10 +52,12 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+        <form className="" onSubmit={handleSubmit(onSubmit)}>
           <div className="form__item">
             <label htmlFor="email" className="block text-sm font-medium text-gray-900">
-              <p className="block text-sm text-gray-900 dark:text-base_white">{t(`AuthorizationPage.Email`)}</p>
+              <p className="block text-sm text-gray-900 dark:text-base_white">
+                {t(`AuthorizationPage.Email`)}
+              </p>
               <input
                 {...register('email', {
                   required: `${t(`AuthorizationPage.ErrorMessage.Email`)}`,
@@ -71,7 +73,9 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
           </div>
           <div className="form__item">
             <label htmlFor="password" className="block text-sm font-medium text-gray-900">
-              <p className="block text-sm text-gray-900 dark:text-base_white">{t(`AuthorizationPage.Password`)}</p>
+              <p className="block text-sm text-gray-900 dark:text-base_white">
+                {t(`AuthorizationPage.Password`)}
+              </p>
               <input
                 {...register('password', {
                   required: `${t(`AuthorizationPage.ErrorMessage.Password`)}`,

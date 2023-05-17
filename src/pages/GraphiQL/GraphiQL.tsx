@@ -131,7 +131,7 @@ function GraphiQLPage(): JSX.Element {
             />
           </div>
           <div className="request__inputs h-fit border-t-[1px] border-base_green_light rounded-br-md rounded-bl-md flex flex-col">
-            <div className="relative request__nav flex justify-left pl-4 pr-4  rounded-br-md rounded-bl-md text-sm bg-base_white pb-2  dark:bg-dark_textarea dark:text-base_white">
+            <div className="relative request__nav flex justify-left pl-4 pr-4 text-sm bg-base_white pb-2  dark:bg-dark_textarea dark:text-base_white">
               <button
                 type="button"
                 className="butShow absolute top-1 right-2 text-2xl transition ease-in-out"
