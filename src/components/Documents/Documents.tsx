@@ -30,9 +30,9 @@ function Documents(): JSX.Element {
   }, []);
 
   return (
-    <div className="flex flex-col rounded-r-md text-base docs ml-2 font-normal text-base_green docs xs:text-sm max-w-[42vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] bg-base_white overflow-auto">
+    <div className="flex flex-col rounded-r-md text-base docs ml-2 font-normal text-base_green docs xs:text-sm max-w-[42vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] overflow-auto">
       <div className="docs__title text-2xl pr-8">Documents</div>
-      <div className="docs__content text-base_dark whitespace-break-spaces">
+      <div className="docs__content text-base_dark whitespace-break-spaces dark:text-base_white">
         {docsResponseStatusFromStorage === 'succeeded' && docsResponseValueFromStorage}
         {docsResponseStatusFromStorage === 'loading' && (
           <div className="m-auto w-fit mt-[20vh]">

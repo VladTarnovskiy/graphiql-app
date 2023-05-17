@@ -55,13 +55,13 @@ function SettingModal(): JSX.Element {
   };
 
   return (
-    <div className="setting-modal border-[1px] border-base_green_light shadow-xl p-4 pb-8 w-full rounded-md bg-base_white">
+    <div className="setting-modal shadow-base_green/50 shadow-xl p-4 pb-8 w-full rounded-md bg-base_white  dark:bg-dark_textarea dark:text-base_white">
       <h1 className="title text-2xl text-center font-normal text-base_green">
         {t('Setting.Title')}
       </h1>
       <div className="setting__options flex flex-col">
         <div className="setting__item language">
-          <div className="mx-8 shadow rounded-full h-10 mt-4 flex p-1 relative items-center">
+          <div className="mx-8 shadow rounded-full h-10 mt-4 flex p-1 relative items-center dark:bg-base_dark">
             <div className="w-[155px] flex justify-center">
               <button type="button">RU</button>
             </div>
@@ -81,7 +81,7 @@ function SettingModal(): JSX.Element {
           </div>
         </div>
         <div className="setting__item theme">
-          <div className="mx-8 shadow rounded-full h-10 mt-4 flex p-1 relative items-center">
+          <div className="mx-8 shadow rounded-full h-10 mt-4 flex p-1 relative items-center dark:bg-base_dark">
             <div className="w-[155px] flex justify-center">
               <button type="button">{t('Setting.Dark')}</button>
             </div>

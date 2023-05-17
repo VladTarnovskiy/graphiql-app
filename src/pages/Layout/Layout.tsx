@@ -8,7 +8,7 @@ function Layout(): JSX.Element {
   return (
     <>
       <Header />
-      <main className="wrapper pl-[2%] pr-[2%] w-full mb-[75px] mt-[100px]">
+      <main className="wrapper pl-[2%] pr-[2%] w-full mb-[75px] dark:bg-base_dark">
         <Suspense
           fallback={
             <div className="m-auto w-fit mt-[30vh]">

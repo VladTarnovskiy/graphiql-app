@@ -75,14 +75,14 @@ function GraphiQLPage(): JSX.Element {
   };
 
   return (
-    <div className="relative graphql basis-1/8 flex-grow-1 flex justify-center pl-[62px] md:pl-[54px]  dark:bg-base_dark">
+    <div className="relative graphql basis-1/8 flex-grow-1 flex justify-center pl-[62px] md:pl-[54px] dark:bg-base_dark">
       {settingsFlag && (
         <Modal setCloseFlag={setSettingsFlag}>
           <SettingModal />
         </Modal>
       )}
-      <div className="absolute left-0 top-0 instruments z-20 flex justify-start p-1 pl-[5px] docs-nav h-full min-w-[58px] md:min-w-[50px] min-h-[80vh] border-base_green_light border-[1px] rounded-r-md pr-0 pt-2 bg-base_white">
-        <div className=" flex flex-col justify-start">
+      <div className="absolute left-0 top-0 instruments z-20 flex justify-start p-1 pl-[5px] docs-nav h-full dark:bg-dark_textarea min-w-[58px] md:min-w-[50px] min-h-[80vh] shadow-lg shadow-base_green/50 rounded-r-md pr-0 pt-2 bg-base_white">
+        <div className="flex flex-col justify-start">
           <button
             className="play rounded-full pl-[8px] w-12 h-12 md:w-10 md:h-10 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
             type="button"
@@ -123,7 +123,7 @@ function GraphiQLPage(): JSX.Element {
           <div className="request__wrap h-full shadow-xl relative rounded-tr-md rounded-tl-md">
             <textarea
               ref={textRef}
-              className="w-full h-full query p-4 rounded-tr-md rounded-tl-md bg-base_white outline-0 mb-[-8px] resize-none xs:text-sm"
+              className="w-full h-full query p-4 rounded-tr-md rounded-tl-md bg-base_white outline-0 mb-[-8px] resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white"
               defaultValue={inputDataValueFromStorage}
               onChange={(e) => {
                 dispatch(setInputData(e.target.value));
@@ -131,7 +131,7 @@ function GraphiQLPage(): JSX.Element {
             />
           </div>
           <div className="request__inputs h-fit border-t-[1px] border-base_green_light rounded-br-md rounded-bl-md flex flex-col">
-            <div className="relative request__nav flex justify-left pl-4 pr-4  rounded-br-md rounded-bl-md text-sm bg-base_white pb-2">
+            <div className="relative request__nav flex justify-left pl-4 pr-4  rounded-br-md rounded-bl-md text-sm bg-base_white pb-2  dark:bg-dark_textarea dark:text-base_white">
               <button
                 type="button"
                 className="butShow absolute top-1 right-2 text-2xl transition ease-in-out"
@@ -177,7 +177,7 @@ function GraphiQLPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="response max-h-[80vh] xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 p-4 w-full rounded-md bg-base_white overflow-y-auto">
+        <div className="response max-h-[80vh] xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 p-4 w-full rounded-md bg-base_white overflow-y-auto dark:bg-dark_textarea dark:text-base_white">
           {responseStatusFromStorage === 'succeeded' && responseValueFromStorage}
           {responseStatusFromStorage === 'loading' && (
             <div className="m-auto w-fit mt-[30vh]">
