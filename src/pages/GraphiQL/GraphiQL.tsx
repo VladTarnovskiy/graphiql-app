@@ -81,7 +81,7 @@ function GraphiQLPage(): JSX.Element {
           <SettingModal />
         </Modal>
       )}
-      <div className="absolute left-0 top-0 instruments z-20 flex justify-start p-1 pl-[5px] docs-nav h-full dark:bg-dark_textarea min-w-[58px] md:min-w-[50px] min-h-[80vh] shadow-lg shadow-base_green/50 rounded-r-md pr-0 pt-2 bg-base_white">
+      <div className="absolute left-0 top-0 instruments z-10 flex justify-start p-2 pl-[8px] docs-nav h-full dark:bg-dark_textarea min-w-[58px] md:min-w-[50px] min-h-[80vh] shadow-lg shadow-base_green/50 rounded-r-md bg-base_white">
         <div className="flex flex-col justify-start">
           <button
             className="play rounded-full pl-[8px] w-12 h-12 md:w-10 md:h-10 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
@@ -118,8 +118,8 @@ function GraphiQLPage(): JSX.Element {
         </div>
         <div className="documents"> {docs && <Documents />}</div>
       </div>
-      <div className="flex w-full md:flex-col">
-        <div className="request mr-4 w-full flex flex-col min-h-[80vh] md:mb-2 shadow-lg shadow-base_green/50">
+      <div className="flex w-full md:flex-col ml-2">
+        <div className="request mr-4 w-full flex flex-col rounded-md min-h-[80vh] md:mb-2 shadow-lg shadow-base_green/50">
           <div className="request__wrap h-full shadow-xl relative rounded-tr-md rounded-tl-md">
             <textarea
               ref={textRef}

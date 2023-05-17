@@ -64,13 +64,11 @@ body {
     background: #1A1C1E;
  }
 
-
-::-webkit-scrollbar-thumb {
-    background: #14b8a6;
+  ::-webkit-scrollbar-thumb {
+    background: #888;
     border-radius: 2px;
   }
 
 ::-webkit-scrollbar-thumb:hover {
-    cursor: pointer;
-    background: #2dd4bf;
+    background: #555;
   }
