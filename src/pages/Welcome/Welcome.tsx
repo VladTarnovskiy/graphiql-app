@@ -13,7 +13,7 @@ function WelcomePage(): JSX.Element {
 
   return (
     <div className="graphql flex justify-center">
-      <div className="flex flex-col border-[1px] shadow-xl p-4 w-[65vw] sm:w-[95vw] md:w-[80vw] min-h-[80vh] rounded-md bg-base_white dark:bg-dark_black">
+      <div className="flex flex-col shadow-lg shadow-base_green/50 p-4 w-[65vw] sm:w-[95vw] md:w-[80vw] min-h-[80vh] rounded-md bg-base_white dark:bg-dark_black">
         <div className="mr-4 w-full flex flex-col dark:text-base_white">
           <div className="relative graphql__nav flex justify-left pl-4 pr-4 mb-4 text-sm bg-base_white dark:bg-dark_black pb-2">
             {(fieldFlag === 'project' && (
@@ -73,7 +73,7 @@ function WelcomePage(): JSX.Element {
           <div className="graphqlInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZXcF6GSCd-jCOOT-GFYFhHuUHWf-pYgATGEiqDxzkAQF-Lec65LBsDn-FwYSwmAH-4M&usqp=CAU"
-              className="border-[1px] max-w-[320px] sm:max-w-[180px] xs:max-w-[140px] border-base_green_light shadow-xl rounded-md"
+              className="max-w-[320px] sm:max-w-[180px] xs:max-w-[140px] shadow-xl rounded-md"
               alt=""
             />
             <div className="text-teal-500 text-center text-2xl sm:text-sm">
@@ -113,7 +113,7 @@ function WelcomePage(): JSX.Element {
           <div className="rsschoolInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl  sm:text-sm">
             <img
               src="https://rs.school/images/partners/logo-rs.svg"
-              className="border-[1px] max-w-[280px] lg:max-w-[180px] md:max-w-[140px] xs:max-w-[100px] border-base_green_light pr-6 xs:pr-3 shadow-xl rounded-md"
+              className="max-w-[280px] lg:max-w-[180px] md:max-w-[140px] xs:max-w-[100px] pr-6 xs:pr-3 shadow-xl rounded-md"
               alt=""
             />
             <div>

@@ -24,7 +24,7 @@ function DeveloperCard({ developer }: { developer: string }): JSX.Element {
   return (
     <a
       href={developerInfo[0].githubLink}
-      className="border-[1px] border-base_green_light shadow-xl rounded-md p-2"
+      className=" shadow-lg shadow-base_green/50 rounded-md p-2"
     >
       <div className="max-w-[300px] sm:max-w-[200px] flex flex-col items-center">
         <img
