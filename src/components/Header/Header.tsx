@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Navigation from '../Navigation/Navigation';
 import Button from '../Button/Button';
 import LogoImg from '../../assets/logo.png';
@@ -12,15 +12,13 @@ import SettingModal from '../SettingModal/SettingModal';
 function Header(): JSX.Element {
   const [user] = useAuthState(auth);
   const headerRef = useRef<HTMLDivElement>(null);
+  const [small, setSmall] = useState(false);
 
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    if (currentScroll > 3) {
-      headerRef.current?.classList.add('is-sticky');
-    } else {
-      headerRef.current?.classList.remove('is-sticky');
-    }
-  });
+  useEffect(() => {
+    setTimeout(() => {
+      window.onscroll = () => setSmall(window.pageYOffset > 0);
+    }, 30);
+  }, []);
 
   return (
     // {settingsFlag && (
@@ -29,7 +27,9 @@ function Header(): JSX.Element {
     //   </Modal>
     // )}
     <header
-      className="header animate__animated sticky top-0 w-full z-20 backdrop-blur-xl header flex justify-between items-center shadow-lg bg-gray-400/20 pl-[2%] pr-[2%] mb-6 transition ease-in-out delay-100 dark:bg-dark_header/20"
+      className={`${
+        small ? 'is-sticky' : ''
+      } header animate__animated sticky top-0 w-full z-20 backdrop-blur-xl flex justify-between items-center shadow-lg bg-gray-400/20 pl-[2%] pr-[2%] mb-6 transition ease-in-out delay-100 dark:bg-dark_header/20`}
       ref={headerRef}
     >
       <div className="header__logo overflow-hidden">
