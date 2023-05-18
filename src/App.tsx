@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import Layout from './pages/Layout/Layout';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const WelcomePage = React.lazy(() => import('./pages/Welcome/Welcome'));
 const GraphiQLPage = React.lazy(() => import('./pages/GraphiQL/GraphiQL'));
@@ -13,7 +14,14 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<WelcomePage />} />
-          <Route path="graphi-ql" element={<GraphiQLPage />} />
+          <Route
+            path="graphi-ql"
+            element={
+              <PrivateRoute>
+                <GraphiQLPage />
+              </PrivateRoute>
+            }
+          />
           <Route path="authorization" element={<AuthorizationPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
