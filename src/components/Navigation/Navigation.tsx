@@ -9,7 +9,12 @@ function Navigation(): JSX.Element {
     'navigation__item hover:text-base_green_light mr-[20px] ml-[5px] text-[#374151] dark:text-base_white';
 
   const handleActiveLink = (isActive: boolean) => {
-    return isActive ? `${classStyle} text-base_green_light` : classStyle;
+    return isActive
+      ? `${classStyle.replace(
+          'dark:text-base_white',
+          'dark:text-base_green_light'
+        )} text-base_green_light`
+      : classStyle;
   };
   return (
     <div className="navigation font-thin dark:text-base_white">
