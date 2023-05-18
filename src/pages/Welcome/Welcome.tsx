@@ -13,9 +13,9 @@ function WelcomePage(): JSX.Element {
 
   return (
     <div className="graphql flex justify-center">
-      <div className="response border-[1px] border-base_green_light shadow-xl p-4 w-[65vw] min-h-[80vh] rounded-md bg-base_white">
-        <div className="request mr-4 w-full flex flex-col">
-          <div className="relative request__nav flex justify-left pl-4 pr-4 mb-4 text-sm bg-base_white pb-2">
+      <div className="flex flex-col shadow-lg shadow-base_green/50 p-4 w-[65vw] sm:w-[95vw] md:w-[80vw] min-h-[80vh] rounded-md bg-base_white dark:bg-dark_black">
+        <div className="mr-4 w-full flex flex-col dark:text-base_white">
+          <div className="relative graphql__nav flex justify-left pl-4 pr-4 mb-4 text-sm bg-base_white dark:bg-dark_black pb-2">
             {(fieldFlag === 'project' && (
               <button
                 className="project underline underline-offset-4 decoration-base_green w-16 mr-4 hover:text-base_green cursor-pointer"
@@ -26,7 +26,7 @@ function WelcomePage(): JSX.Element {
               </button>
             )) || (
               <button
-                className="project w-16 mr-4 hover:text-base_green cursor-pointer"
+                className="project w-16 mr-4 hover:text-base_green_light cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -35,7 +35,7 @@ function WelcomePage(): JSX.Element {
             )}
             {(fieldFlag === 'developers' && (
               <button
-                className="developers underline underline-offset-4 decoration-base_green w-24 mr-4 hover:text-base_green cursor-pointer"
+                className="developers underline underline-offset-4 decoration-base_green w-24 mr-4 hover:text-base_green_light cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -43,7 +43,7 @@ function WelcomePage(): JSX.Element {
               </button>
             )) || (
               <button
-                className="developers w-24 mr-4 hover:text-base_green cursor-pointer"
+                className="developers w-24 mr-4 hover:text-base_green_light cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -70,13 +70,13 @@ function WelcomePage(): JSX.Element {
           </div>
         </div>
         {fieldFlag === 'project' && (
-          <div className="RSSchoolInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl">
+          <div className="graphqlInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZXcF6GSCd-jCOOT-GFYFhHuUHWf-pYgATGEiqDxzkAQF-Lec65LBsDn-FwYSwmAH-4M&usqp=CAU"
-              className="border-[1px] max-w-[350px] sm:max-w-[200px] border-base_green_light shadow-xl rounded-md"
+              className="max-w-[320px] sm:max-w-[180px] xs:max-w-[140px] shadow-xl rounded-md"
               alt=""
             />
-            <div className="text-teal-500 text-center text-2xl">
+            <div className="text-teal-500 text-center text-2xl sm:text-sm">
               {t(`Welcome.GraphiQLAbout.1`)}
               <br />
               {t(`Welcome.GraphiQLAbout.2`)}
@@ -100,9 +100,9 @@ function WelcomePage(): JSX.Element {
           </div>
         )}
         {fieldFlag === 'developers' && (
-          <section className="developersSection text-teal-500 h-4/5 pl-4 pr-4 flex flex-col justify-center items-center text-center text-2xl sm:text-xl">
+          <section className="developersSection text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-2xl sm:text-xl">
             <h1 className="text-4xl sm:text-2xl mb-4">{t(`Welcome.DevelopersAbout.Team`)}</h1>
-            <div className="developersCards text-teal-500 grid gap-4 grid-cols-3 grid-rows-1 lg:grid-cols-1 lg:grid-rows-3 text-center text-2xl">
+            <div className="developersCards text-teal-500 grid gap-4 grid-cols-3 grid-rows-1 lg:grid-cols-1 lg:grid-rows-3 text-center text-2xl sm:text-sm">
               {['Vlad', 'Aleksei', 'Denis'].map((dev) => (
                 <DeveloperCard developer={dev} key={dev} />
               ))}
@@ -110,10 +110,10 @@ function WelcomePage(): JSX.Element {
           </section>
         )}
         {fieldFlag === 'course' && (
-          <div className="RSSchoolInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl">
+          <div className="rsschoolInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl  sm:text-sm">
             <img
               src="https://rs.school/images/partners/logo-rs.svg"
-              className="border-[1px] max-w-[300px] sm:max-w-[200px] border-base_green_light pr-6 shadow-xl rounded-md"
+              className="max-w-[280px] lg:max-w-[180px] md:max-w-[140px] xs:max-w-[100px] pr-6 xs:pr-3 shadow-xl rounded-md"
               alt=""
             />
             <div>
@@ -124,7 +124,7 @@ function WelcomePage(): JSX.Element {
               {t(`Welcome.RSSAbout.3`)}
               <br />
               {t(`Welcome.RSSAbout.4`)}
-              <ul className="text-base">
+              <ul>
                 <li>{t(`Welcome.RSSAbout.Advantages1`)}</li>
                 <li>{t(`Welcome.RSSAbout.Advantages2`)}</li>
                 <li>{t(`Welcome.RSSAbout.Advantages3`)}</li>

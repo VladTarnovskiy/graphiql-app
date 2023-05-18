@@ -60,7 +60,11 @@ body {
     background: #f1f1f1;
   }
 
-::-webkit-scrollbar-thumb {
+.dark ::-webkit-scrollbar-track {
+    background: #1A1C1E;
+ }
+
+  ::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 2px;
   }

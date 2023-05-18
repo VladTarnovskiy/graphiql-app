@@ -23,9 +23,12 @@ export default {
         base_green_light: '#2dd4bf',
         base_yellow: '#fde047',
         base_grey: '#9ca3af',
-        base_dark: '#374151',
+        base_dark: '#1A1C1E',
         base_light: '#e5e5e5',
         base_white: '#fafafa',
+        dark_black: '#0C0E0F',
+        dark_header: '#434A4D',
+        dark_textarea: '#0C0E0F',
       },
       fontSize: {
         sm: '1rem',
