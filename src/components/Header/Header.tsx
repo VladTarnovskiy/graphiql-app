@@ -36,14 +36,14 @@ function Header(): JSX.Element {
         <img
           src={LogoImg}
           alt="Rick and Morty"
-          className="logo block w-60 h-20 mt-[-10px] sm:hidden"
+          className="logo block w-60 h-20 mt-[-15px] sm:hidden"
         />
         <img
           src={LogoImg}
           alt="Rick and Morty"
           className="logo_small hidden w-[110px] h-[45px] sm:block mt-[-12px]"
         />
-        <div className="header__title sm:text-[11px] font-thin text-teal-500 shadow-yellow-300/60 shadow-lg mt-[-3px]">
+        <div className="header__title text-sm sm:text-[11px] font-thin text-teal-500 shadow-yellow-300/60 shadow-lg mt-[-3px]">
           Playground/IDE
         </div>
       </div>
