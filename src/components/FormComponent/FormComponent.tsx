@@ -45,7 +45,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
   };
 
   return (
-    <section className="form flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <section className="relative form flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-base_green">
           {t(`AuthorizationPage.${headerTitle}.headerTitle`)}
@@ -69,9 +69,11 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
                 className="block w-full p-2 mt-1 bg-base_white rounded-md border-0 text-md text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
               />
             </label>
-            {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
+            {errors.email && (
+              <span className="absolute text-red-500 text-sm">{errors.email.message}</span>
+            )}
           </div>
-          <div className="form__item">
+          <div className="form__item my-8">
             <label htmlFor="password" className="block text-sm font-medium text-gray-900">
               <p className="block text-sm text-gray-900 dark:text-base_white">
                 {t(`AuthorizationPage.Password`)}
@@ -89,7 +91,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
               />
             </label>
             {errors.password && (
-              <span className="text-red-500 text-sm">{errors.password.message}</span>
+              <span className="absolute text-red-500 text-sm">{errors.password.message}</span>
             )}
           </div>
 
