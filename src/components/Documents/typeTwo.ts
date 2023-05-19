@@ -12,10 +12,11 @@ export interface Fields {
 }
 interface ArgsTypes {
   name: string;
-  type: {
-    name: string;
-    description: string;
-  };
+  type: string;
+  // type: {
+  //   name: string;
+  //   description: string;
+  // };
 }
 
 interface TypesInfo {
