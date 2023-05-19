@@ -10,6 +10,7 @@ export interface ISubmitData {
 
 export interface IButtonProps {
   title: string;
+  button?: boolean;
 }
 
 export interface IErrorPopUp {
