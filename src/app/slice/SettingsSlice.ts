@@ -9,8 +9,8 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  language: 'en',
-  theme: 'light',
+  language: localStorage.getItem('language')?.toString() || 'en',
+  theme: localStorage.getItem('theme')?.toString() || 'theme',
 };
 
 export const settingsSlice = createSlice({
@@ -18,9 +18,11 @@ export const settingsSlice = createSlice({
   initialState,
   reducers: {
     setLanguage: (state, { payload }) => {
+      localStorage.setItem('language', payload);
       state.language = payload;
     },
     setTheme: (state, { payload }) => {
+      localStorage.setItem('theme', payload);
       state.theme = payload;
     },
   },
