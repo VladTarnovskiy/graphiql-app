@@ -24,24 +24,20 @@ const initialState: InitialState = {
 };
 
 export const fetchDocsRequest = createAsyncThunk('docs/fetchDocsRequest', async () => {
-  try {
-    const response = await fetch('https://rickandmortyapi.com/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: getIntrospectionQuery(),
-      }),
-    });
+  const response = await fetch('https://rickandmortyapi.com/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: getIntrospectionQuery(),
+    }),
+  });
 
-    const data = await response.json();
-    // const editData = JSON.stringify(data, null, '\t');
-    // const schema = buildClientSchema(datax);
-    return data.data;
-  } catch (e) {
-    return e;
-  }
+  const data = await response.json();
+  // const editData = JSON.stringify(data, null, '\t');
+  // const schema = buildClientSchema(datax);
+  return data.data;
 });
 
 export const docsSlice = createSlice({

@@ -2,7 +2,7 @@
 //   __fields: [Queries];
 // }
 
-export interface Fields {
+export interface Query {
   args: [ArgsTypes];
   name: string;
   description: string;

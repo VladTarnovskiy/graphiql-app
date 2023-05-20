@@ -1,11 +1,12 @@
 interface MyProps {
-  getFields: () => void;
+  getQueries: () => void;
 }
 
 function RootQueryComponent(props: MyProps): JSX.Element {
-  const { getFields } = props;
+  const { getQueries } = props;
   return (
     <div className="root__wrapper">
+      <div className="docs__title text-2xl pr-8 mb-4 text-base_green">Documents</div>
       <div className="root__description mb-2">
         A GraphQL schema provides a root type for each kind of operation.
       </div>
@@ -16,7 +17,7 @@ function RootQueryComponent(props: MyProps): JSX.Element {
           className="types__link text-base_yellow_dark hover:underline"
           type="button"
           onClick={() => {
-            getFields();
+            getQueries();
           }}
         >
           Query

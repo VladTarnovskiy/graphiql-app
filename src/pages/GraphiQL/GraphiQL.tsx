@@ -116,7 +116,7 @@ function GraphiQLPage(): JSX.Element {
             <img src={Docs} alt="Docs" />
           </button>
           <button
-            className="history rounded-full w-10 h-10 ml-[2px] md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="history rounded-full w-10 h-10 ml-[2px] hover:opacity-50 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             title="History"
             onClick={() => {
