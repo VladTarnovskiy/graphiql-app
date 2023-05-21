@@ -15,3 +15,6 @@ export interface IButtonProps {
 export interface IErrorPopUp {
   message: string;
 }
+export interface IPrivateRoute {
+  children: JSX.Element;
+}
