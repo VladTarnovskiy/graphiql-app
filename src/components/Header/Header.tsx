@@ -46,8 +46,16 @@ function Header(): JSX.Element {
       </div>
       <Navigation />
       <div className="headerAllButtons flex flex-row content-center items-center sm:hidden">
+        {user ? (
+          <Button title="Logout" />
+        ) : (
+          <NavLink className="header__buttons flex" to="/authorization">
+            <Button title="Sign In" />
+            <Button title="Sign Up" />
+          </NavLink>
+        )}
         <button
-          className="setting rounded-full w-9 h-9 m-2 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
+          className="setting rounded-full w-7 h-7 m-2 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
           type="button"
           onClick={() => {
             setSettingsFlag(true);
@@ -59,14 +67,6 @@ function Header(): JSX.Element {
           <Modal setCloseFlag={setSettingsFlag}>
             <SettingModal />
           </Modal>
-        )}
-        {user ? (
-          <Button title="Logout" />
-        ) : (
-          <NavLink className="header__buttons flex" to="/authorization">
-            <Button title="Sign In" />
-            <Button title="Sign Up" />
-          </NavLink>
         )}
       </div>
     </header>

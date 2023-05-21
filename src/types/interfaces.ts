@@ -16,3 +16,7 @@ export interface IButtonProps {
 export interface IErrorPopUp {
   message: string;
 }
+
+export interface Istate {
+  isOpen: boolean;
+}

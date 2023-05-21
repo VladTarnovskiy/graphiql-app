@@ -25,7 +25,7 @@ function Button(prop: IButtonProps): JSX.Element {
       role="button"
       onKeyPress={changePage}
       tabIndex={0}
-      className="button hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
+      className="button hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white"
     >
       {t(`header.${title}`)}
     </div>
