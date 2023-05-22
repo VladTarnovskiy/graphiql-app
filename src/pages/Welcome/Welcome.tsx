@@ -18,7 +18,7 @@ function WelcomePage(): JSX.Element {
           <div className="relative graphql__nav flex justify-left pl-4 pr-4 mb-4 text-sm bg-base_white dark:bg-dark_black pb-2">
             {(fieldFlag === 'project' && (
               <button
-                className="project underline underline-offset-4 decoration-base_green w-16 mr-4 hover:text-base_green cursor-pointer"
+                className="project underline underline-offset-4 decoration-base_green w-16 mr-4 xs:mr-2 hover:text-base_green cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -26,7 +26,7 @@ function WelcomePage(): JSX.Element {
               </button>
             )) || (
               <button
-                className="project w-16 mr-4 hover:text-base_green_light cursor-pointer"
+                className="project w-16 mr-4 xs:mr-2 hover:text-base_green_light cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -35,7 +35,7 @@ function WelcomePage(): JSX.Element {
             )}
             {(fieldFlag === 'developers' && (
               <button
-                className="developers underline underline-offset-4 decoration-base_green w-24 mr-4 hover:text-base_green_light cursor-pointer"
+                className="developers underline underline-offset-4 decoration-base_green w-24 mr-4 xs:mr-2 hover:text-base_green_light cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -43,7 +43,7 @@ function WelcomePage(): JSX.Element {
               </button>
             )) || (
               <button
-                className="developers w-24 mr-4 hover:text-base_green_light cursor-pointer"
+                className="developers w-24 mr-4 xs:mr-2 hover:text-base_green_light cursor-pointer"
                 onClick={changeRequestInputs}
                 type="button"
               >
@@ -70,10 +70,10 @@ function WelcomePage(): JSX.Element {
           </div>
         </div>
         {fieldFlag === 'project' && (
-          <div className="graphqlInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl">
+          <div className="graphqlInfo text-teal-500 pl-4 pr-4 flex flex-col gap-2 justify-center items-center text-center text-xl">
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZXcF6GSCd-jCOOT-GFYFhHuUHWf-pYgATGEiqDxzkAQF-Lec65LBsDn-FwYSwmAH-4M&usqp=CAU"
-              className="max-w-[320px] sm:max-w-[180px] xs:max-w-[140px] shadow-xl rounded-md"
+              src="https://marmelab.com/images/blog/graphql/logo.png"
+              className="max-w-[320px] sm:max-w-[180px] xs:max-w-[140px] shadow-xl rounded-md dark:bg-dark_black"
               alt=""
             />
             <div className="text-teal-500 text-center text-2xl sm:text-sm">
@@ -110,7 +110,7 @@ function WelcomePage(): JSX.Element {
           </section>
         )}
         {fieldFlag === 'course' && (
-          <div className="rsschoolInfo text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-xl  sm:text-sm">
+          <div className="rsschoolInfo text-teal-500 pl-4 pr-4 flex flex-col gap-2 justify-center items-center text-center text-xl  sm:text-sm">
             <img
               src="https://rs.school/images/partners/logo-rs.svg"
               className="max-w-[280px] lg:max-w-[180px] md:max-w-[140px] xs:max-w-[100px] pr-6 xs:pr-3 shadow-xl rounded-md"

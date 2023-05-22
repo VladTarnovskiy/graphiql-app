@@ -6,7 +6,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  page: '',
+  page: 'Registration',
 };
 
 export const AuthorizationPageSlice = createSlice({

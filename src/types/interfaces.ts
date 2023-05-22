@@ -10,8 +10,16 @@ export interface ISubmitData {
 
 export interface IButtonProps {
   title: string;
+  button?: boolean;
 }
 
 export interface IErrorPopUp {
   message: string;
+}
+export interface IPrivateRoute {
+  children: JSX.Element;
+}
+
+export interface Istate {
+  isOpen: boolean;
 }

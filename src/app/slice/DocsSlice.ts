@@ -1,44 +1,34 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import {
-  IntrospectionQuery,
-  getIntrospectionQuery,
-  buildClientSchema,
-  printSchema,
-  buildSchema,
-} from 'graphql';
+import { IntrospectionQuery, getIntrospectionQuery } from 'graphql';
 import { RootState } from '../store';
 
 interface InitialState {
   status: '' | 'loading' | 'succeeded' | 'failed';
-  response: string;
+  response: IntrospectionQuery;
   error: string;
 }
 
 const initialState: InitialState = {
   status: '',
-  response: '',
+  response: {} as IntrospectionQuery,
   error: '',
 };
 
 export const fetchDocsRequest = createAsyncThunk('docs/fetchDocsRequest', async () => {
-  try {
-    const response = await fetch('https://rickandmortyapi.com/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: getIntrospectionQuery(),
-      }),
-    });
-    const datax = await response.json();
-    const editData = JSON.stringify(datax, null, '\t');
-    return editData as string;
-  } catch (e) {
-    return e as string;
-  }
+  const response = await fetch('https://rickandmortyapi.com/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: getIntrospectionQuery(),
+    }),
+  });
+
+  const data = await response.json();
+  return data.data;
 });
 
 export const docsSlice = createSlice({

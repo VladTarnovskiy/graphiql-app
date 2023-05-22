@@ -3,12 +3,16 @@ import React from 'react';
 import Layout from './pages/Layout/Layout';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
+import useThemeAndLanguage from './utils/hooks';
+
 const WelcomePage = React.lazy(() => import('./pages/Welcome/Welcome'));
 const GraphiQLPage = React.lazy(() => import('./pages/GraphiQL/GraphiQL'));
 const AuthorizationPage = React.lazy(() => import('./pages/Authorization/Authorization'));
 const NotFound = React.lazy(() => import('./pages/NotFound/NotFound'));
 
 function App(): JSX.Element {
+  useThemeAndLanguage();
+
   return (
     <BrowserRouter>
       <Routes>
