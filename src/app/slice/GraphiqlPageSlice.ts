@@ -21,13 +21,14 @@ interface InitialState {
 interface FetchInputs {
   query: string;
   variables: string;
+  headers: string;
 }
 
 const initialState: InitialState = {
   status: '',
   inputData: '',
   variables: '{}',
-  header: '',
+  header: '{}',
   response: '',
   error: '',
   history: [],
@@ -40,7 +41,7 @@ export const fetchDataRequest = createAsyncThunk<string, FetchInputs>(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // ...JSON.parse(headersInput),
+        ...JSON.parse(data.headers),
       },
       body: JSON.stringify({
         query: `${data.query}`,
