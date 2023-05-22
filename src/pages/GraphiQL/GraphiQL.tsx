@@ -14,16 +14,21 @@ import {
   setInputData,
   setHeaders,
   setVariables,
+  setHistoryItem,
   fetchDataRequest,
 } from 'src/app/slice/GraphiqlPageSlice';
 
 import Loader from 'src/components/Loader/Loader';
 import Documents from 'src/components/Documents/Documents';
+import HistoryComponent from 'src/components/History/History';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
 import Stop from '../../assets/stop.svg';
 import Docs from '../../assets/docs.svg';
+import Copy from '../../assets/copy.svg';
+import History from '../../assets/history.svg';
 import Settings from '../../assets/settings.svg';
+import Broom from '../../assets/broom.svg';
 import Modal from '../../components/Modal/Modal';
 import SettingModal from '../../components/SettingModal/SettingModal';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -36,6 +41,7 @@ function GraphiQLPage(): JSX.Element {
   const [settingsFlag, setSettingsFlag] = useState(false);
   const [fieldFlag, setFieldFlag] = useState(false);
   const [docs, setDocs] = useState(false);
+  const [history, setHistory] = useState(false);
   const [variablesBlock, setVariablesBlock] = useState(true);
   const headersValueFromStorage = useAppSelector(selectHeadersValue);
   const variablesValueFromStorage = useAppSelector(selectVariablesValue);
@@ -82,24 +88,27 @@ function GraphiQLPage(): JSX.Element {
         </Modal>
       )}
       <div className="absolute left-0 top-0 instruments z-10 flex justify-start p-2 pl-[8px] docs-nav h-full dark:bg-dark_textarea min-w-[58px] md:min-w-[50px] min-h-[79vh] shadow-lg shadow-base_green/50 rounded-r-md bg-base_white">
-        <div className="flex flex-col justify-start">
+        <div className="flex flex-col justify-start ml-[1px]">
           <button
-            className="play rounded-full pl-[8px] w-12 h-12 md:w-10 md:h-10 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
+            className="play rounded-full pl-[8px] w-11 h-11 md:w-10 md:h-10 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
             type="button"
+            title="Play"
             onClick={() => {
               getData();
+              dispatch(setHistoryItem());
             }}
           >
             {responseStatusFromStorage !== 'loading' && (
-              <img src={Play} alt="Play" className="w-[32px] md:w-[26px]" />
+              <img src={Play} alt="Play" className="w-[30px] md:w-[26px]" />
             )}
             {responseStatusFromStorage === 'loading' && (
-              <img src={Stop} alt="Stop" className="w-[32px] md:w-[26px]" />
+              <img src={Stop} alt="Stop" className="w-[30px] md:w-[26px]" />
             )}
           </button>
           <button
-            className="docs rounded-full w-12 h-12 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="docs rounded-full w-11 h-11 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
+            title="Documents"
             onClick={() => {
               setDocs(!docs);
             }}
@@ -107,8 +116,40 @@ function GraphiQLPage(): JSX.Element {
             <img src={Docs} alt="Docs" />
           </button>
           <button
-            className="setting rounded-full w-12 h-12 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
+            className="history rounded-full w-10 h-10 ml-[2px] hover:opacity-50 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
+            title="History"
+            onClick={() => {
+              setHistory(!history);
+            }}
+          >
+            <img src={History} alt="History" />
+          </button>
+          <button
+            className="copy rounded-full w-10 h-10 ml-[2px] md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            type="button"
+            title="Copy request"
+            onClick={() => {
+              navigator.clipboard.writeText(inputDataValueFromStorage);
+            }}
+          >
+            <img src={Copy} alt="Copy" />
+          </button>
+          <button
+            className="cleaner rounded-full w-10 h-10 ml-[2px] md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            type="button"
+            title="Cleaner"
+            onClick={() => {
+              dispatch(setInputData(''));
+              dispatch(setVariables('{}'));
+            }}
+          >
+            <img src={Broom} alt="Cleaner" />
+          </button>
+          <button
+            className="setting rounded-full w-11 h-11 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
+            type="button"
+            title="Setting"
             onClick={() => {
               setSettingsFlag(true);
             }}
@@ -116,7 +157,16 @@ function GraphiQLPage(): JSX.Element {
             <img src={Settings} alt="Settings" />
           </button>
         </div>
-        <div className="documents"> {docs && <Documents />}</div>
+        <div className="documents">{docs && <Documents />}</div>
+        <div className="history">
+          {history && (
+            <HistoryComponent
+              onClose={() => {
+                setHistory(false);
+              }}
+            />
+          )}
+        </div>
       </div>
       <div className="flex w-full md:flex-col ml-2">
         <div className="request mr-4 w-full flex flex-col rounded-md min-h-[79vh] md:mb-2 shadow-lg shadow-base_green/50">
@@ -124,7 +174,7 @@ function GraphiQLPage(): JSX.Element {
             <textarea
               ref={textRef}
               className="w-full h-full query p-4 rounded-tr-md rounded-tl-md bg-base_white outline-0 mb-[-8px] resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white"
-              defaultValue={inputDataValueFromStorage}
+              value={inputDataValueFromStorage}
               onChange={(e) => {
                 dispatch(setInputData(e.target.value));
               }}

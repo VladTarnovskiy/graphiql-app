@@ -1,39 +1,156 @@
-import {
-  IntrospectionQuery,
-  getIntrospectionQuery,
-  buildClientSchema,
-  printSchema,
-  buildSchema,
-} from 'graphql';
-import { useEffect } from 'react';
+import { buildClientSchema } from 'graphql';
+import { useEffect, useState } from 'react';
 import {
   selectDocsResponseError,
   selectDocsResponseStatus,
   selectDocsResponseValue,
   fetchDocsRequest,
 } from 'src/app/slice/DocsSlice';
+import { FieldsInfo, Query, ScalarType } from './types';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Loader from '../Loader/Loader';
-
-// function buildSchema(source: string | Source): GraphQLSchema {}
-// console.log(buildSchema('https://rickandmortyapi.com/graphql'));
-// console.log(buildSchema('rickandmortyapi.com/graphql'));
+import QueriesComponent from './Queries/Queries';
+import RootQueryComponent from './RootQuery/RootQuery';
+import QueryDescription from './QueryDescription/QueryDescription';
+import FieldsComponent from './Fields/Fields';
+import ScalarTypeComponent from './ScalarType/ScalarType';
 
 function Documents(): JSX.Element {
+  const [history, setHistory] = useState<Array<[string, string]>>([
+    ['', ''],
+    ['root', 'Docs'],
+  ]);
+  const [docs, setDocs] = useState<Array<Query>>();
+  const [queryItem, setQueryItem] = useState<Query>();
+  const [fields, setFields] = useState<FieldsInfo>();
+  const [scalarTypeInfo, setScalarTypeInfo] = useState<ScalarType>();
+
+  const [queriesFlag, setQueriesFlag] = useState('root');
+
   const dispatch = useAppDispatch();
   const docsResponseValueFromStorage = useAppSelector(selectDocsResponseValue);
   const docsResponseStatusFromStorage = useAppSelector(selectDocsResponseStatus);
   const docsResponseErrorFromStorage = useAppSelector(selectDocsResponseError);
+
+  const getQueries = () => {
+    const schema = buildClientSchema(docsResponseValueFromStorage).getQueryType()?.getFields();
+    const x = JSON.stringify(schema);
+    const y: Query[] = Object.values(JSON.parse(x));
+    setDocs(y);
+    setQueriesFlag('queries');
+    setHistory([...history, ['queries', 'Query']]);
+  };
+
+  const getQueryDescription = (el: string) => {
+    const schema = buildClientSchema(docsResponseValueFromStorage).getQueryType()?.getFields();
+    const x = JSON.stringify(schema);
+    const y: Query = JSON.parse(x)[el];
+    setQueryItem(y);
+    setQueriesFlag('queryDescription');
+    setHistory([...history, ['queryDescription', el]]);
+  };
+
+  const getFields = (el: string) => {
+    const schema = buildClientSchema(docsResponseValueFromStorage).getType(el)?.toConfig();
+    const x = JSON.stringify(schema);
+    const y = JSON.parse(x);
+    // const scalar = 'String' || 'Boolean' || 'ID' || 'Int' || 'Float';
+    if (el === 'String' || el === 'Boolean' || el === 'ID' || el === 'Int' || el === 'Float') {
+      setScalarTypeInfo(y);
+      setQueriesFlag('scalarType');
+      setHistory([...history, ['scalarType', el]]);
+    } else {
+      const result = Object.entries(y.fields);
+      y.fields = result;
+      setFields(y);
+      setQueriesFlag('fields');
+      setHistory([...history, ['fields', el]]);
+    }
+  };
+
+  const getHistoryPage = (el: Array<string>) => {
+    switch (el[0]) {
+      case 'root':
+        setQueriesFlag('root');
+        break;
+      case 'queries':
+        getQueries();
+        break;
+      case 'queryDescription':
+        getQueryDescription(el[1]);
+        break;
+      case 'fields':
+        getFields(el[1]);
+        break;
+      case 'scalarType':
+        getFields(el[1]);
+        break;
+      default:
+        break;
+    }
+    const x = history.slice(0, -1);
+    setHistory(x);
+    // const obj = {
+    //   '': () => {
+    //     setQueriesFlag('root');
+    //   },
+    //   queries: () => {
+    //     getQueries();
+    //   },
+    //   queryDescription: () => {
+    //     getQueryDescription(el[1]);
+    //   },
+    //   fields: () => {
+    //     getFields(el[1]);
+    //   },
+    //   scalarType: () => {
+    //     getFields(el[1]);
+    //   },
+    // };
+    // console.log(history);
+
+    // const key = el[0];
+    // obj[key];
+  };
 
   useEffect(() => {
     dispatch(fetchDocsRequest());
   }, []);
 
   return (
-    <div className="flex flex-col border-l-[1px] border-base_green_light pl-2 ml-3 rounded-r-md text-base docs font-normal text-base_green docs xs:text-sm max-w-[42vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] overflow-auto">
-      <div className="docs__title text-2xl pr-8">Documents</div>
+    <div className="docs__container flex flex-col border-l-[1px] border-base_green_light pl-2 ml-3 rounded-r-md text-base docs font-normal text-base_green docs xs:text-sm max-w-[45vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] overflow-auto">
       <div className="docs__content text-base_dark whitespace-break-spaces dark:text-base_white">
-        {docsResponseStatusFromStorage === 'succeeded' && docsResponseValueFromStorage}
+        {history.length >= 3 && (
+          <button
+            type="button"
+            className="text-sm hover:underline"
+            onClick={() => {
+              const prevPage = history[history.length - 2];
+              getHistoryPage(prevPage);
+            }}
+          >
+            <span className="text-md">&#8249;</span> {history[history.length - 2][1]}
+          </button>
+        )}
+        {queriesFlag === 'root' && docsResponseStatusFromStorage === 'succeeded' && (
+          <RootQueryComponent getQueries={getQueries} />
+        )}
+        {queriesFlag === 'queries' && docs && (
+          <QueriesComponent
+            docs={docs}
+            getField={getFields}
+            getQueryDescription={getQueryDescription}
+          />
+        )}
+        {queriesFlag === 'queryDescription' && queryItem && (
+          <QueryDescription docs={queryItem} getField={getFields} />
+        )}
+        {queriesFlag === 'fields' && fields && (
+          <FieldsComponent docs={fields} getField={getFields} />
+        )}
+        {queriesFlag === 'scalarType' && scalarTypeInfo && (
+          <ScalarTypeComponent docs={scalarTypeInfo} />
+        )}
         {docsResponseStatusFromStorage === 'loading' && (
           <div className="m-auto w-fit mt-[20vh]">
             <Loader />

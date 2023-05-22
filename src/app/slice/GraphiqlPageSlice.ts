@@ -3,6 +3,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
+interface History {
+  variable: string;
+  inputData: string;
+}
+
 interface InitialState {
   status: '' | 'loading' | 'succeeded' | 'failed';
   inputData: string;
@@ -10,6 +15,7 @@ interface InitialState {
   header: string;
   response: string;
   error: string;
+  history: Array<History>;
 }
 
 interface FetchInputs {
@@ -24,6 +30,7 @@ const initialState: InitialState = {
   header: '',
   response: '',
   error: '',
+  history: [],
 };
 
 export const fetchDataRequest = createAsyncThunk<string, FetchInputs>(
@@ -62,6 +69,9 @@ export const garphiqlPageSlice = createSlice({
     setResponse: (state, { payload }) => {
       state.response = payload;
     },
+    setHistoryItem: (state) => {
+      state.history.push({ variable: state.variables, inputData: state.inputData });
+    },
   },
   extraReducers(builder) {
     builder
@@ -80,7 +90,8 @@ export const garphiqlPageSlice = createSlice({
 });
 export default garphiqlPageSlice.reducer;
 
-export const { setInputData, setHeaders, setVariables, setResponse } = garphiqlPageSlice.actions;
+export const { setInputData, setHeaders, setVariables, setResponse, setHistoryItem } =
+  garphiqlPageSlice.actions;
 
 export const selectInputDataValue = (state: RootState) => state.graphiql.inputData;
 export const selectVariablesValue = (state: RootState) => state.graphiql.variables;
@@ -88,3 +99,4 @@ export const selectHeadersValue = (state: RootState) => state.graphiql.header;
 export const selectResponseValue = (state: RootState) => state.graphiql.response;
 export const selectResponseStatus = (state: RootState) => state.graphiql.status;
 export const selectResponseError = (state: RootState) => state.graphiql.error;
+export const selectHistory = (state: RootState) => state.graphiql.history;
