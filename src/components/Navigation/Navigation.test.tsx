@@ -20,7 +20,7 @@ describe('Navigation component', () => {
       </BrowserRouter>
     );
     await waitFor(() => {
-      expect(screen.getByText('Welcome')).toBeInTheDocument();
+      expect(screen.getByText('About')).toBeInTheDocument();
     });
   });
 });
