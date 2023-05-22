@@ -10,7 +10,7 @@ interface InitialState {
 
 const initialState: InitialState = {
   language: localStorage.getItem('language')?.toString() || 'en',
-  theme: localStorage.getItem('theme')?.toString() || 'theme',
+  theme: localStorage.getItem('theme')?.toString() || 'dark',
 };
 
 export const settingsSlice = createSlice({
