@@ -63,7 +63,7 @@
     "Email": "Email адрес:",
     "Password": "Пароль:",
     "Registration": {
-      "headerTitle": "Зарегистрироваться",
+      "headerTitle": "Регистрация",
       "buttonTitle": "Зарегистрироваться"
     },
     "Login": {

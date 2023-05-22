@@ -100,7 +100,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
               type="submit"
               className="flex w-full justify-center rounded-md p-2 bg-teal-400 px-3 text-sm font-semibold leading-6 text-white shadow-sm hover:shadow-yellow-300/60 hover:cursor-pointer active:scale-[95%] transition ease-in-out delay-75"
             >
-              {t(`AuthorizationPage.${buttonTitle}.headerTitle`)}
+              {t(`AuthorizationPage.${buttonTitle}.buttonTitle`)}
             </button>
           </div>
         </form>
