@@ -1,22 +1,4 @@
-import {
-  IntrospectionQuery,
-  getIntrospectionQuery,
-  buildClientSchema,
-  printSchema,
-  buildSchema,
-  GraphQLObjectType,
-  parseType,
-  parseValue,
-  valueFromAST,
-  getNamedType,
-  typeFromAST,
-  print,
-  printType,
-  __Field,
-  defaultFieldResolver,
-  defaultTypeResolver,
-} from 'graphql';
-
+import { buildClientSchema } from 'graphql';
 import { useEffect, useState } from 'react';
 import {
   selectDocsResponseError,
@@ -24,17 +6,25 @@ import {
   selectDocsResponseValue,
   fetchDocsRequest,
 } from 'src/app/slice/DocsSlice';
-import { json } from 'react-router-dom';
-import { Query } from './typeTwo';
+import { FieldsInfo, Query, ScalarType } from './types';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Loader from '../Loader/Loader';
 import QueriesComponent from './Queries/Queries';
 import RootQueryComponent from './RootQuery/RootQuery';
 import QueryDescription from './QueryDescription/QueryDescription';
+import FieldsComponent from './Fields/Fields';
+import ScalarTypeComponent from './ScalarType/ScalarType';
 
 function Documents(): JSX.Element {
+  const [history, setHistory] = useState<Array<[string, string]>>([
+    ['', ''],
+    ['root', 'Docs'],
+  ]);
   const [docs, setDocs] = useState<Array<Query>>();
-  const [queryitem, setQueryitem] = useState<Query>();
+  const [queryItem, setQueryItem] = useState<Query>();
+  const [fields, setFields] = useState<FieldsInfo>();
+  const [scalarTypeInfo, setScalarTypeInfo] = useState<ScalarType>();
+
   const [queriesFlag, setQueriesFlag] = useState('root');
 
   const dispatch = useAppDispatch();
@@ -45,55 +35,121 @@ function Documents(): JSX.Element {
   const getQueries = () => {
     const schema = buildClientSchema(docsResponseValueFromStorage).getQueryType()?.getFields();
     const x = JSON.stringify(schema);
-    const z: Query[] = Object.values(JSON.parse(x));
-    console.log(z);
-    setDocs(z);
+    const y: Query[] = Object.values(JSON.parse(x));
+    setDocs(y);
     setQueriesFlag('queries');
+    setHistory([...history, ['queries', 'Query']]);
   };
 
   const getQueryDescription = (el: string) => {
     const schema = buildClientSchema(docsResponseValueFromStorage).getQueryType()?.getFields();
     const x = JSON.stringify(schema);
-    const z: Query = JSON.parse(x)[el];
-    console.log(el);
-    setQueryitem(z);
+    const y: Query = JSON.parse(x)[el];
+    setQueryItem(y);
     setQueriesFlag('queryDescription');
+    setHistory([...history, ['queryDescription', el]]);
   };
 
-  const getTypeInfo = (el: string) => {
-    const schema = buildClientSchema(docsResponseValueFromStorage).getType(el);
-    // const schema = buildClientSchema(docsResponseValueFromStorage).getTypeMap();
-    // const x = JSON.stringify(schemax);
-    // const typeNode = typeFromAST(schemax, x);
-    // const typeNode = printType(x!);
-    // const z = Object.values(schema);
-    // const y = JSON.parse(JSON.stringify(z))
-    // const z: Query[] = Object.values(JSON.parse(x));
-    // console.log(z);
-    console.log(schema);
-    // setQueriesFlag('typeInfo');
+  const getFields = (el: string) => {
+    const schema = buildClientSchema(docsResponseValueFromStorage).getType(el)?.toConfig();
+    const x = JSON.stringify(schema);
+    const y = JSON.parse(x);
+    // const scalar = 'String' || 'Boolean' || 'ID' || 'Int' || 'Float';
+    if (el === 'String' || el === 'Boolean' || el === 'ID' || el === 'Int' || el === 'Float') {
+      setScalarTypeInfo(y);
+      setQueriesFlag('scalarType');
+      setHistory([...history, ['scalarType', el]]);
+    } else {
+      const result = Object.entries(y.fields);
+      y.fields = result;
+      setFields(y);
+      setQueriesFlag('fields');
+      setHistory([...history, ['fields', el]]);
+    }
+  };
+
+  const getHistoryPage = (el: Array<string>) => {
+    switch (el[0]) {
+      case 'root':
+        setQueriesFlag('root');
+        break;
+      case 'queries':
+        getQueries();
+        break;
+      case 'queryDescription':
+        getQueryDescription(el[1]);
+        break;
+      case 'fields':
+        getFields(el[1]);
+        break;
+      case 'scalarType':
+        getFields(el[1]);
+        break;
+      default:
+        break;
+    }
+    const x = history.slice(0, -1);
+    setHistory(x);
+    // const obj = {
+    //   '': () => {
+    //     setQueriesFlag('root');
+    //   },
+    //   queries: () => {
+    //     getQueries();
+    //   },
+    //   queryDescription: () => {
+    //     getQueryDescription(el[1]);
+    //   },
+    //   fields: () => {
+    //     getFields(el[1]);
+    //   },
+    //   scalarType: () => {
+    //     getFields(el[1]);
+    //   },
+    // };
+    // console.log(history);
+
+    // const key = el[0];
+    // obj[key];
   };
 
   useEffect(() => {
     dispatch(fetchDocsRequest());
-    // getField('Character');
   }, []);
 
   return (
     <div className="docs__container flex flex-col border-l-[1px] border-base_green_light pl-2 ml-3 rounded-r-md text-base docs font-normal text-base_green docs xs:text-sm max-w-[45vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] overflow-auto">
       <div className="docs__content text-base_dark whitespace-break-spaces dark:text-base_white">
+        {history.length >= 3 && (
+          <button
+            type="button"
+            className="text-sm hover:underline"
+            onClick={() => {
+              const prevPage = history[history.length - 2];
+              getHistoryPage(prevPage);
+            }}
+          >
+            <span className="text-md">&#8249;</span> {history[history.length - 2][1]}
+          </button>
+        )}
         {queriesFlag === 'root' && docsResponseStatusFromStorage === 'succeeded' && (
           <RootQueryComponent getQueries={getQueries} />
         )}
         {queriesFlag === 'queries' && docs && (
           <QueriesComponent
             docs={docs}
-            getField={getTypeInfo}
+            getField={getFields}
             getQueryDescription={getQueryDescription}
           />
         )}
-        {queriesFlag === 'queryDescription' && queryitem && (
-          <QueryDescription docs={queryitem} getField={getTypeInfo} />
+        {queriesFlag === 'queryDescription' && queryItem && (
+          <QueryDescription docs={queryItem} getField={getFields} />
+        )}
+        {queriesFlag === 'fields' && fields && (
+          <FieldsComponent docs={fields} getField={getFields} />
+        )}
+        {queriesFlag === 'scalarType' && scalarTypeInfo && (
+          <ScalarTypeComponent docs={scalarTypeInfo} />
         )}
         {docsResponseStatusFromStorage === 'loading' && (
           <div className="m-auto w-fit mt-[20vh]">
