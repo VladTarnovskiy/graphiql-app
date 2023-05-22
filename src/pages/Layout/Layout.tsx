@@ -4,10 +4,14 @@ import Footer from 'src/components/Footer/Footer';
 import { Suspense } from 'react';
 import Loader from 'src/components/Loader/Loader';
 import ErrorBoundary from 'src/components/ErrorBoundary/ErrorBoundary';
+import BurgerMenu from 'src/components/BurgerMenu/BurgerMenu';
 
 function Layout(): JSX.Element {
   return (
     <>
+      <div className="burgerMenu hidden sm:block">
+        <BurgerMenu />
+      </div>
       <Header />
       <ErrorBoundary>
         <main className="wrapper pl-[2%] pr-[2%] w-full mb-[13px] dark:bg-base_dark">
