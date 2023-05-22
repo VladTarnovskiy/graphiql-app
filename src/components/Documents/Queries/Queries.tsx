@@ -1,4 +1,4 @@
-import { Query } from '../typeTwo';
+import { Query } from '../types';
 
 interface MyProps {
   docs: Array<Query>;

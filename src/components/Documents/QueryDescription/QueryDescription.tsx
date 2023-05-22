@@ -1,4 +1,4 @@
-import { Query } from '../typeTwo';
+import { Query } from '../types';
 
 interface MyProps {
   docs: Query;
@@ -14,7 +14,14 @@ function QueryDescription(props: MyProps): JSX.Element {
       <div className="wrapper mb-4 text-base_dark dark:text-base_white">
         <div className="flex flex-col items-start">
           <div className="type__title">- Type:</div>
-          <button type="button" className="text-base_green hover:underline mb-4">
+          <button
+            type="button"
+            className="text-base_green hover:underline mb-4"
+            onClick={(e) => {
+              const query = e.currentTarget.textContent!.replace(/[^a-z]/gi, '');
+              getField(query);
+            }}
+          >
             {docs.type}
           </button>
           <div>- Args:</div>

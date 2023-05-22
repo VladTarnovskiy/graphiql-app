@@ -1,7 +1,7 @@
-import { Query } from '../typeTwo';
+import { FieldsInfo } from '../types';
 
 interface MyProps {
-  docs: Array<Query>;
+  docs: FieldsInfo;
   getField: (el: string) => void;
 }
 
@@ -9,14 +9,13 @@ function FieldsComponent(props: MyProps): JSX.Element {
   const { docs, getField } = props;
   return (
     <>
-      <div className="title">Queries</div>
-      {docs.map((item, index) => {
+      <div className="title text-2xl pr-8 mb-4 text-base_green">{docs.name}</div>
+      <div className="mb-4">- Fields:</div>
+      {docs.fields.map((item, index) => {
         return (
           <div className="wrapper mb-4 text-base_dark dark:text-base_white" key={index.toString()}>
             <div>
-              <button type="button" className="text-base_green hover:underline">
-                {item.name}
-              </button>
+              <div className="text-base_green inline">{item[0]}</div>
               <span>: </span>
               <button
                 type="button"
@@ -26,10 +25,10 @@ function FieldsComponent(props: MyProps): JSX.Element {
                   getField(query);
                 }}
               >
-                {item.type}
+                {item[1].type}
               </button>
             </div>
-            <div>{item.description}</div>
+            <div>{item[1].description}</div>
           </div>
         );
       })}

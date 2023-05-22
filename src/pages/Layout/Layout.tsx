@@ -4,13 +4,12 @@ import Footer from 'src/components/Footer/Footer';
 import { Suspense } from 'react';
 import Loader from 'src/components/Loader/Loader';
 import ErrorBoundary from 'src/components/ErrorBoundary/ErrorBoundary';
-import FallBackUIComponent from 'src/components/ErrorBoundary/FallBackUIComponent/FallBackUIComponent';
 
 function Layout(): JSX.Element {
   return (
     <>
       <Header />
-      <ErrorBoundary fallBackUIComponent={<FallBackUIComponent />}>
+      <ErrorBoundary>
         <main className="wrapper pl-[2%] pr-[2%] w-full mb-[13px] dark:bg-base_dark">
           <Suspense
             fallback={
@@ -22,8 +21,8 @@ function Layout(): JSX.Element {
             <Outlet />
           </Suspense>
         </main>
-        <Footer />
       </ErrorBoundary>
+      <Footer />
     </>
   );
 }
