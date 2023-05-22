@@ -19,13 +19,13 @@ function Navigation(): JSX.Element {
       : classStyle;
   };
   return (
-    <div className="navigation font-thin dark:text-base_white">
+    <div className="navigation font-thin dark:text-base_white sm:hidden">
       <NavLink className={({ isActive }) => handleActiveLink(isActive)} to="/">
-        <span className="hover:text-base_green_light">Welcome</span>
+        <span className="hover:text-base_green_light">{t(`header.Welcome`)}</span>
       </NavLink>
       {user && (
         <NavLink className={({ isActive }) => handleActiveLink(isActive)} to="/graphi-ql">
-          <span className="hover:text-base_green_light">{t(`header.Welcome`)}</span>
+          <span className="hover:text-base_green_light">{t(`header.Main`)}</span>
         </NavLink>
       )}
     </div>
