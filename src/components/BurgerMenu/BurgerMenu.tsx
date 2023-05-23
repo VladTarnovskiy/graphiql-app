@@ -42,13 +42,15 @@ function BurgerMenu(): JSX.Element {
       >
         <span className="hover:text-base_green_light">{t(`header.Welcome`)}</span>
       </NavLink>
-      <NavLink
-        className="navigation__item hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white"
-        to="/graphi-ql"
-        onClick={handleCloseMenu}
-      >
-        <span className="hover:text-base_green_light">{t(`header.Main`)}</span>
-      </NavLink>
+      {user && (
+        <NavLink
+          className="navigation__item hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white"
+          to="/graphi-ql"
+          onClick={handleCloseMenu}
+        >
+          <span className="hover:text-base_green_light">{t(`header.Main`)}</span>
+        </NavLink>
+      )}
       <button
         className="setting hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white"
         type="button"

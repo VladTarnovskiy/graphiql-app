@@ -15,7 +15,7 @@ function WelcomePage(): JSX.Element {
     <div className="graphql flex justify-center">
       <div className="flex flex-col shadow-lg shadow-base_green/50 p-4 w-[65vw] sm:w-[95vw] md:w-[80vw] min-h-[80vh] rounded-md bg-base_white dark:bg-dark_black">
         <div className="mr-4 w-full flex flex-col dark:text-base_white">
-          <div className="relative graphql__nav flex justify-left pl-4 pr-4 mb-4 text-sm bg-base_white dark:bg-dark_black pb-2">
+          <div className="relative graphql__nav flex justify-left pl-4 pr-4 xs:pl-1 xs:pr-1 mb-4 text-sm bg-base_white dark:bg-dark_black pb-2">
             {(fieldFlag === 'project' && (
               <button
                 className="project underline underline-offset-4 decoration-base_green w-16 mr-4 xs:mr-2 hover:text-base_green cursor-pointer"
