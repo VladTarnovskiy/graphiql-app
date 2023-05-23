@@ -8,7 +8,10 @@ import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 import SettingModal from '../SettingModal/SettingModal';
 import './Burger.scss';
-import { Istate } from '../../types/interfaces';
+
+interface Istate {
+  isOpen: boolean;
+}
 
 function BurgerMenu(): JSX.Element {
   const [settingsFlag, setSettingsFlag] = useState(false);
