@@ -1,4 +1,6 @@
-import { IErrorPopUp } from 'src/types/interfaces';
+interface IErrorPopUp {
+  message: string;
+}
 
 function ErrorPopUp(props: IErrorPopUp): JSX.Element {
   const { message } = props;

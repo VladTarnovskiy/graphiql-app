@@ -5,11 +5,20 @@ import { useSelector } from 'react-redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IFormComponent, ISubmitData } from '../../types/interfaces';
 import { checkEmail, checkPassword } from '../../utils/validation';
 import { auth, loginUser, registerNewUser } from '../../utils/firebase';
 import { RootState } from '../../app/store';
 import ErrorPopUp from '../ErrorPopUp/ErrorPopUp';
+
+interface IFormComponent {
+  headerTitle: string;
+  buttonTitle: string;
+}
+
+interface ISubmitData {
+  email: string;
+  password: string;
+}
 
 export default function FormComponent(props: IFormComponent): JSX.Element {
   const [user] = useAuthState(auth);

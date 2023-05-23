@@ -1,8 +1,12 @@
 import { t } from 'i18next';
 import { useDispatch } from 'react-redux';
 import { authorizationPageText } from '../../app/slice/AuthorizationPage.slice';
-import { IButtonProps } from '../../types/interfaces';
 import { logout } from '../../utils/firebase';
+
+interface IButtonProps {
+  title: string;
+  button?: boolean;
+}
 
 function Button(prop: IButtonProps): JSX.Element {
   const dispatch = useDispatch();
