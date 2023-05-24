@@ -3,13 +3,15 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tooltip } from 'react-tooltip';
+import toast, { Toaster } from 'react-hot-toast';
+import { useState } from 'react';
 import { checkEmail, checkPassword } from '../../utils/validation';
 import { auth, loginUser, registerNewUser } from '../../utils/firebase';
 import { RootState } from '../../app/store';
 import ErrorPopUp from '../ErrorPopUp/ErrorPopUp';
+import Loader from '../Loader/Loader';
 
 interface IFormComponent {
   headerTitle: string;
@@ -23,8 +25,8 @@ interface ISubmitData {
 
 export default function FormComponent(props: IFormComponent): JSX.Element {
   const [user] = useAuthState(auth);
-  const [errorMessage, setErrorMessage] = useState<string | undefined>('');
   const { headerTitle, buttonTitle } = props;
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -37,18 +39,20 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
   const authorizationText = useSelector((state: RootState) => state.authorization.page);
 
   const onSubmit: SubmitHandler<ISubmitData> = async (data) => {
+    setLoading(true);
     if (authorizationText === 'Registration') {
       const error = await registerNewUser(data.email, data.password);
       if (error instanceof Error) {
-        setErrorMessage(error.message);
+        toast.custom(<ErrorPopUp message={error.message} />);
+        setLoading(false);
       }
     } else {
       const error = await loginUser(data.email, data.password);
       if (error instanceof Error) {
-        setErrorMessage(error.message);
+        toast.custom(<ErrorPopUp message={error.message} />);
+        setLoading(false);
       }
     }
-    setTimeout(() => setErrorMessage(''), 5000);
     if (user) {
       navigate('/graphi-ql');
     }
@@ -119,16 +123,22 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
           </div>
 
           <div className="mt-12">
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md mt-2 p-2 bg-teal-400 px-3 text-sm font-semibold leading-6 text-white shadow-sm hover:shadow-yellow-300/60 hover:cursor-pointer active:scale-[95%] transition ease-in-out delay-75"
-            >
-              {t(`AuthorizationPage.${buttonTitle}.buttonTitle`)}
-            </button>
+            {loading ? (
+              <div className="flex w-full justify-center">
+                <Loader />
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md mt-2 p-2 bg-teal-400 px-3 text-sm font-semibold leading-6 text-white shadow-sm hover:shadow-yellow-300/60 hover:cursor-pointer active:scale-[95%] transition ease-in-out delay-75"
+              >
+                {t(`AuthorizationPage.${buttonTitle}.buttonTitle`)}
+              </button>
+            )}
           </div>
         </form>
       </div>
-      {errorMessage && <ErrorPopUp message={errorMessage} />}
+      <Toaster position="bottom-right" />
     </section>
   );
 }
