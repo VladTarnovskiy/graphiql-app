@@ -50,7 +50,22 @@
   },
   "GraphQL": {
     "Variables": "Variables",
-    "Headers": "Headers"
+    "Headers": "Headers",
+    "History": "History",
+    "Documents": "Documents",
+    "RootDescription": "A GraphQL schema provides a root type for each kind of operation.",
+    "RootTypes": "- Root Types",
+    "Toasts":{
+      "Copy": "Request copied!",
+      "Clean": "Fields cleared!"
+    },
+    "NavButtons":{
+      "Play": "Play",
+      "Documents": "Documents",
+      "History": "History",
+      "Copy": "Copy request",
+      "Clean": "Clean fields"
+    }
   },
   "Setting": {
     "Title": "Settings",
