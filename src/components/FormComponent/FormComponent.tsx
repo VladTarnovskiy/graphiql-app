@@ -7,11 +7,11 @@ import { useTranslation } from 'react-i18next';
 import { Tooltip } from 'react-tooltip';
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
 import { checkEmail, checkPassword } from '../../utils/validation';
 import { auth, loginUser, registerNewUser } from '../../utils/firebase';
 import { RootState } from '../../app/store';
 import ErrorPopUp from '../ErrorPopUp/ErrorPopUp';
-import Loader from '../Loader/Loader';
 
 interface IFormComponent {
   headerTitle: string;
@@ -124,8 +124,16 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
 
           <div className="mt-12">
             {loading ? (
-              <div className="flex w-full justify-center">
-                <Loader />
+              <div className="flex w-full justify-center rounded-md mt-2 p-2 bg-teal-400 px-3 text-sm font-semibold leading-6 text-white shadow-sm  transition ease-in-out delay-75">
+                <ThreeDots
+                  height="1.5rem"
+                  width="100%"
+                  radius="10"
+                  color="#fff"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{}}
+                  visible
+                />
               </div>
             ) : (
               <button
