@@ -5,11 +5,21 @@ import { useSelector } from 'react-redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IFormComponent, ISubmitData } from '../../types/interfaces';
+import { Tooltip } from 'react-tooltip';
 import { checkEmail, checkPassword } from '../../utils/validation';
 import { auth, loginUser, registerNewUser } from '../../utils/firebase';
 import { RootState } from '../../app/store';
 import ErrorPopUp from '../ErrorPopUp/ErrorPopUp';
+
+interface IFormComponent {
+  headerTitle: string;
+  buttonTitle: string;
+}
+
+interface ISubmitData {
+  email: string;
+  password: string;
+}
 
 export default function FormComponent(props: IFormComponent): JSX.Element {
   const [user] = useAuthState(auth);
@@ -45,12 +55,13 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
   };
 
   return (
-    <section className="relative form flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <section className="relative form flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-4">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-base_green">
           {t(`AuthorizationPage.${headerTitle}.headerTitle`)}
         </h2>
       </div>
+      <Tooltip id="my-tooltip" style={{ fontSize: '1rem', width: '100%', textAlign: 'center' }} />
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="" onSubmit={handleSubmit(onSubmit)}>
           <div className="form__item">
@@ -66,11 +77,21 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
                 id="email"
                 name="email"
                 type="email"
-                className="block w-full p-2 mt-1 bg-base_white rounded-md border-0 text-md text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+                className="block w-full p-2 mt-1 mb-1 bg-base_white rounded-md border-0 text-md text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
               />
             </label>
             {errors.email && (
-              <span className="absolute text-red-500 text-sm">{errors.email.message}</span>
+              <span className="absolute text-red-500 text-sm xs:text-xs xs:w-11/12">
+                {errors.email.message}.{' '}
+                <span
+                  className="cursor-pointer hover:text-base_green_light underline"
+                  data-tooltip-id="my-tooltip"
+                  data-tooltip-content={t(`AuthorizationPage.ErrorMessage.Valid`).toString()}
+                  data-tooltip-place="top"
+                >
+                  {t(`AuthorizationPage.ErrorMessage.Example`)}
+                </span>
+              </span>
             )}
           </div>
           <div className="form__item my-8">
@@ -87,20 +108,22 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
                 name="password"
                 type="password"
                 autoComplete="off"
-                className="block mt-1 w-full bg-base_white text-md p-2 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+                className="block mt-1 mb-2 w-full bg-base_white text-md p-2 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
               />
             </label>
             {errors.password && (
-              <span className="absolute text-red-500 text-sm">{errors.password.message}</span>
+              <span className="absolute text-red-500 text-sm sm:text-xs sm:w-10/12 xs:text-xs">
+                {errors.password.message}
+              </span>
             )}
           </div>
 
-          <div>
+          <div className="mt-12">
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md p-2 bg-teal-400 px-3 text-sm font-semibold leading-6 text-white shadow-sm hover:shadow-yellow-300/60 hover:cursor-pointer active:scale-[95%] transition ease-in-out delay-75"
+              className="flex w-full justify-center rounded-md mt-2 p-2 bg-teal-400 px-3 text-sm font-semibold leading-6 text-white shadow-sm hover:shadow-yellow-300/60 hover:cursor-pointer active:scale-[95%] transition ease-in-out delay-75"
             >
-              {t(`AuthorizationPage.${buttonTitle}.headerTitle`)}
+              {t(`AuthorizationPage.${buttonTitle}.buttonTitle`)}
             </button>
           </div>
         </form>

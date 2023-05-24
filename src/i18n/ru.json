@@ -63,7 +63,7 @@
     "Email": "Email адрес:",
     "Password": "Пароль:",
     "Registration": {
-      "headerTitle": "Зарегистрироваться",
+      "headerTitle": "Регистрация",
       "buttonTitle": "Зарегистрироваться"
     },
     "Login": {
@@ -73,9 +73,11 @@
     "ErrorMessage": {
       "Email": "Введите Email",
       "EmailDomain": "Недопустимый домен электронной почты",
-      "ToShort": "минимум 8 символов",
+      "Example": "Пример",
+      "ToShort": "Минимум 8 символов",
       "Password": "Введите пароль",
-      "Symbols": "должна быть хотя бы одна буква, одна цифра, один специальный символ"
+      "Symbols": "Должна быть хотя бы одна буква, одна цифра, один специальный символ",
+      "Valid": "Допустимые домены: gmail.com, yahoo.com, hotmail.com, yandex.ru, mail.ru"
     }
   },
   "header": {

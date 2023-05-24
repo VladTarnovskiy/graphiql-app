@@ -73,9 +73,11 @@
     "ErrorMessage": {
       "Email": "Input Email",
       "EmailDomain": "Invalid email domain",
+      "Example": "Example",
       "ToShort": "Minimum 8 symbols",
       "Password": "Input Password",
-      "Symbols": "Must be at least one letter, one digit, one special character"
+      "Symbols": "Must be at least one letter, one digit, one special character",
+      "Valid": "Valid domain: gmail.com, yahoo.com, hotmail.com, yandex.ru, mail.ru"
     }
   },
   "header": {

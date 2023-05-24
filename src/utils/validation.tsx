@@ -1,16 +1,16 @@
 import { t } from 'i18next';
 
 const checkEmail = (data: string) => {
-  // const emailDomains = ['@gmail.com', '@yahoo.com', '@hotmail.com', '@yandex.ru', '@mail.ru'];
-  // const domain = data.slice(data.indexOf('@'));
+  const emailDomains = ['@gmail.com', '@yahoo.com', '@hotmail.com', '@yandex.ru', '@mail.ru'];
+  const domain = data.slice(data.indexOf('@'));
 
   if (data.length < 8) {
     return `${t('AuthorizationPage.ErrorMessage.ToShort')}`;
   }
-  // const validEmail = emailDomains.includes(domain);
-  // if (!validEmail) {
-  //   return t('AuthorizationPage.ErrorMessage.EmailDomain');
-  // }
+  const validEmail = emailDomains.includes(domain);
+  if (!validEmail) {
+    return t('AuthorizationPage.ErrorMessage.EmailDomain');
+  }
   return true;
 };
 
