@@ -74,10 +74,10 @@
       "Email": "Введите Email",
       "EmailDomain": "Недопустимый домен электронной почты",
       "Example": "Пример",
-      "ToShort": "минимум 8 символов",
+      "ToShort": "Минимум 8 символов",
       "Password": "Введите пароль",
-      "Symbols": "должна быть хотя бы одна буква, одна цифра, один специальный символ",
-      "Valid": "Допустимые домены: '@gmail.com', '@yahoo.com', '@hotmail.com', '@yandex.ru', '@mail.ru'"
+      "Symbols": "Должна быть хотя бы одна буква, одна цифра, один специальный символ",
+      "Valid": "Допустимые домены: gmail.com, yahoo.com, hotmail.com, yandex.ru, mail.ru"
     }
   },
   "header": {
