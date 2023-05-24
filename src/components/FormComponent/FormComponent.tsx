@@ -126,7 +126,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
             {loading ? (
               <div className="flex w-full justify-center rounded-md mt-2 p-2 bg-teal-400 px-3 text-sm font-semibold leading-6 text-white shadow-sm  transition ease-in-out delay-75">
                 <ThreeDots
-                  height="1.5rem"
+                  height="24"
                   width="100%"
                   radius="10"
                   color="#fff"
