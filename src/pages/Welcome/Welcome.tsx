@@ -114,7 +114,7 @@ function WelcomePage(): JSX.Element {
             <img
               src="https://rs.school/images/partners/logo-rs.svg"
               className="max-w-[280px] lg:max-w-[180px] md:max-w-[140px] xs:max-w-[100px] pr-6 xs:pr-3 shadow-xl rounded-md"
-              alt=""
+              alt="RSSchool logo"
             />
             <div>
               {t(`Welcome.RSSAbout.1`)}
