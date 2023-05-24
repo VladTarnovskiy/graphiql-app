@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from 'src/utils/firebase';
+import toast, { Toaster } from 'react-hot-toast';
 
 import {
   selectHeadersValue,
@@ -82,6 +83,7 @@ function GraphiQLPage(): JSX.Element {
 
   return (
     <div className="relative graphql basis-1/8 flex-grow-1 flex justify-center pl-[62px] md:pl-[54px] dark:bg-base_dark">
+      <Toaster />
       {settingsFlag && (
         <Modal setCloseFlag={setSettingsFlag}>
           <SettingModal />
@@ -131,6 +133,7 @@ function GraphiQLPage(): JSX.Element {
             title="Copy request"
             onClick={() => {
               navigator.clipboard.writeText(inputDataValueFromStorage);
+              toast.success('Request copied!');
             }}
           >
             <img src={Copy} alt="Copy" />
@@ -142,6 +145,8 @@ function GraphiQLPage(): JSX.Element {
             onClick={() => {
               dispatch(setInputData(''));
               dispatch(setVariables('{}'));
+              dispatch(setHeaders('{}'));
+              toast('Fields cleared!');
             }}
           >
             <img src={Broom} alt="Cleaner" />
