@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Tooltip } from 'react-tooltip';
 import { checkEmail, checkPassword } from '../../utils/validation';
 import { auth, loginUser, registerNewUser } from '../../utils/firebase';
 import { RootState } from '../../app/store';
@@ -60,6 +61,7 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
           {t(`AuthorizationPage.${headerTitle}.headerTitle`)}
         </h2>
       </div>
+      <Tooltip id="my-tooltip" style={{ fontSize: '1rem' }} />
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="" onSubmit={handleSubmit(onSubmit)}>
           <div className="form__item">
@@ -79,7 +81,17 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
               />
             </label>
             {errors.email && (
-              <span className="absolute text-red-500 text-sm">{errors.email.message}</span>
+              <span className="absolute text-red-500 text-sm">
+                {errors.email.message}.{' '}
+                <span
+                  className="cursor-pointer hover:text-base_green_light underline"
+                  data-tooltip-id="my-tooltip"
+                  data-tooltip-content={t(`AuthorizationPage.ErrorMessage.Valid`).toString()}
+                  data-tooltip-place="top"
+                >
+                  {t(`AuthorizationPage.ErrorMessage.Example`)}
+                </span>
+              </span>
             )}
           </div>
           <div className="form__item my-8">
