@@ -1,11 +1,11 @@
 /* eslint-disable import/no-cycle */
-/* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 interface History {
   variable: string;
   inputData: string;
+  header: string;
 }
 
 interface InitialState {
@@ -26,8 +26,31 @@ interface FetchInputs {
 
 const initialState: InitialState = {
   status: '',
-  inputData: '',
-  variables: '{}',
+  inputData: `query GetRick ($page: Int, $id: ID!) {
+    characters(page: $page) {
+      info {
+        count
+      }
+      results {
+        name
+        status
+        origin{
+         name
+         created
+        }
+      }
+    }
+    location(id: $id) {
+      id
+      name
+      type
+    }
+    episodesByIds(ids: [1, 2]) {
+      id
+      name
+    }
+  }`,
+  variables: `{"page": 2, "id": 3}`,
   header: '{}',
   response: '',
   error: '',
@@ -71,7 +94,11 @@ export const garphiqlPageSlice = createSlice({
       state.response = payload;
     },
     setHistoryItem: (state) => {
-      state.history.push({ variable: state.variables, inputData: state.inputData });
+      state.history.push({
+        variable: state.variables,
+        inputData: state.inputData,
+        header: state.header,
+      });
     },
   },
   extraReducers(builder) {
