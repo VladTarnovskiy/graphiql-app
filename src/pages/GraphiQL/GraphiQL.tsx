@@ -28,7 +28,6 @@ import Stop from '../../assets/stop.svg';
 import Docs from '../../assets/docs.svg';
 import Copy from '../../assets/copy.svg';
 import History from '../../assets/history.svg';
-import Settings from '../../assets/settings.svg';
 import Broom from '../../assets/broom.svg';
 import Modal from '../../components/Modal/Modal';
 import SettingModal from '../../components/SettingModal/SettingModal';
@@ -66,6 +65,7 @@ function GraphiQLPage(): JSX.Element {
       fetchDataRequest({
         query: `${inputDataValueFromStorage}`,
         variables: variablesValueFromStorage,
+        headers: headersValueFromStorage,
       })
     );
   };
@@ -108,27 +108,29 @@ function GraphiQLPage(): JSX.Element {
             )}
           </button>
           <button
-            className="docs rounded-full w-11 h-11 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="docs rounded-full w-11 h-11 md:w-10 md:h-10 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             title="Documents"
             onClick={() => {
               setDocs(!docs);
+              setHistory(false);
             }}
           >
             <img src={Docs} alt="Docs" />
           </button>
           <button
-            className="history rounded-full w-10 h-10 ml-[2px] hover:opacity-50 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="history rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             title="History"
             onClick={() => {
               setHistory(!history);
+              setDocs(false);
             }}
           >
             <img src={History} alt="History" />
           </button>
           <button
-            className="copy rounded-full w-10 h-10 ml-[2px] md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="copy rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             title="Copy request"
             onClick={() => {
@@ -139,7 +141,7 @@ function GraphiQLPage(): JSX.Element {
             <img src={Copy} alt="Copy" />
           </button>
           <button
-            className="cleaner rounded-full w-10 h-10 ml-[2px] md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="cleaner rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             title="Cleaner"
             onClick={() => {
@@ -150,16 +152,6 @@ function GraphiQLPage(): JSX.Element {
             }}
           >
             <img src={Broom} alt="Cleaner" />
-          </button>
-          <button
-            className="setting rounded-full w-11 h-11 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
-            type="button"
-            title="Setting"
-            onClick={() => {
-              setSettingsFlag(true);
-            }}
-          >
-            <img src={Settings} alt="Settings" />
           </button>
         </div>
         <div className="documents">{docs && <Documents />}</div>

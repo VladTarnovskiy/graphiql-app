@@ -1,5 +1,4 @@
 /* eslint-disable import/no-cycle */
-/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
@@ -10,7 +9,7 @@ interface InitialState {
 
 const initialState: InitialState = {
   language: localStorage.getItem('language')?.toString() || 'en',
-  theme: localStorage.getItem('theme')?.toString() || 'theme',
+  theme: localStorage.getItem('theme')?.toString() || 'dark',
 };
 
 export const settingsSlice = createSlice({
