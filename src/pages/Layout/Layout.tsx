@@ -15,7 +15,7 @@ function Layout(): JSX.Element {
       </div>
       <Header />
       <ErrorBoundary fallBackUIComponent={<FallBackUIComponent />}>
-        <main className="wrapper pl-[2%] pr-[2%] w-full mb-[13px] dark:bg-base_dark">
+        <main className="wrapper pl-[2%] pr-[2%] w-full mb-[13px] dark:bg-base_dark min-h-[79vh]">
           <Suspense
             fallback={
               <div className="m-auto w-fit mt-[30vh]">
