@@ -1,16 +1,17 @@
+import { useTranslation } from 'react-i18next';
+
 interface MyProps {
   getQueries: () => void;
 }
 
 function RootQueryComponent(props: MyProps): JSX.Element {
+  const { t } = useTranslation();
   const { getQueries } = props;
   return (
     <div className="root__wrapper">
-      <div className="docs__title text-2xl pr-8 mb-4 text-base_green">Documents</div>
-      <div className="root__description mb-2">
-        A GraphQL schema provides a root type for each kind of operation.
-      </div>
-      <div className="root__title mb-2">- Root Types</div>
+      <div className="docs__title text-2xl pr-8 mb-4 text-base_green">{t('GraphQL.Documents')}</div>
+      <div className="root__description mb-2">{t('GraphQL.RootDescription')}</div>
+      <div className="root__title mb-2">{t('GraphQL.RootTypes')}</div>
       <div className="root__link">
         <span className="text-base_green">query: </span>
         <button
