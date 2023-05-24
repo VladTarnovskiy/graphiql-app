@@ -25,7 +25,7 @@ function Header(): JSX.Element {
   return (
     <header
       className={`${
-        small ? 'is-sticky' : ''
+        small ? 'is-sticky sm:h-40' : ''
       } header animate__animated sticky top-0 w-full z-20 backdrop-blur-xl flex justify-between items-center shadow-lg bg-gray-400/20 pl-[2%] pr-[2%] mb-6 transition ease-in-out delay-100 dark:bg-dark_header/20`}
       ref={headerRef}
     >

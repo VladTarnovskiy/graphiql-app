@@ -27,7 +27,6 @@ import Stop from '../../assets/stop.svg';
 import Docs from '../../assets/docs.svg';
 import Copy from '../../assets/copy.svg';
 import History from '../../assets/history.svg';
-import Settings from '../../assets/settings.svg';
 import Broom from '../../assets/broom.svg';
 import Modal from '../../components/Modal/Modal';
 import SettingModal from '../../components/SettingModal/SettingModal';
@@ -112,6 +111,7 @@ function GraphiQLPage(): JSX.Element {
             title="Documents"
             onClick={() => {
               setDocs(!docs);
+              setHistory(false);
             }}
           >
             <img src={Docs} alt="Docs" />
@@ -122,6 +122,7 @@ function GraphiQLPage(): JSX.Element {
             title="History"
             onClick={() => {
               setHistory(!history);
+              setDocs(false);
             }}
           >
             <img src={History} alt="History" />
@@ -146,16 +147,6 @@ function GraphiQLPage(): JSX.Element {
             }}
           >
             <img src={Broom} alt="Cleaner" />
-          </button>
-          <button
-            className="setting rounded-full w-11 h-11 md:w-10 md:h-10 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
-            type="button"
-            title="Setting"
-            onClick={() => {
-              setSettingsFlag(true);
-            }}
-          >
-            <img src={Settings} alt="Settings" />
           </button>
         </div>
         <div className="documents">{docs && <Documents />}</div>
