@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from 'src/utils/firebase';
+import toast, { Toaster } from 'react-hot-toast';
 
 import {
   selectHeadersValue,
@@ -27,7 +28,6 @@ import Stop from '../../assets/stop.svg';
 import Docs from '../../assets/docs.svg';
 import Copy from '../../assets/copy.svg';
 import History from '../../assets/history.svg';
-import Settings from '../../assets/settings.svg';
 import Broom from '../../assets/broom.svg';
 import Modal from '../../components/Modal/Modal';
 import SettingModal from '../../components/SettingModal/SettingModal';
@@ -83,6 +83,7 @@ function GraphiQLPage(): JSX.Element {
 
   return (
     <div className="relative graphql basis-1/8 flex-grow-1 flex justify-center pl-[62px] md:pl-[54px] dark:bg-base_dark">
+      <Toaster />
       {settingsFlag && (
         <Modal setCloseFlag={setSettingsFlag}>
           <SettingModal />
@@ -112,6 +113,7 @@ function GraphiQLPage(): JSX.Element {
             title="Documents"
             onClick={() => {
               setDocs(!docs);
+              setHistory(false);
             }}
           >
             <img src={Docs} alt="Docs" />
@@ -122,6 +124,7 @@ function GraphiQLPage(): JSX.Element {
             title="History"
             onClick={() => {
               setHistory(!history);
+              setDocs(false);
             }}
           >
             <img src={History} alt="History" />
@@ -132,6 +135,7 @@ function GraphiQLPage(): JSX.Element {
             title="Copy request"
             onClick={() => {
               navigator.clipboard.writeText(inputDataValueFromStorage);
+              toast.success('Request copied!');
             }}
           >
             <img src={Copy} alt="Copy" />
@@ -143,19 +147,11 @@ function GraphiQLPage(): JSX.Element {
             onClick={() => {
               dispatch(setInputData(''));
               dispatch(setVariables('{}'));
+              dispatch(setHeaders('{}'));
+              toast('Fields cleared!');
             }}
           >
             <img src={Broom} alt="Cleaner" />
-          </button>
-          <button
-            className="setting rounded-full w-11 h-11 md:w-10 md:h-10 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75"
-            type="button"
-            title="Setting"
-            onClick={() => {
-              setSettingsFlag(true);
-            }}
-          >
-            <img src={Settings} alt="Settings" />
           </button>
         </div>
         <div className="documents">{docs && <Documents />}</div>

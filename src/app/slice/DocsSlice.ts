@@ -1,5 +1,4 @@
 /* eslint-disable import/no-cycle */
-/* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IntrospectionQuery, getIntrospectionQuery } from 'graphql';
 import { RootState } from '../store';

@@ -2,7 +2,7 @@ import React, { ErrorInfo, ReactNode } from 'react';
 
 interface Props {
   children?: ReactNode;
-  // fallBackUIComponent: ReactNode;
+  fallBackUIComponent: ReactNode;
 }
 
 interface State {
@@ -27,11 +27,10 @@ class ErrorBoundary extends React.Component<Props, State> {
 
   render() {
     const { hasError } = this.state;
-    const { children } = this.props;
+    const { children, fallBackUIComponent } = this.props;
 
     if (hasError) {
-      return <div className="m-auto">Something went wrong...</div>;
-      // return fallBackUIComponent;
+      return fallBackUIComponent;
     }
 
     return children;

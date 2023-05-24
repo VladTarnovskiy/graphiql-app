@@ -86,5 +86,6 @@
     "Sign In": "Sign in",
     "Sign Up": "Sign up",
     "Logout": "Logout"
-  }
+  },
+  "404": "The page you are looking for not found!"
 }

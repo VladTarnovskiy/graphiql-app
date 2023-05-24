@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import Loader from 'src/components/Loader/Loader';
 import ErrorBoundary from 'src/components/ErrorBoundary/ErrorBoundary';
 import BurgerMenu from 'src/components/BurgerMenu/BurgerMenu';
+import FallBackUIComponent from 'src/components/ErrorBoundary/FallBackUIComponent/FallBackUIComponent';
 
 function Layout(): JSX.Element {
   return (
@@ -13,7 +14,7 @@ function Layout(): JSX.Element {
         <BurgerMenu />
       </div>
       <Header />
-      <ErrorBoundary>
+      <ErrorBoundary fallBackUIComponent={<FallBackUIComponent />}>
         <main className="wrapper pl-[2%] pr-[2%] w-full mb-[13px] dark:bg-base_dark">
           <Suspense
             fallback={

@@ -54,8 +54,8 @@ function Documents(): JSX.Element {
     const schema = buildClientSchema(docsResponseValueFromStorage).getType(el)?.toConfig();
     const x = JSON.stringify(schema);
     const y = JSON.parse(x);
-    // const scalar = 'String' || 'Boolean' || 'ID' || 'Int' || 'Float';
-    if (el === 'String' || el === 'Boolean' || el === 'ID' || el === 'Int' || el === 'Float') {
+    const scalar = ['String', 'Boolean', 'ID', 'Int', 'Float'];
+    if (scalar.includes(el)) {
       setScalarTypeInfo(y);
       setQueriesFlag('scalarType');
       setHistory([...history, ['scalarType', el]]);
@@ -69,48 +69,28 @@ function Documents(): JSX.Element {
   };
 
   const getHistoryPage = (el: Array<string>) => {
-    switch (el[0]) {
-      case 'root':
+    const obj: { [char: string]: () => void } = {
+      root: () => {
         setQueriesFlag('root');
-        break;
-      case 'queries':
+      },
+      queries: () => {
         getQueries();
-        break;
-      case 'queryDescription':
+      },
+      queryDescription: () => {
         getQueryDescription(el[1]);
-        break;
-      case 'fields':
+      },
+      fields: () => {
         getFields(el[1]);
-        break;
-      case 'scalarType':
+      },
+      scalarType: () => {
         getFields(el[1]);
-        break;
-      default:
-        break;
-    }
+      },
+    };
+
+    const key = el[0];
+    obj[key]();
     const x = history.slice(0, -1);
     setHistory(x);
-    // const obj = {
-    //   '': () => {
-    //     setQueriesFlag('root');
-    //   },
-    //   queries: () => {
-    //     getQueries();
-    //   },
-    //   queryDescription: () => {
-    //     getQueryDescription(el[1]);
-    //   },
-    //   fields: () => {
-    //     getFields(el[1]);
-    //   },
-    //   scalarType: () => {
-    //     getFields(el[1]);
-    //   },
-    // };
-    // console.log(history);
-
-    // const key = el[0];
-    // obj[key];
   };
 
   useEffect(() => {

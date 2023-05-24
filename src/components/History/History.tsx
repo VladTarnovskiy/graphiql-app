@@ -29,6 +29,7 @@ function HistoryComponent(props: MyProps): JSX.Element {
                 onClose();
                 dispatch(setVariables(item.variable));
                 dispatch(setInputData(item.inputData));
+                dispatch(setHeaders(item.header));
               }}
             >
               <span className="text-base_green_light">&#8644; </span>
