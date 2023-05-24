@@ -21,7 +21,7 @@ import {
 
 import Loader from 'src/components/Loader/Loader';
 import Documents from 'src/components/Documents/Documents';
-import HistoryComponent from 'src/components/History/History';
+import HistoryComponent from 'src/components/Documents/History/History';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
 import Stop from '../../assets/stop.svg';
@@ -94,7 +94,7 @@ function GraphiQLPage(): JSX.Element {
           <button
             className="play rounded-full pl-[8px] w-11 h-11 md:w-10 md:h-10 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
             type="button"
-            title="Play"
+            title={t('GraphQL.NavButtons.Play')!}
             onClick={() => {
               getData();
               dispatch(setHistoryItem());
@@ -110,7 +110,7 @@ function GraphiQLPage(): JSX.Element {
           <button
             className="docs rounded-full w-11 h-11 md:w-10 md:h-10 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
-            title="Documents"
+            title={t('GraphQL.NavButtons.Documents')!}
             onClick={() => {
               setDocs(!docs);
               setHistory(false);
@@ -121,7 +121,7 @@ function GraphiQLPage(): JSX.Element {
           <button
             className="history rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
-            title="History"
+            title={t('GraphQL.NavButtons.History')!}
             onClick={() => {
               setHistory(!history);
               setDocs(false);
@@ -132,10 +132,10 @@ function GraphiQLPage(): JSX.Element {
           <button
             className="copy rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
-            title="Copy request"
+            title={t('GraphQL.NavButtons.Copy')!}
             onClick={() => {
               navigator.clipboard.writeText(inputDataValueFromStorage);
-              toast.success('Request copied!');
+              toast.success(t('GraphQL.Toasts.Copy'));
             }}
           >
             <img src={Copy} alt="Copy" />
@@ -143,12 +143,12 @@ function GraphiQLPage(): JSX.Element {
           <button
             className="cleaner rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
-            title="Cleaner"
+            title={t('GraphQL.NavButtons.Clean')!}
             onClick={() => {
               dispatch(setInputData(''));
               dispatch(setVariables('{}'));
               dispatch(setHeaders('{}'));
-              toast('Fields cleared!');
+              toast.success(t('GraphQL.Toasts.Clean'));
             }}
           >
             <img src={Broom} alt="Cleaner" />
