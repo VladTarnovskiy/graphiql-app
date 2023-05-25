@@ -62,13 +62,18 @@ export const fetchDataRequest = createAsyncThunk<string, FetchInputs>(
   async (data: FetchInputs) => {
     const response = await fetch('https://rickandmortyapi.com/graphql', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...JSON.parse(data.headers),
-      },
+      headers:
+        data.headers !== ''
+          ? {
+              'Content-Type': 'application/json',
+              ...JSON.parse(data.headers),
+            }
+          : {
+              'Content-Type': 'application/json',
+            },
       body: JSON.stringify({
         query: `${data.query}`,
-        variables: JSON.parse(data.variables),
+        variables: data.variables !== '' ? JSON.parse(data.variables) : null,
       }),
     });
     const datax = await response.json();
