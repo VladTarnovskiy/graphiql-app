@@ -12,7 +12,11 @@
     "prettier": "npx prettier --write ."
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.1.8",
+    "@lezer/highlight": "^1.1.5",
     "@reduxjs/toolkit": "^1.9.3",
+    "@uiw/codemirror-themes": "^4.20.2",
+    "@uiw/react-codemirror": "^4.20.2",
     "animate.css": "^4.1.1",
     "firebase": "^9.21.0",
     "graphql": "^16.6.0",

@@ -4,7 +4,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from 'src/utils/firebase';
 import toast, { Toaster } from 'react-hot-toast';
-
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
+import './d.scss';
+import { tags } from '@lezer/highlight';
+import { createTheme } from '@uiw/codemirror-themes';
 import {
   selectHeadersValue,
   selectVariablesValue,
@@ -18,11 +22,11 @@ import {
   setHistoryItem,
   fetchDataRequest,
 } from 'src/app/slice/GraphiqlPageSlice';
-
 import Loader from 'src/components/Loader/Loader';
 import Documents from 'src/components/Documents/Documents';
 import HistoryComponent from 'src/components/Documents/History/History';
 import { Tooltip } from 'react-tooltip';
+import { selectTheme } from 'src/app/slice/SettingsSlice';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
 import Stop from '../../assets/stop.svg';
@@ -37,7 +41,6 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 function GraphiQLPage(): JSX.Element {
   const sliderRef = useRef<HTMLDivElement>(null);
   const variablesFieldRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLTextAreaElement>(null);
   const { t } = useTranslation();
   const [settingsFlag, setSettingsFlag] = useState(false);
   const [fieldFlag, setFieldFlag] = useState(false);
@@ -50,6 +53,7 @@ function GraphiQLPage(): JSX.Element {
   const responseValueFromStorage = useAppSelector(selectResponseValue);
   const responseStatusFromStorage = useAppSelector(selectResponseStatus);
   const responseErrorFromStorage = useAppSelector(selectResponseError);
+  const themeFromStore = useAppSelector(selectTheme);
 
   const dispatch = useAppDispatch();
   const [user] = useAuthState(auth);
@@ -81,6 +85,62 @@ function GraphiQLPage(): JSX.Element {
       sliderRef.current!.style.transform = 'translateX(117%)';
     }
   };
+
+  const myDarkTheme = createTheme({
+    theme: 'dark',
+    settings: {
+      background: '#0C0E0F',
+      foreground: '#e5e5e5',
+      caret: '#fafafa',
+      selection: '#14b8a626',
+      selectionMatch: '#14b8a626',
+      lineHighlight: '#8a91991a',
+    },
+    styles: [
+      { tag: tags.comment, color: '#787b8099' },
+      { tag: tags.variableName, color: '#14b8a6' },
+      { tag: [tags.string, tags.special(tags.brace)], color: '#14b8a6' },
+      { tag: tags.number, color: '#5c6166' },
+      { tag: tags.bool, color: '#5c6166' },
+      { tag: tags.null, color: '#5c6166' },
+      { tag: tags.keyword, color: '#5c6166' },
+      { tag: tags.operator, color: '#5c6166' },
+      { tag: tags.className, color: '#5c6166' },
+      { tag: tags.definition(tags.typeName), color: '#5c6166' },
+      { tag: tags.typeName, color: '#5c6166' },
+      { tag: tags.angleBracket, color: '#5c6166' },
+      { tag: tags.tagName, color: '#5c6166' },
+      { tag: tags.attributeName, color: '#5c6166' },
+    ],
+  });
+
+  const myLightTheme = createTheme({
+    theme: 'light',
+    settings: {
+      background: '#fafafa',
+      foreground: '#1A1C1E',
+      caret: '#1A1C1E',
+      selection: '#14b8a626',
+      selectionMatch: '#14b8a626',
+      lineHighlight: '#8a91991a',
+    },
+    styles: [
+      { tag: tags.comment, color: '#787b8099' },
+      { tag: tags.variableName, color: '#14b8a6' },
+      { tag: [tags.string, tags.special(tags.brace)], color: '#14b8a6' },
+      { tag: tags.number, color: '#5c6166' },
+      { tag: tags.bool, color: '#5c6166' },
+      { tag: tags.null, color: '#5c6166' },
+      { tag: tags.keyword, color: '#5c6166' },
+      { tag: tags.operator, color: '#5c6166' },
+      { tag: tags.className, color: '#5c6166' },
+      { tag: tags.definition(tags.typeName), color: '#5c6166' },
+      { tag: tags.typeName, color: '#5c6166' },
+      { tag: tags.angleBracket, color: '#5c6166' },
+      { tag: tags.tagName, color: '#5c6166' },
+      { tag: tags.attributeName, color: '#5c6166' },
+    ],
+  });
 
   return (
     <div
@@ -185,14 +245,27 @@ function GraphiQLPage(): JSX.Element {
         </div>
       </div>
       <div className="flex w-full md:flex-col ml-2">
-        <div className="request mr-4 w-full flex flex-col rounded-md min-h-[79vh] md:mb-2 shadow-lg shadow-base_green/50">
-          <div className="request__wrap h-full shadow-xl relative rounded-tr-md rounded-tl-md">
-            <textarea
+        <div className="request mr-4 w-full flex flex-col rounded-md h-[79vh] md:mb-2 shadow-lg shadow-base_green/50">
+          <div className="overflow-y-scroll request__wrap h-full shadow-xl relative rounded-tr-md rounded-tl-md">
+            {/* <textarea
               ref={textRef}
               className="w-full h-full query p-4 rounded-tr-md rounded-tl-md bg-base_white outline-0 mb-[-8px] resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white"
               value={inputDataValueFromStorage}
               onChange={(e) => {
                 dispatch(setInputData(e.target.value));
+              }}
+            /> */}
+            <CodeMirror
+              value={inputDataValueFromStorage}
+              className="my-code-mirror"
+              extensions={[javascript({ jsx: true })]}
+              theme={themeFromStore === 'light' ? myLightTheme : myDarkTheme}
+              basicSetup={{
+                foldGutter: false,
+                lineNumbers: false,
+              }}
+              onChange={(e) => {
+                dispatch(setInputData(e));
               }}
             />
           </div>
