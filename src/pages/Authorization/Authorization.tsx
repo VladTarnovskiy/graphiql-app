@@ -19,7 +19,10 @@ function AuthorizationPage(): JSX.Element {
   });
 
   return (
-    <div className="text-teal-500 m-auto text-2xl max-w-[600px]">
+    <div
+      className="text-teal-500 m-auto text-2xl max-w-[600px]"
+      data-testid="authorization-element"
+    >
       {authorizationText === 'Registration' ? (
         <FormComponent headerTitle="Registration" buttonTitle="Registration" />
       ) : (

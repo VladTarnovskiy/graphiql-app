@@ -22,6 +22,7 @@ import {
 import Loader from 'src/components/Loader/Loader';
 import Documents from 'src/components/Documents/Documents';
 import HistoryComponent from 'src/components/Documents/History/History';
+import { Tooltip } from 'react-tooltip';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
 import Stop from '../../assets/stop.svg';
@@ -82,7 +83,10 @@ function GraphiQLPage(): JSX.Element {
   };
 
   return (
-    <div className="relative graphql basis-1/8 flex-grow-1 flex justify-center pl-[62px] md:pl-[54px] dark:bg-base_dark">
+    <div
+      className="relative graphql basis-1/8 flex-grow-1 flex justify-center pl-[62px] md:pl-[54px] dark:bg-base_dark"
+      data-testid="graphiql-element"
+    >
       <Toaster />
       {settingsFlag && (
         <Modal setCloseFlag={setSettingsFlag}>
@@ -91,10 +95,17 @@ function GraphiQLPage(): JSX.Element {
       )}
       <div className="absolute left-0 top-0 instruments z-10 flex justify-start p-2 pl-[8px] docs-nav h-full dark:bg-dark_textarea min-w-[58px] md:min-w-[50px] min-h-[79vh] shadow-lg shadow-base_green/50 rounded-r-md bg-base_white">
         <div className="flex flex-col justify-start ml-[1px]">
+          <Tooltip
+            id="button-tooltip"
+            style={{ fontSize: '1rem', textAlign: 'center' }}
+            className="dark:bg-base_white dark:text-base_dark"
+          />
           <button
             className="play rounded-full pl-[8px] w-11 h-11 md:w-10 md:h-10 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
             type="button"
-            title={t('GraphQL.NavButtons.Play')!}
+            data-tooltip-id="button-tooltip"
+            data-tooltip-content={t('GraphQL.NavButtons.Play')!}
+            data-tooltip-place="right"
             onClick={() => {
               getData();
               dispatch(setHistoryItem());
@@ -110,7 +121,9 @@ function GraphiQLPage(): JSX.Element {
           <button
             className="docs rounded-full w-11 h-11 md:w-10 md:h-10 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
-            title={t('GraphQL.NavButtons.Documents')!}
+            data-tooltip-id="button-tooltip"
+            data-tooltip-content={t('GraphQL.NavButtons.Documents')!}
+            data-tooltip-place="right"
             onClick={() => {
               setDocs(!docs);
               setHistory(false);
@@ -121,7 +134,9 @@ function GraphiQLPage(): JSX.Element {
           <button
             className="history rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
-            title={t('GraphQL.NavButtons.History')!}
+            data-tooltip-id="button-tooltip"
+            data-tooltip-content={t('GraphQL.NavButtons.History')!}
+            data-tooltip-place="right"
             onClick={() => {
               setHistory(!history);
               setDocs(false);
@@ -132,7 +147,9 @@ function GraphiQLPage(): JSX.Element {
           <button
             className="copy rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
-            title={t('GraphQL.NavButtons.Copy')!}
+            data-tooltip-id="button-tooltip"
+            data-tooltip-content={t('GraphQL.NavButtons.Copy')!}
+            data-tooltip-place="right"
             onClick={() => {
               navigator.clipboard.writeText(inputDataValueFromStorage);
               toast.success(t('GraphQL.Toasts.Copy'));
@@ -143,7 +160,9 @@ function GraphiQLPage(): JSX.Element {
           <button
             className="cleaner rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
-            title={t('GraphQL.NavButtons.Clean')!}
+            data-tooltip-id="button-tooltip"
+            data-tooltip-content={t('GraphQL.NavButtons.Clean')!}
+            data-tooltip-place="right"
             onClick={() => {
               dispatch(setInputData(''));
               dispatch(setVariables('{}'));
@@ -224,7 +243,7 @@ function GraphiQLPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="response max-h-[80vh] xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 p-4 w-full rounded-md bg-base_white overflow-y-auto dark:bg-dark_textarea dark:text-base_white">
+        <div className="response max-h-[79vh] xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 p-4 w-full rounded-md bg-base_white overflow-y-auto dark:bg-dark_textarea dark:text-base_white">
           {responseStatusFromStorage === 'succeeded' && responseValueFromStorage}
           {responseStatusFromStorage === 'loading' && (
             <div className="m-auto w-fit mt-[30vh]">

@@ -4,20 +4,26 @@ import { Provider } from 'react-redux';
 import { store } from 'src/app/store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'src/i18n/i18n';
-import Documents from './Documents';
+import { ScalarType } from '../types';
+import ScalarTypeComponent from './ScalarType';
 
-describe('Documents component', () => {
-  it('Documents is render', async () => {
+const mock: ScalarType = {
+  name: 'episodes',
+  description: 'Get the list of all episodes',
+};
+
+describe('ScalarType component', () => {
+  it('ScalarType is render', async () => {
     render(
       <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-          <Documents />
+          <ScalarTypeComponent docs={mock} />
         </Provider>
       </I18nextProvider>
     );
 
     await waitFor(() => {
-      expect(screen.getByText(/Documents/i)).toBeInTheDocument();
+      expect(screen.getByText(/Get the list of all episodes/i)).toBeInTheDocument();
     });
   });
 });
