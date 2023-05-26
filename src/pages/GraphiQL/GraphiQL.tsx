@@ -258,8 +258,21 @@ function GraphiQLPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="response max-h-[79vh] w-[50%] md:w-full xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 p-4 rounded-md bg-base_white overflow-y-auto dark:bg-dark_textarea dark:text-base_white">
-          {responseStatusFromStorage === 'succeeded' && responseValueFromStorage}
+        <div className="response max-h-[79vh] w-[50%] md:w-full xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 rounded-md bg-base_white overflow-y-auto dark:bg-dark_textarea dark:text-base_white">
+          {responseStatusFromStorage === 'succeeded' && (
+            <CodeMirror
+              value={responseValueFromStorage}
+              className="my-code-mirror"
+              extensions={[javascript({ jsx: true })]}
+              theme={themeFromStore === 'light' ? myLightTheme : myDarkTheme}
+              basicSetup={{
+                lineNumbers: false,
+              }}
+              // onChange={(e) => {
+              //   dispatch(setInputData(e));
+              // }}
+            />
+          )}
           {responseStatusFromStorage === 'loading' && (
             <div className="m-auto w-fit mt-[30vh]">
               <Loader />
