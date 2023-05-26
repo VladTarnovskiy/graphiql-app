@@ -250,7 +250,7 @@ function GraphiQLPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="response max-h-[79vh] w-[50%] md:w-full xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 rounded-md bg-base_white overflow-y-auto dark:bg-dark_textarea dark:text-base_white">
+        <div className="response max-h-[79vh] min-h-[50px] w-[50%] md:w-full xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 rounded-md bg-base_white overflow-y-auto dark:bg-dark_textarea dark:text-base_white">
           {responseStatusFromStorage === 'succeeded' && (
             <CodeMirror
               value={responseValueFromStorage}
