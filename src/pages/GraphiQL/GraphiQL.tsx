@@ -4,6 +4,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from 'src/utils/firebase';
 import toast, { Toaster } from 'react-hot-toast';
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
+import './codemirror.scss';
 
 import {
   selectHeadersValue,
@@ -18,11 +21,12 @@ import {
   setHistoryItem,
   fetchDataRequest,
 } from 'src/app/slice/GraphiqlPageSlice';
-
 import Loader from 'src/components/Loader/Loader';
 import Documents from 'src/components/Documents/Documents';
 import HistoryComponent from 'src/components/Documents/History/History';
 import { Tooltip } from 'react-tooltip';
+import { selectTheme } from 'src/app/slice/SettingsSlice';
+import { myDarkTheme, myLightTheme } from 'src/utils/codemirror-set';
 import Textarea from '../../components/Textarea/Textarea';
 import Play from '../../assets/play.svg';
 import Stop from '../../assets/stop.svg';
@@ -36,8 +40,6 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 function GraphiQLPage(): JSX.Element {
   const sliderRef = useRef<HTMLDivElement>(null);
-  const variablesFieldRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLTextAreaElement>(null);
   const { t } = useTranslation();
   const [settingsFlag, setSettingsFlag] = useState(false);
   const [fieldFlag, setFieldFlag] = useState(false);
@@ -50,6 +52,7 @@ function GraphiQLPage(): JSX.Element {
   const responseValueFromStorage = useAppSelector(selectResponseValue);
   const responseStatusFromStorage = useAppSelector(selectResponseStatus);
   const responseErrorFromStorage = useAppSelector(selectResponseError);
+  const themeFromStore = useAppSelector(selectTheme);
 
   const dispatch = useAppDispatch();
   const [user] = useAuthState(auth);
@@ -93,15 +96,15 @@ function GraphiQLPage(): JSX.Element {
           <SettingModal />
         </Modal>
       )}
-      <div className="absolute left-0 top-0 instruments z-10 flex justify-start p-2 pl-[8px] docs-nav h-full dark:bg-dark_textarea min-w-[58px] md:min-w-[50px] min-h-[79vh] shadow-lg shadow-base_green/50 rounded-r-md bg-base_white">
-        <div className="flex flex-col justify-start ml-[1px]">
+      <div className="absolute left-0 top-0 instruments z-10 flex justify-start p-2 pl-[8px] md:pl-[7px] docs-nav h-full dark:bg-dark_textarea min-w-[60px] md:min-w-[50px] min-h-[79vh] shadow-lg shadow-base_green/50 rounded-r-md bg-base_white">
+        <div className="flex flex-col justify-start">
           <Tooltip
             id="button-tooltip"
             style={{ fontSize: '1rem', textAlign: 'center' }}
             className="dark:bg-base_white dark:text-base_dark"
           />
           <button
-            className="play rounded-full pl-[8px] w-11 h-11 md:w-10 md:h-10 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
+            className="play rounded-full pl-[7px] md:pl-[6px] w-11 h-11 md:w-9 md:h-9 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
             type="button"
             data-tooltip-id="button-tooltip"
             data-tooltip-content={t('GraphQL.NavButtons.Play')!}
@@ -112,14 +115,14 @@ function GraphiQLPage(): JSX.Element {
             }}
           >
             {responseStatusFromStorage !== 'loading' && (
-              <img src={Play} alt="Play" className="w-[30px] md:w-[26px]" />
+              <img src={Play} alt="Play" className="w-[30px] md:w-[24px]" />
             )}
             {responseStatusFromStorage === 'loading' && (
-              <img src={Stop} alt="Stop" className="w-[30px] md:w-[26px]" />
+              <img src={Stop} alt="Stop" className="w-[30px] md:w-[24px]" />
             )}
           </button>
           <button
-            className="docs rounded-full w-11 h-11 md:w-10 md:h-10 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="docs rounded-full w-11 h-11 md:w-9 md:h-9 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             data-tooltip-id="button-tooltip"
             data-tooltip-content={t('GraphQL.NavButtons.Documents')!}
@@ -132,7 +135,7 @@ function GraphiQLPage(): JSX.Element {
             <img src={Docs} alt="Docs" />
           </button>
           <button
-            className="history rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="history rounded-full w-10 h-10 md:w-9 md:h-9 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             data-tooltip-id="button-tooltip"
             data-tooltip-content={t('GraphQL.NavButtons.History')!}
@@ -145,7 +148,7 @@ function GraphiQLPage(): JSX.Element {
             <img src={History} alt="History" />
           </button>
           <button
-            className="copy rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="copy rounded-full w-10 h-10 hover:opacity-60 md:w-9 md:h-9 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             data-tooltip-id="button-tooltip"
             data-tooltip-content={t('GraphQL.NavButtons.Copy')!}
@@ -158,7 +161,7 @@ function GraphiQLPage(): JSX.Element {
             <img src={Copy} alt="Copy" />
           </button>
           <button
-            className="cleaner rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="cleaner rounded-full w-10 h-10 hover:opacity-60 md:w-9 md:h-9 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             data-tooltip-id="button-tooltip"
             data-tooltip-content={t('GraphQL.NavButtons.Clean')!}
@@ -185,14 +188,18 @@ function GraphiQLPage(): JSX.Element {
         </div>
       </div>
       <div className="flex w-full md:flex-col ml-2">
-        <div className="request mr-4 w-full flex flex-col rounded-md min-h-[79vh] md:mb-2 shadow-lg shadow-base_green/50">
-          <div className="request__wrap h-full shadow-xl relative rounded-tr-md rounded-tl-md">
-            <textarea
-              ref={textRef}
-              className="w-full h-full query p-4 rounded-tr-md rounded-tl-md bg-base_white outline-0 mb-[-8px] resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white"
+        <div className="request mr-4 flex flex-col rounded-md h-[79vh] md:mb-2 shadow-lg shadow-base_green/50 w-[50%] md:w-full">
+          <div className="overflow-y-auto request__wrap h-full shadow-xl relative rounded-tr-md rounded-tl-md bg-base_white dark:bg-dark_textarea xs:text-sm">
+            <CodeMirror
               value={inputDataValueFromStorage}
+              className="my-code-mirror"
+              extensions={[javascript({ jsx: true })]}
+              theme={themeFromStore === 'light' ? myLightTheme : myDarkTheme}
+              basicSetup={{
+                lineNumbers: false,
+              }}
               onChange={(e) => {
-                dispatch(setInputData(e.target.value));
+                dispatch(setInputData(e));
               }}
             />
           </div>
@@ -233,7 +240,7 @@ function GraphiQLPage(): JSX.Element {
                 ref={sliderRef}
               />
             </div>
-            <div ref={variablesFieldRef}>
+            <div className="variables-wrapper">
               {variablesBlock && !fieldFlag && (
                 <Textarea value={variablesValueFromStorage} setVariables={setVariables} />
               )}
@@ -243,8 +250,18 @@ function GraphiQLPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="response max-h-[79vh] xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 p-4 w-full rounded-md bg-base_white overflow-y-auto dark:bg-dark_textarea dark:text-base_white">
-          {responseStatusFromStorage === 'succeeded' && responseValueFromStorage}
+        <div className="response max-h-[79vh] min-h-[50px] w-[50%] md:w-full xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 rounded-md bg-base_white overflow-y-auto dark:bg-dark_textarea dark:text-base_white">
+          {responseStatusFromStorage === 'succeeded' && (
+            <CodeMirror
+              value={responseValueFromStorage}
+              className="my-code-mirror"
+              extensions={[javascript({ jsx: true })]}
+              theme={themeFromStore === 'light' ? myLightTheme : myDarkTheme}
+              basicSetup={{
+                lineNumbers: false,
+              }}
+            />
+          )}
           {responseStatusFromStorage === 'loading' && (
             <div className="m-auto w-fit mt-[30vh]">
               <Loader />
