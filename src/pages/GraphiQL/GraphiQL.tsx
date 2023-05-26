@@ -40,7 +40,6 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 function GraphiQLPage(): JSX.Element {
   const sliderRef = useRef<HTMLDivElement>(null);
-  const variablesFieldRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
   const [settingsFlag, setSettingsFlag] = useState(false);
   const [fieldFlag, setFieldFlag] = useState(false);
@@ -188,9 +187,9 @@ function GraphiQLPage(): JSX.Element {
           )}
         </div>
       </div>
-      <div className="flex w-full md:flex-col ml-2">
-        <div className="request mr-4 w-full flex flex-col rounded-md h-[79vh] md:mb-4 shadow-lg shadow-base_green/50">
-          <div className="overflow-y-auto request__wrap h-full pl-2 shadow-xl relative rounded-tr-md rounded-tl-md bg-base_white dark:bg-dark_textarea xs:text-sm">
+      <div className="flex w-full md:flex-col ml-2 md:ml-4">
+        <div className="request mr-4 flex flex-col rounded-md h-[79vh] md:mb-2 shadow-lg shadow-base_green/50 w-[50%] md:w-full">
+          <div className="overflow-y-auto request__wrap h-full shadow-xl relative rounded-tr-md rounded-tl-md bg-base_white dark:bg-dark_textarea xs:text-sm">
             {/* <textarea
               ref={textRef}
               className="w-full h-full query p-4 rounded-tr-md rounded-tl-md bg-base_white outline-0 mb-[-8px] resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white"
@@ -249,7 +248,7 @@ function GraphiQLPage(): JSX.Element {
                 ref={sliderRef}
               />
             </div>
-            <div ref={variablesFieldRef}>
+            <div className="variables-wrapper">
               {variablesBlock && !fieldFlag && (
                 <Textarea value={variablesValueFromStorage} setVariables={setVariables} />
               )}
@@ -259,7 +258,7 @@ function GraphiQLPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="response max-h-[79vh] xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 p-4 w-full rounded-md bg-base_white overflow-y-auto dark:bg-dark_textarea dark:text-base_white">
+        <div className="response max-h-[79vh] w-[50%] md:w-full xs:text-sm whitespace-break-spaces shadow-lg shadow-base_green/50 p-4 rounded-md bg-base_white overflow-y-auto dark:bg-dark_textarea dark:text-base_white">
           {responseStatusFromStorage === 'succeeded' && responseValueFromStorage}
           {responseStatusFromStorage === 'loading' && (
             <div className="m-auto w-fit mt-[30vh]">
