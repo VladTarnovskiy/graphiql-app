@@ -96,15 +96,15 @@ function GraphiQLPage(): JSX.Element {
           <SettingModal />
         </Modal>
       )}
-      <div className="absolute left-0 top-0 instruments z-10 flex justify-start p-2 pl-[8px] docs-nav h-full dark:bg-dark_textarea min-w-[58px] md:min-w-[50px] min-h-[79vh] shadow-lg shadow-base_green/50 rounded-r-md bg-base_white">
-        <div className="flex flex-col justify-start ml-[1px]">
+      <div className="absolute left-0 top-0 instruments z-10 flex justify-start p-2 pl-[8px] md:pl-[7px] docs-nav h-full dark:bg-dark_textarea w-[60px] md:w-[50px] min-h-[79vh] shadow-lg shadow-base_green/50 rounded-r-md bg-base_white">
+        <div className="flex flex-col justify-start">
           <Tooltip
             id="button-tooltip"
             style={{ fontSize: '1rem', textAlign: 'center' }}
             className="dark:bg-base_white dark:text-base_dark"
           />
           <button
-            className="play rounded-full pl-[8px] w-11 h-11 md:w-10 md:h-10 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
+            className="play rounded-full pl-[7px] md:pl-[6px] w-11 h-11 md:w-9 md:h-9 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
             type="button"
             data-tooltip-id="button-tooltip"
             data-tooltip-content={t('GraphQL.NavButtons.Play')!}
@@ -115,14 +115,14 @@ function GraphiQLPage(): JSX.Element {
             }}
           >
             {responseStatusFromStorage !== 'loading' && (
-              <img src={Play} alt="Play" className="w-[30px] md:w-[26px]" />
+              <img src={Play} alt="Play" className="w-[30px] md:w-[24px]" />
             )}
             {responseStatusFromStorage === 'loading' && (
-              <img src={Stop} alt="Stop" className="w-[30px] md:w-[26px]" />
+              <img src={Stop} alt="Stop" className="w-[30px] md:w-[24px]" />
             )}
           </button>
           <button
-            className="docs rounded-full w-11 h-11 md:w-10 md:h-10 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="docs rounded-full w-11 h-11 md:w-9 md:h-9 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             data-tooltip-id="button-tooltip"
             data-tooltip-content={t('GraphQL.NavButtons.Documents')!}
@@ -135,7 +135,7 @@ function GraphiQLPage(): JSX.Element {
             <img src={Docs} alt="Docs" />
           </button>
           <button
-            className="history rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="history rounded-full w-10 h-10 md:w-9 md:h-9 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             data-tooltip-id="button-tooltip"
             data-tooltip-content={t('GraphQL.NavButtons.History')!}
@@ -148,7 +148,7 @@ function GraphiQLPage(): JSX.Element {
             <img src={History} alt="History" />
           </button>
           <button
-            className="copy rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="copy rounded-full w-10 h-10 hover:opacity-60 md:w-9 md:h-9 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             data-tooltip-id="button-tooltip"
             data-tooltip-content={t('GraphQL.NavButtons.Copy')!}
@@ -161,7 +161,7 @@ function GraphiQLPage(): JSX.Element {
             <img src={Copy} alt="Copy" />
           </button>
           <button
-            className="cleaner rounded-full w-10 h-10 ml-[2px] hover:opacity-60 md:w-10 md:h-10 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+            className="cleaner rounded-full w-10 h-10 hover:opacity-60 md:w-9 md:h-9 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
             type="button"
             data-tooltip-id="button-tooltip"
             data-tooltip-content={t('GraphQL.NavButtons.Clean')!}
@@ -187,7 +187,7 @@ function GraphiQLPage(): JSX.Element {
           )}
         </div>
       </div>
-      <div className="flex w-full md:flex-col ml-2 md:ml-4">
+      <div className="flex w-full md:flex-col ml-2">
         <div className="request mr-4 flex flex-col rounded-md h-[79vh] md:mb-2 shadow-lg shadow-base_green/50 w-[50%] md:w-full">
           <div className="overflow-y-auto request__wrap h-full shadow-xl relative rounded-tr-md rounded-tl-md bg-base_white dark:bg-dark_textarea xs:text-sm">
             {/* <textarea
