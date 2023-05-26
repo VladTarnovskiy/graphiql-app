@@ -190,14 +190,6 @@ function GraphiQLPage(): JSX.Element {
       <div className="flex w-full md:flex-col ml-2">
         <div className="request mr-4 flex flex-col rounded-md h-[79vh] md:mb-2 shadow-lg shadow-base_green/50 w-[50%] md:w-full">
           <div className="overflow-y-auto request__wrap h-full shadow-xl relative rounded-tr-md rounded-tl-md bg-base_white dark:bg-dark_textarea xs:text-sm">
-            {/* <textarea
-              ref={textRef}
-              className="w-full h-full query p-4 rounded-tr-md rounded-tl-md bg-base_white outline-0 mb-[-8px] resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white"
-              value={inputDataValueFromStorage}
-              onChange={(e) => {
-                dispatch(setInputData(e.target.value));
-              }}
-            /> */}
             <CodeMirror
               value={inputDataValueFromStorage}
               className="my-code-mirror"
@@ -268,9 +260,6 @@ function GraphiQLPage(): JSX.Element {
               basicSetup={{
                 lineNumbers: false,
               }}
-              // onChange={(e) => {
-              //   dispatch(setInputData(e));
-              // }}
             />
           )}
           {responseStatusFromStorage === 'loading' && (
