@@ -15,7 +15,7 @@ function Textarea(props: MyProps): JSX.Element {
 
   const { setVariables, value } = props;
   return (
-    <div className="w-full overflow-auto pl-0 variables h-[221px] p-4 pt-0 rounded-br-md rounded-bl-md bg-base_white outline-0 resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white">
+    <div className="w-full overflow-auto variables h-[221px] rounded-br-md rounded-bl-md bg-base_white outline-0 resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white">
       <CodeMirror
         value={value}
         className="my-code-mirror"
