@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import Layout from './pages/Layout/Layout';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import { CloseRoute, OpenRoute } from './components/PrivateRoute/PrivateRoute';
 
 import useThemeAndLanguage from './utils/hooks';
 
@@ -21,12 +21,19 @@ function App(): JSX.Element {
           <Route
             path="graphi-ql"
             element={
-              <PrivateRoute>
+              <CloseRoute>
                 <GraphiQLPage />
-              </PrivateRoute>
+              </CloseRoute>
             }
           />
-          <Route path="authorization" element={<AuthorizationPage />} />
+          <Route
+            path="authorization"
+            element={
+              <OpenRoute>
+                <AuthorizationPage />
+              </OpenRoute>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
