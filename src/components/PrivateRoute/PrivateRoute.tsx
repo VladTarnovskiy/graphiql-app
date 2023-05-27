@@ -7,7 +7,12 @@ interface IPrivateRoute {
   children: JSX.Element;
 }
 
-export default function PrivateRoute({ children }: IPrivateRoute): JSX.Element {
+export function CloseRoute({ children }: IPrivateRoute): JSX.Element {
   const [user] = useAuthState(auth);
   return user ? children : <Navigate to="/" />;
+}
+
+export function OpenRoute({ children }: IPrivateRoute): JSX.Element {
+  const [user] = useAuthState(auth);
+  return !user ? children : <Navigate to="/graphi-ql" />;
 }
