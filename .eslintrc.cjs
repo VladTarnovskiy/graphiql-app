@@ -44,6 +44,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-unused-expressions': ['error', { allowTernary: true }],
     'react/jsx-uses-react': 'off',
+    'import/prefer-default-export': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': 'off',
     'react/prefer-stateless-function': 'off',
