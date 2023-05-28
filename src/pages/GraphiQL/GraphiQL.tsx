@@ -3,11 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from 'src/utils/firebase';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import './codemirror.scss';
-
 import {
   selectHeadersValue,
   selectVariablesValue,
@@ -18,33 +17,19 @@ import {
   setInputData,
   setHeaders,
   setVariables,
-  setHistoryItem,
   fetchDataRequest,
 } from 'src/app/slice/GraphiqlPageSlice';
 import Loader from 'src/components/Loader/Loader';
-import Documents from 'src/components/Documents/Documents';
-import HistoryComponent from 'src/components/Documents/History/History';
-import { Tooltip } from 'react-tooltip';
 import { selectTheme } from 'src/app/slice/SettingsSlice';
 import { myDarkTheme, myLightTheme } from 'src/utils/codemirror-set';
+import Instruments from 'src/components/Instruments/Instruments';
 import Textarea from '../../components/Textarea/Textarea';
-import Play from '../../assets/play.svg';
-import Stop from '../../assets/stop.svg';
-import Docs from '../../assets/docs.svg';
-import Copy from '../../assets/copy.svg';
-import History from '../../assets/history.svg';
-import Broom from '../../assets/broom.svg';
-import Modal from '../../components/Modal/Modal';
-import SettingModal from '../../components/SettingModal/SettingModal';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 function GraphiQLPage(): JSX.Element {
   const sliderRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
-  const [settingsFlag, setSettingsFlag] = useState(false);
   const [fieldFlag, setFieldFlag] = useState(false);
-  const [docs, setDocs] = useState(false);
-  const [history, setHistory] = useState(false);
   const [variablesBlock, setVariablesBlock] = useState(true);
   const headersValueFromStorage = useAppSelector(selectHeadersValue);
   const variablesValueFromStorage = useAppSelector(selectVariablesValue);
@@ -90,103 +75,8 @@ function GraphiQLPage(): JSX.Element {
       className="relative graphql basis-1/8 flex-grow-1 flex justify-center pl-[62px] md:pl-[54px] dark:bg-base_dark"
       data-testid="graphiql-element"
     >
+      <Instruments getData={getData} />
       <Toaster />
-      {settingsFlag && (
-        <Modal setCloseFlag={setSettingsFlag}>
-          <SettingModal />
-        </Modal>
-      )}
-      <div className="absolute left-0 top-0 instruments z-10 flex justify-start p-2 pl-[8px] md:pl-[7px] docs-nav h-full dark:bg-dark_textarea min-w-[60px] md:min-w-[50px] min-h-[79vh] shadow-lg shadow-base_green/50 rounded-md bg-base_white">
-        <div className="flex flex-col justify-start">
-          <Tooltip
-            id="button-tooltip"
-            style={{ fontSize: '1rem', textAlign: 'center' }}
-            className="dark:bg-base_white dark:text-base_dark"
-          />
-          <button
-            className="play rounded-full pl-[7px] md:pl-[6px] w-11 h-11 md:w-9 md:h-9 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75"
-            type="button"
-            data-tooltip-id="button-tooltip"
-            data-tooltip-content={t('GraphQL.NavButtons.Play')!}
-            data-tooltip-place="right"
-            onClick={() => {
-              getData();
-              dispatch(setHistoryItem());
-            }}
-          >
-            {responseStatusFromStorage !== 'loading' && (
-              <img src={Play} alt="Play" className="w-[30px] md:w-[24px]" />
-            )}
-            {responseStatusFromStorage === 'loading' && (
-              <img src={Stop} alt="Stop" className="w-[30px] md:w-[24px]" />
-            )}
-          </button>
-          <button
-            className="docs rounded-full w-11 h-11 md:w-9 md:h-9 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
-            type="button"
-            data-tooltip-id="button-tooltip"
-            data-tooltip-content={t('GraphQL.NavButtons.Documents')!}
-            data-tooltip-place="right"
-            onClick={() => {
-              setDocs(!docs);
-              setHistory(false);
-            }}
-          >
-            <img src={Docs} alt="Docs" />
-          </button>
-          <button
-            className="history rounded-full w-10 h-10 md:w-9 md:h-9 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
-            type="button"
-            data-tooltip-id="button-tooltip"
-            data-tooltip-content={t('GraphQL.NavButtons.History')!}
-            data-tooltip-place="right"
-            onClick={() => {
-              setHistory(!history);
-              setDocs(false);
-            }}
-          >
-            <img src={History} alt="History" />
-          </button>
-          <button
-            className="copy rounded-full w-10 h-10 hover:opacity-60 md:w-9 md:h-9 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
-            type="button"
-            data-tooltip-id="button-tooltip"
-            data-tooltip-content={t('GraphQL.NavButtons.Copy')!}
-            data-tooltip-place="right"
-            onClick={() => {
-              navigator.clipboard.writeText(inputDataValueFromStorage);
-              toast.success(t('GraphQL.Toasts.Copy'));
-            }}
-          >
-            <img src={Copy} alt="Copy" />
-          </button>
-          <button
-            className="cleaner rounded-full w-10 h-10 hover:opacity-60 md:w-9 md:h-9 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
-            type="button"
-            data-tooltip-id="button-tooltip"
-            data-tooltip-content={t('GraphQL.NavButtons.Clean')!}
-            data-tooltip-place="right"
-            onClick={() => {
-              dispatch(setInputData(''));
-              dispatch(setVariables('{}'));
-              dispatch(setHeaders('{}'));
-              toast.success(t('GraphQL.Toasts.Clean'));
-            }}
-          >
-            <img src={Broom} alt="Cleaner" />
-          </button>
-        </div>
-        <div className="documents">{docs && <Documents />}</div>
-        <div className="history">
-          {history && (
-            <HistoryComponent
-              onClose={() => {
-                setHistory(false);
-              }}
-            />
-          )}
-        </div>
-      </div>
       <div className="flex w-full md:flex-col ml-2">
         <div className="request mr-4 flex flex-col rounded-md h-[79vh] md:mb-2 shadow-lg shadow-base_green/50 w-[50%] md:w-full">
           <div className="overflow-y-auto request__wrap h-full shadow-xl relative rounded-tr-md rounded-tl-md bg-base_white dark:bg-dark_textarea xs:text-sm">
