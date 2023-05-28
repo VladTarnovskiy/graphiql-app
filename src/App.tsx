@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React from 'react';
+import React, { lazy } from 'react';
 import Layout from './pages/Layout/Layout';
 import { CloseRoute, OpenRoute } from './components/PrivateRoute/PrivateRoute';
 
 import useThemeAndLanguage from './utils/hooks';
 
-const WelcomePage = React.lazy(() => import('./pages/Welcome/Welcome'));
-const GraphiQLPage = React.lazy(() => import('./pages/GraphiQL/GraphiQL'));
-const AuthorizationPage = React.lazy(() => import('./pages/Authorization/Authorization'));
-const NotFound = React.lazy(() => import('./pages/NotFound/NotFound'));
+const WelcomePage = lazy(() => import('./pages/Welcome/Welcome'));
+const GraphiQLPage = lazy(() => import('./pages/GraphiQL/GraphiQL'));
+const AuthorizationPage = lazy(() => import('./pages/Authorization/Authorization'));
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
 function App(): JSX.Element {
   useThemeAndLanguage();
