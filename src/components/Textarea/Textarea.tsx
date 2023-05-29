@@ -2,14 +2,14 @@ import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { selectTheme } from 'src/app/slice/SettingsSlice';
 import { myDarkTheme, myLightTheme } from 'src/utils/codemirror-set';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 
-interface MyProps {
+interface ITextarea {
   value: string;
   setVariables: (value: string) => void;
 }
 
-const Textarea = ({ setVariables, value }: MyProps) => {
+export const Textarea = ({ setVariables, value }: ITextarea) => {
   const dispatch = useAppDispatch();
   const themeFromStore = useAppSelector(selectTheme);
 
@@ -30,5 +30,3 @@ const Textarea = ({ setVariables, value }: MyProps) => {
     </div>
   );
 };
-
-export default Textarea;

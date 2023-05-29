@@ -1,9 +1,10 @@
+import { FC } from 'react';
+
 interface IErrorPopUp {
   message: string;
 }
 
-function ErrorPopUp(props: IErrorPopUp): JSX.Element {
-  const { message } = props;
+export const ErrorPopUp: FC<IErrorPopUp> = ({ message }) => {
   return (
     <section className="fixed bottom-20 right-10">
       <div
@@ -30,6 +31,4 @@ function ErrorPopUp(props: IErrorPopUp): JSX.Element {
       </div>
     </section>
   );
-}
-
-export default ErrorPopUp;
+};

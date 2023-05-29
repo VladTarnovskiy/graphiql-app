@@ -1,12 +1,12 @@
 import { Query } from '../types';
 
-interface MyProps {
+interface IQueriesComponent {
   docs: Array<Query>;
   getField: (el: string) => void;
   getQueryDescription: (el: string) => void;
 }
 
-const QueriesComponent = ({ docs, getField, getQueryDescription }: MyProps) => {
+export const QueriesComponent = ({ docs, getField, getQueryDescription }: IQueriesComponent) => {
   return (
     <>
       <div className="title text-2xl pr-8 mb-4 text-base_green">Queries</div>
@@ -24,10 +24,10 @@ const QueriesComponent = ({ docs, getField, getQueryDescription }: MyProps) => {
                 {item.name}
               </button>
               <span>(</span>
-              {item.args.map((itemArg, indexArg) => {
+              {item.args.map(({ name, type }, indexArg) => {
                 return (
                   <span className="text-base_yellow" key={indexArg.toString()}>
-                    <span className="text-base_red">{itemArg.name}:</span>{' '}
+                    <span className="text-base_red">{name}:</span>{' '}
                     <button
                       type="button"
                       className="text-base_yellow_dark hover:underline"
@@ -36,7 +36,7 @@ const QueriesComponent = ({ docs, getField, getQueryDescription }: MyProps) => {
                         getField(query);
                       }}
                     >
-                      {itemArg.type}
+                      {type}
                     </button>
                     {indexArg === item.args.length - 1 ? (
                       ''
@@ -65,5 +65,3 @@ const QueriesComponent = ({ docs, getField, getQueryDescription }: MyProps) => {
     </>
   );
 };
-
-export default QueriesComponent;

@@ -1,24 +1,32 @@
 import { t } from 'i18next';
 import { useDispatch } from 'react-redux';
-import { authorizationPageText } from '../../app/slice/AuthorizationPage.slice';
-import { logout } from '../../utils/firebase';
+import { authorizationPageText } from 'src/app/slice/AuthorizationPage.slice';
+import { logout } from 'src/utils/firebase';
 
 interface IButtonProps {
   title: string;
   button?: boolean;
 }
 
-const Button = (prop: IButtonProps) => {
+enum ButtonsEnum {
+  SignIn = 'Sign In',
+  SignUp = 'Sign Up',
+  Logout = 'Logout',
+}
+
+export const Button = ({ title, button }: IButtonProps) => {
   const dispatch = useDispatch();
 
-  const { title, button } = prop;
-
   const changePage = () => {
-    if (title === 'Sign In') {
+    if (title === ButtonsEnum.SignIn) {
       dispatch(authorizationPageText('Login'));
-    } else if (title === 'Sign Up') {
+    }
+
+    if (title === ButtonsEnum.SignUp) {
       dispatch(authorizationPageText('Registration'));
-    } else {
+    }
+
+    if (title === ButtonsEnum.Logout) {
       logout();
     }
   };
@@ -45,5 +53,3 @@ const Button = (prop: IButtonProps) => {
     </div>
   );
 };
-
-export default Button;

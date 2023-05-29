@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from 'src/app/store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'src/i18n/i18n';
-import Documents from './Documents';
+import { Documents } from './Documents';
 
 describe('Documents component', () => {
   it('Documents is render', async () => {

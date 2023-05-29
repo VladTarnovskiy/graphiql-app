@@ -1,11 +1,11 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 
 import { Provider } from 'react-redux';
 import { store } from 'src/app/store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'src/i18n/i18n';
-import Textarea from './Textarea';
+import { Textarea } from './Textarea';
 
 describe('Textarea component', () => {
   const setVariables = vi.fn();
@@ -17,6 +17,9 @@ describe('Textarea component', () => {
         </Provider>
       </I18nextProvider>
     );
-    expect(screen.getByText('test')).toBeInTheDocument();
+    screen.debug();
+    await waitFor(() => {
+      expect(screen.getByText('test')).toBeInTheDocument();
+    });
   });
 });

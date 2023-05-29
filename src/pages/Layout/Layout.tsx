@@ -1,16 +1,17 @@
 import { Outlet } from 'react-router-dom';
-import Header from 'src/components/Header/Header';
-import Footer from 'src/components/Footer/Footer';
+import { Header } from 'src/components/Header/Header';
+import { Footer } from 'src/components/Footer/Footer';
 import { Suspense } from 'react';
-import Loader from 'src/components/Loader/Loader';
-import ErrorBoundary from 'src/components/ErrorBoundary/ErrorBoundary';
-import BurgerMenu from 'src/components/BurgerMenu/BurgerMenu';
-import FallBackUIComponent from 'src/components/ErrorBoundary/FallBackUIComponent/FallBackUIComponent';
+import { Loader } from 'src/components/Loader/Loader';
+import { ErrorBoundary } from 'src/components/ErrorBoundary/ErrorBoundary';
+import { BurgerMenu } from 'src/components/BurgerMenu/BurgerMenu';
+import { FallBackUIComponent } from 'src/components/ErrorBoundary/FallBackUIComponent/FallBackUIComponent';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from 'src/utils/firebase';
 
-const Layout = () => {
+export const Layout = () => {
   const [user, loading] = useAuthState(auth);
+
   return (
     <>
       <div className="burgerMenu hidden sm:block">
@@ -43,5 +44,3 @@ const Layout = () => {
     </>
   );
 };
-
-export default Layout;

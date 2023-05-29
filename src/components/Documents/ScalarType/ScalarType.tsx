@@ -1,10 +1,10 @@
 import { ScalarType } from '../types';
 
-interface MyProps {
+interface IScalarTypeComponent {
   docs: ScalarType;
 }
 
-function ScalarTypeComponent(props: MyProps): JSX.Element {
+export const ScalarTypeComponent = (props: IScalarTypeComponent) => {
   const { docs } = props;
   return (
     <>
@@ -12,6 +12,4 @@ function ScalarTypeComponent(props: MyProps): JSX.Element {
       <div className="mb-4">{docs.description}</div>
     </>
   );
-}
-
-export default ScalarTypeComponent;
+};

@@ -1,6 +1,11 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
-import FormComponent from '../../components/FormComponent/FormComponent';
+import { RootState } from 'src/app/store';
+import { FormComponent } from 'src/components/FormComponent/FormComponent';
+
+enum PageEnum {
+  Registration = 'Registration',
+  Login = 'Login',
+}
 
 function AuthorizationPage(): JSX.Element {
   const authorizationText = useSelector((state: RootState) => state.authorization.page);
@@ -10,7 +15,7 @@ function AuthorizationPage(): JSX.Element {
       className="text-teal-500 m-auto text-2xl max-w-[600px]"
       data-testid="authorization-element"
     >
-      {authorizationText === 'Registration' ? (
+      {authorizationText === PageEnum.Registration ? (
         <FormComponent headerTitle="Registration" buttonTitle="Registration" />
       ) : (
         <FormComponent headerTitle="Login" buttonTitle="Login" />

@@ -5,7 +5,7 @@ import { store } from 'src/app/store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'src/i18n/i18n';
 import { BrowserRouter } from 'react-router-dom';
-import Layout from './Layout';
+import { Layout } from './Layout';
 
 describe('Layout component', () => {
   it('Layout is render', async () => {

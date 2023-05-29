@@ -8,18 +8,18 @@ import {
   selectInputDataValue,
   selectResponseStatus,
 } from 'src/app/slice/GraphiqlPageSlice';
-import Documents from 'src/components/Documents/Documents';
-import HistoryComponent from 'src/components/Documents/History/History';
+import { Documents } from 'src/components/Documents/Documents';
+import { HistoryComponent } from 'src/components/Documents/History/History';
 import { Tooltip } from 'react-tooltip';
 import { useTranslation } from 'react-i18next';
 import { instrumentsImages } from 'src/assets/instrumentIcons';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 
-interface MyProps {
+interface InstrumentsProps {
   getData: () => void;
 }
 
-const Instruments = ({ getData }: MyProps) => {
+export const Instruments = ({ getData }: InstrumentsProps) => {
   const { t } = useTranslation();
   const [docs, setDocs] = useState(false);
   const [history, setHistory] = useState(false);
@@ -124,5 +124,3 @@ const Instruments = ({ getData }: MyProps) => {
     </div>
   );
 };
-
-export default Instruments;

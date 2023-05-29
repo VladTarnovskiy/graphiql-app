@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next';
 
-interface MyProps {
+interface IRootQueryComponent {
   getQueries: () => void;
 }
 
-const RootQueryComponent = ({ getQueries }: MyProps) => {
+export const RootQueryComponent = ({ getQueries }: IRootQueryComponent) => {
   const { t } = useTranslation();
+
   return (
     <div className="root__wrapper">
       <div className="docs__title text-2xl pr-8 mb-4 text-base_green">{t('GraphQL.Documents')}</div>
@@ -26,5 +27,3 @@ const RootQueryComponent = ({ getQueries }: MyProps) => {
     </div>
   );
 };
-
-export default RootQueryComponent;

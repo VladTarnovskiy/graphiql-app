@@ -5,16 +5,16 @@ interface MyProps {
   getField: (el: string) => void;
 }
 
-const FieldsComponent = ({ docs, getField }: MyProps) => {
+export const FieldsComponent = ({ docs, getField }: MyProps) => {
   return (
     <>
       <div className="title text-2xl pr-8 mb-4 text-base_green">{docs.name}</div>
       <div className="mb-4">- Fields:</div>
-      {docs.fields.map((item, index) => {
+      {docs.fields.map(([item, { type, description }], index) => {
         return (
           <div className="wrapper mb-4 text-base_dark dark:text-base_white" key={index.toString()}>
             <div>
-              <div className="text-base_green inline">{item[0]}</div>
+              <div className="text-base_green inline">{item}</div>
               <span>: </span>
               <button
                 type="button"
@@ -24,15 +24,13 @@ const FieldsComponent = ({ docs, getField }: MyProps) => {
                   getField(query);
                 }}
               >
-                {item[1].type}
+                {type}
               </button>
             </div>
-            <div>{item[1].description}</div>
+            <div>{description}</div>
           </div>
         );
       })}
     </>
   );
 };
-
-export default FieldsComponent;

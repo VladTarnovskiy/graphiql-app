@@ -6,10 +6,7 @@ interface InfoNavigationProps {
   fieldFlag: string;
 }
 
-export function InfoNavigation({
-  changeRequestInputs,
-  fieldFlag,
-}: InfoNavigationProps): JSX.Element {
+export const InfoNavigation = ({ changeRequestInputs, fieldFlag }: InfoNavigationProps) => {
   return (
     <>
       <button
@@ -47,4 +44,4 @@ export function InfoNavigation({
       </button>
     </>
   );
-}
+};

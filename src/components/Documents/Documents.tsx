@@ -8,14 +8,14 @@ import {
 } from 'src/app/slice/DocsSlice';
 import { FieldsInfo, Query, ScalarType } from './types';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import Loader from '../Loader/Loader';
-import QueriesComponent from './Queries/Queries';
-import RootQueryComponent from './RootQuery/RootQuery';
-import QueryDescription from './QueryDescription/QueryDescription';
-import FieldsComponent from './Fields/Fields';
-import ScalarTypeComponent from './ScalarType/ScalarType';
+import { Loader } from '../Loader/Loader';
+import { QueriesComponent } from './Queries/Queries';
+import { RootQueryComponent } from './RootQuery/RootQuery';
+import { QueryDescription } from './QueryDescription/QueryDescription';
+import { FieldsComponent } from './Fields/Fields';
+import { ScalarTypeComponent } from './ScalarType/ScalarType';
 
-const Documents = () => {
+export const Documents = () => {
   const [history, setHistory] = useState<Array<[string, string]>>([
     ['', ''],
     ['root', 'Docs'],
@@ -36,6 +36,7 @@ const Documents = () => {
     const schema = buildClientSchema(docsResponseValueFromStorage).getQueryType()?.getFields();
     const x = JSON.stringify(schema);
     const y: Query[] = Object.values(JSON.parse(x));
+
     setDocs(y);
     setQueriesFlag('queries');
     setHistory([...history, ['queries', 'Query']]);
@@ -45,6 +46,7 @@ const Documents = () => {
     const schema = buildClientSchema(docsResponseValueFromStorage).getQueryType()?.getFields();
     const x = JSON.stringify(schema);
     const y: Query = JSON.parse(x)[el];
+
     setQueryItem(y);
     setQueriesFlag('queryDescription');
     setHistory([...history, ['queryDescription', el]]);
@@ -55,6 +57,7 @@ const Documents = () => {
     const x = JSON.stringify(schema);
     const y = JSON.parse(x);
     const scalar = ['String', 'Boolean', 'ID', 'Int', 'Float'];
+
     if (scalar.includes(el)) {
       setScalarTypeInfo(y);
       setQueriesFlag('scalarType');
@@ -62,6 +65,7 @@ const Documents = () => {
     } else {
       const result = Object.entries(y.fields);
       y.fields = result;
+
       setFields(y);
       setQueriesFlag('fields');
       setHistory([...history, ['fields', el]]);
@@ -90,6 +94,7 @@ const Documents = () => {
     const key = el[0];
     obj[key]();
     const x = history.slice(0, -1);
+
     setHistory(x);
   };
 
@@ -141,5 +146,3 @@ const Documents = () => {
     </div>
   );
 };
-
-export default Documents;

@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
-import { auth } from 'src/utils/firebase';
 import { Toaster } from 'react-hot-toast';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
@@ -20,16 +17,16 @@ import {
   setVariables,
   fetchDataRequest,
 } from 'src/app/slice/GraphiqlPageSlice';
-import Loader from 'src/components/Loader/Loader';
+import { Loader } from 'src/components/Loader/Loader';
 import { selectTheme } from 'src/app/slice/SettingsSlice';
 import { myDarkTheme, myLightTheme } from 'src/utils/codemirror-set';
-import Instruments from 'src/components/Instruments/Instruments';
-import Textarea from '../../components/Textarea/Textarea';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { Instruments } from 'src/components/Instruments/Instruments';
+import { Textarea } from 'src/components/Textarea/Textarea';
+import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 
 type Fields = 'headers' | 'variables';
 
-const GraphiQLPage = () => {
+export default function GraphiQLPage() {
   const { t } = useTranslation();
   const [fieldFlag, setFieldFlag] = useState<Fields>('variables');
   const [variablesBlock, setVariablesBlock] = useState(true);
@@ -40,16 +37,7 @@ const GraphiQLPage = () => {
   const responseStatusFromStorage = useAppSelector(selectResponseStatus);
   const responseErrorFromStorage = useAppSelector(selectResponseError);
   const themeFromStore = useAppSelector(selectTheme);
-
   const dispatch = useAppDispatch();
-  const [user] = useAuthState(auth);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!user) {
-      navigate('/');
-    }
-  });
 
   const getData = async () => {
     await dispatch(
@@ -152,6 +140,4 @@ const GraphiQLPage = () => {
       </div>
     </div>
   );
-};
-
-export default GraphiQLPage;
+}

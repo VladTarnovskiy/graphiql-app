@@ -1,16 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect, useRef, useState } from 'react';
-import Navigation from '../Navigation/Navigation';
-import Button from '../Button/Button';
-import LogoImg from '../../assets/logo.png';
-import { auth } from '../../utils/firebase';
+import LogoImg from 'src/assets/logo.png';
+import { auth } from 'src/utils/firebase';
+import Settings from 'src/assets/settings.svg';
+import { Navigation } from '../Navigation/Navigation';
+import { Button } from '../Button/Button';
 import './header.scss';
-import Modal from '../Modal/Modal';
-import SettingModal from '../SettingModal/SettingModal';
-import Settings from '../../assets/settings.svg';
+import { Modal } from '../Modal/Modal';
+import { SettingModal } from '../SettingModal/SettingModal';
 
-const Header = () => {
+export const Header = () => {
   const [user] = useAuthState(auth);
   const headerRef = useRef<HTMLDivElement>(null);
   const [settingsFlag, setSettingsFlag] = useState(false);
@@ -75,5 +75,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

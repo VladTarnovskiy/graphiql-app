@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import style from './footer.module.scss';
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="bottom-0 w-full mt-auto flex justify-around items-center p-3 pt-[15px] backdrop-blur-xl">
       <div className="flex justify-between">
@@ -28,5 +28,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

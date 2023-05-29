@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { setLanguage, setTheme, selectLanguage, selectTheme } from 'src/app/slice/SettingsSlice';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from 'src/app/hooks';
+import { changeLanguage } from 'i18next';
 
 function turnRightButton(button: Element) {
   button.classList.remove('translate-x-[100%]');
@@ -11,31 +12,34 @@ function turnLeftButton(button: Element) {
   button.classList.add('translate-x-[100%]');
 }
 
-const SettingModal = () => {
-  const { t, i18n } = useTranslation();
+export const SettingModal = () => {
+  const { t } = useTranslation();
   const languageFromStore = useAppSelector(selectLanguage);
   const themeFromStore = useAppSelector(selectTheme);
   const langRef = useRef<HTMLButtonElement>(null);
   const themeRef = useRef<HTMLButtonElement>(null);
 
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     const langButton = langRef.current!;
     const themeButton = themeRef.current!;
+
     languageFromStore === 'en' ? turnRightButton(langButton) : turnLeftButton(langButton);
     themeFromStore === 'light' ? turnRightButton(themeButton) : turnLeftButton(themeButton);
   });
 
   const switchTranslationEl = (e: React.MouseEvent<HTMLButtonElement>) => {
     const button = e.target as Element;
+
     if (button.classList.contains('translate-x-[100%]')) {
       turnRightButton(button);
       dispatch(setLanguage('en'));
-      i18n.changeLanguage('en');
+      changeLanguage('en');
     } else {
       turnLeftButton(button);
       dispatch(setLanguage('ru'));
-      i18n.changeLanguage('ru');
+      changeLanguage('ru');
     }
   };
 
@@ -102,5 +106,3 @@ const SettingModal = () => {
     </div>
   );
 };
-
-export default SettingModal;

@@ -1,6 +1,6 @@
 import './loader.scss';
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <div className="lds-roller" data-testid="lds-roller">
       <div />
@@ -14,5 +14,3 @@ const Loader = () => {
     </div>
   );
 };
-
-export default Loader;

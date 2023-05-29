@@ -6,7 +6,7 @@ import { store } from 'src/app/store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'src/i18n/i18n';
 import { BrowserRouter } from 'react-router-dom';
-import Navigation from './Navigation';
+import { Navigation } from './Navigation';
 
 describe('Navigation component', () => {
   it('Navigation is render', async () => {
@@ -19,6 +19,7 @@ describe('Navigation component', () => {
         </I18nextProvider>
       </BrowserRouter>
     );
+
     await waitFor(() => {
       expect(screen.getByText('About')).toBeInTheDocument();
     });

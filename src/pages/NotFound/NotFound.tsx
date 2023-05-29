@@ -1,7 +1,7 @@
 import { t } from 'i18next';
 import style from './notFound.module.scss';
 
-const NotFound = () => {
+export default function NotFound() {
   return (
     <div className={`${style.error_wrapper} dark:text-base_white`}>
       <div className={style.error_code}>404</div>
@@ -9,6 +9,4 @@ const NotFound = () => {
       <div className={style.error_animation} />
     </div>
   );
-};
-
-export default NotFound;
+}

@@ -2,12 +2,12 @@ import ReactDOM from 'react-dom';
 import { Dispatch, SetStateAction, useRef, useState } from 'react';
 import style from './modal.module.scss';
 
-interface MyProps {
+interface IModal {
   children: string | JSX.Element[] | JSX.Element;
   setCloseFlag: Dispatch<SetStateAction<boolean>>;
 }
 
-const Modal = ({ setCloseFlag, children }: MyProps) => {
+export const Modal = ({ setCloseFlag, children }: IModal) => {
   const modalWindow = useRef<HTMLDivElement>(null);
   const [modal, setModal] = useState(true);
 
@@ -21,6 +21,7 @@ const Modal = ({ setCloseFlag, children }: MyProps) => {
   ) => {
     const target = e.target as HTMLDivElement;
     const modalEl = modalWindow.current;
+
     if (modalEl?.contains && !modalEl.contains(target)) {
       closeModalWindow();
     }
@@ -43,5 +44,3 @@ const Modal = ({ setCloseFlag, children }: MyProps) => {
     document.body
   );
 };
-
-export default Modal;

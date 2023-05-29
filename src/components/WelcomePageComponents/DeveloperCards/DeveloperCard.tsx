@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 export const DeveloperCard = ({ developer }: { developer: string }) => {
   const { t } = useTranslation();
+
   const developersInfo = [
     {
       name: 'Vlad',
@@ -19,6 +20,7 @@ export const DeveloperCard = ({ developer }: { developer: string }) => {
       githubLink: 'https://github.com/DenisKa13051992',
     },
   ];
+
   const developerInfo = developersInfo.filter((dev) => dev.name.includes(developer));
 
   return (

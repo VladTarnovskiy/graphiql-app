@@ -1,11 +1,11 @@
 import { Query } from '../types';
 
-interface MyProps {
+interface IQueryDescription {
   docs: Query;
   getField: (el: string) => void;
 }
 
-const QueryDescription = ({ docs, getField }: MyProps) => {
+export const QueryDescription = ({ docs, getField }: IQueryDescription) => {
   return (
     <>
       <div className="title text-2xl pr-8 mb-4 text-base_green">{docs.name}</div>
@@ -24,10 +24,10 @@ const QueryDescription = ({ docs, getField }: MyProps) => {
             {docs.type}
           </button>
           <div>- Args:</div>
-          {docs.args.map((itemArg, indexArg) => {
+          {docs.args.map(({ name, type }, indexArg) => {
             return (
               <span className="text-base_yellow" key={indexArg.toString()}>
-                <span className="text-base_red">{itemArg.name}:</span>{' '}
+                <span className="text-base_red">{name}:</span>{' '}
                 <button
                   type="button"
                   className="text-base_yellow_dark hover:underline"
@@ -36,7 +36,7 @@ const QueryDescription = ({ docs, getField }: MyProps) => {
                     getField(query);
                   }}
                 >
-                  {itemArg.type}
+                  {type}
                 </button>
               </span>
             );
@@ -46,5 +46,3 @@ const QueryDescription = ({ docs, getField }: MyProps) => {
     </>
   );
 };
-
-export default QueryDescription;

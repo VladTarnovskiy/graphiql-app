@@ -3,7 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
 import { auth } from 'src/utils/firebase';
 
-const Navigation = () => {
+export const Navigation = () => {
   const [user] = useAuthState(auth);
   const { t } = useTranslation();
 
@@ -18,6 +18,7 @@ const Navigation = () => {
         )} text-base_green_light`
       : classStyle;
   };
+
   return (
     <div className="navigation font-thin dark:text-base_white sm:hidden">
       <NavLink className={({ isActive }) => handleActiveLink(isActive)} to="/">
@@ -31,5 +32,3 @@ const Navigation = () => {
     </div>
   );
 };
-
-export default Navigation;

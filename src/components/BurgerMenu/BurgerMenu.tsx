@@ -1,34 +1,36 @@
 import { t } from 'i18next';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { stack as Menu } from 'react-burger-menu';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
-import { auth } from '../../utils/firebase';
-import Button from '../Button/Button';
-import Modal from '../Modal/Modal';
-import SettingModal from '../SettingModal/SettingModal';
+import { auth } from 'src/utils/firebase';
+import { Button } from '../Button/Button';
+import { Modal } from '../Modal/Modal';
+import { SettingModal } from '../SettingModal/SettingModal';
 import './Burger.scss';
 
-interface Istate {
+interface IState {
   isOpen: boolean;
 }
 
-const BurgerMenu = () => {
+export const BurgerMenu = () => {
   const [settingsFlag, setSettingsFlag] = useState(false);
   const [user] = useAuthState(auth);
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const handleCloseMenu = () => {
     setIsMenuOpen(false);
   };
-  const handleStateChange = (state: Istate) => {
+
+  const handleStateChange = (state: IState) => {
     setIsMenuOpen(state.isOpen);
   };
+
   const openSettings = () => {
     setIsMenuOpen(false);
     setSettingsFlag(true);
   };
 
-  // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
   return (
     <Menu
       right
@@ -77,5 +79,3 @@ const BurgerMenu = () => {
     </Menu>
   );
 };
-
-export default BurgerMenu;

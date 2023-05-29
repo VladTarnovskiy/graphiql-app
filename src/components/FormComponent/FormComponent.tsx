@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -6,12 +5,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { Tooltip } from 'react-tooltip';
 import toast, { Toaster } from 'react-hot-toast';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
-import { checkEmail, checkPassword } from '../../utils/validation';
-import { auth, loginUser, registerNewUser } from '../../utils/firebase';
-import { RootState } from '../../app/store';
-import ErrorPopUp from '../ErrorPopUp/ErrorPopUp';
+import { checkEmail, checkPassword } from 'src/utils/validation';
+import { auth, loginUser, registerNewUser } from 'src/utils/firebase';
+import { RootState } from 'src/app/store';
+import { ErrorPopUp } from '../ErrorPopUp/ErrorPopUp';
 
 interface IFormComponent {
   headerTitle: string;
@@ -23,9 +22,13 @@ interface ISubmitData {
   password: string;
 }
 
-export default function FormComponent(props: IFormComponent): JSX.Element {
+enum PageEnum {
+  Registration = 'Registration',
+  Login = 'Login',
+}
+
+export const FormComponent: FC<IFormComponent> = ({ headerTitle, buttonTitle }) => {
   const [user] = useAuthState(auth);
-  const { headerTitle, buttonTitle } = props;
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -40,19 +43,25 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
 
   const onSubmit: SubmitHandler<ISubmitData> = async (data) => {
     setLoading(true);
-    if (authorizationText === 'Registration') {
+
+    if (authorizationText === PageEnum.Registration) {
       const error = await registerNewUser(data.email, data.password);
-      if (error instanceof Error) {
-        toast.custom(<ErrorPopUp message={error.message} />);
-        setLoading(false);
-      }
-    } else {
-      const error = await loginUser(data.email, data.password);
+
       if (error instanceof Error) {
         toast.custom(<ErrorPopUp message={error.message} />);
         setLoading(false);
       }
     }
+    if (authorizationText === PageEnum.Login) {
+      const error = await loginUser(data.email, data.password);
+
+      if (error instanceof Error) {
+        toast.custom(<ErrorPopUp message={error.message} />);
+
+        setLoading(false);
+      }
+    }
+
     if (user) {
       navigate('/graphi-ql');
     }
@@ -149,4 +158,4 @@ export default function FormComponent(props: IFormComponent): JSX.Element {
       <Toaster position="bottom-right" />
     </section>
   );
-}
+};
