@@ -2,7 +2,10 @@ import { t } from 'i18next';
 
 export const AboutCourse = () => {
   return (
-    <div className="rsschoolInfo text-teal-500 pl-4 pr-4 flex flex-col gap-2 justify-center items-center text-center text-xl  sm:text-sm">
+    <div
+      className="rsschoolInfo text-teal-500 pl-4 pr-4 flex flex-col gap-2 justify-center items-center text-center text-xl  sm:text-sm"
+      data-testid="aboutCourse-component"
+    >
       <img
         src="https://rs.school/images/partners/logo-rs.svg"
         className="max-w-[280px] lg:max-w-[180px] md:max-w-[140px] xs:max-w-[100px] pr-6 xs:pr-3 shadow-xl rounded-md"
