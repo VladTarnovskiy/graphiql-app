@@ -19,6 +19,7 @@ export function InfoNavigation({
         )}
         onClick={changeRequestInputs}
         type="button"
+        data-testid="infoNavigation-button"
       >
         {t(`Welcome.Buttons.Project`)}
       </button>
