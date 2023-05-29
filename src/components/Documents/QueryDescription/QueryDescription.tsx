@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { Query } from '../types';
 
 interface IQueryDescription {
@@ -5,7 +6,7 @@ interface IQueryDescription {
   getField: (el: string) => void;
 }
 
-export const QueryDescription = ({ docs, getField }: IQueryDescription) => {
+export const QueryDescription: FC<IQueryDescription> = ({ docs, getField }) => {
   return (
     <>
       <div className="title text-2xl pr-8 mb-4 text-base_green">{docs.name}</div>

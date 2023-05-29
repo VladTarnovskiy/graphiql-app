@@ -6,12 +6,13 @@ import {
   setVariables,
 } from 'src/app/slice/GraphiqlPageSlice';
 import { useTranslation } from 'react-i18next';
+import { FC } from 'react';
 
 interface IHistoryComponent {
   onClose: () => void;
 }
 
-export const HistoryComponent = ({ onClose }: IHistoryComponent) => {
+export const HistoryComponent: FC<IHistoryComponent> = ({ onClose }) => {
   const historyFromStorage = useAppSelector(selectHistory);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();

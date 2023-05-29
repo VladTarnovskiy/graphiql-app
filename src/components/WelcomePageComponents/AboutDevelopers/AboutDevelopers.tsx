@@ -1,7 +1,8 @@
 import { t } from 'i18next';
+import { FC } from 'react';
 import { DeveloperCard } from 'src/components/WelcomePageComponents/DeveloperCards/DeveloperCard';
 
-export const AboutDevelopers = () => {
+export const AboutDevelopers: FC = () => {
   return (
     <section
       className="developersSection text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-2xl sm:text-xl"

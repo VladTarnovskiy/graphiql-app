@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import { Dispatch, SetStateAction, useRef, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useRef, useState } from 'react';
 import style from './modal.module.scss';
 
 interface IModal {
@@ -7,7 +7,7 @@ interface IModal {
   setCloseFlag: Dispatch<SetStateAction<boolean>>;
 }
 
-export const Modal = ({ setCloseFlag, children }: IModal) => {
+export const Modal: FC<IModal> = ({ setCloseFlag, children }) => {
   const modalWindow = useRef<HTMLDivElement>(null);
   const [modal, setModal] = useState(true);
 

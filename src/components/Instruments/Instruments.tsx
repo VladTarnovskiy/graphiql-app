@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import toast from 'react-hot-toast';
 import {
   setInputData,
@@ -19,7 +19,7 @@ interface InstrumentsProps {
   getData: () => void;
 }
 
-export const Instruments = ({ getData }: InstrumentsProps) => {
+export const Instruments: FC<InstrumentsProps> = ({ getData }) => {
   const { t } = useTranslation();
   const [docs, setDocs] = useState(false);
   const [history, setHistory] = useState(false);

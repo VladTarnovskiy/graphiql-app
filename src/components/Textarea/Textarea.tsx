@@ -3,13 +3,14 @@ import { javascript } from '@codemirror/lang-javascript';
 import { selectTheme } from 'src/app/slice/SettingsSlice';
 import { myDarkTheme, myLightTheme } from 'src/utils/codemirror-set';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
+import { FC } from 'react';
 
 interface ITextarea {
   value: string;
   setVariables: (value: string) => void;
 }
 
-export const Textarea = ({ setVariables, value }: ITextarea) => {
+export const Textarea: FC<ITextarea> = ({ setVariables, value }) => {
   const dispatch = useAppDispatch();
   const themeFromStore = useAppSelector(selectTheme);
 

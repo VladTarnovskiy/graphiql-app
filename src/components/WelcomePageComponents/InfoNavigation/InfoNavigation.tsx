@@ -1,12 +1,13 @@
 import clsx from 'clsx';
 import { t } from 'i18next';
+import { FC } from 'react';
 
 interface InfoNavigationProps {
   changeRequestInputs: (e: React.MouseEvent<HTMLButtonElement>) => void;
   fieldFlag: string;
 }
 
-export const InfoNavigation = ({ changeRequestInputs, fieldFlag }: InfoNavigationProps) => {
+export const InfoNavigation: FC<InfoNavigationProps> = ({ changeRequestInputs, fieldFlag }) => {
   return (
     <>
       <button

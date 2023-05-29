@@ -1,4 +1,5 @@
 import { t } from 'i18next';
+import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { authorizationPageText } from 'src/app/slice/AuthorizationPage.slice';
 import { logout } from 'src/utils/firebase';
@@ -14,7 +15,7 @@ enum ButtonsEnum {
   Logout = 'Logout',
 }
 
-export const Button = ({ title, button }: IButtonProps) => {
+export const Button: FC<IButtonProps> = ({ title, button }) => {
   const dispatch = useDispatch();
 
   const changePage = () => {

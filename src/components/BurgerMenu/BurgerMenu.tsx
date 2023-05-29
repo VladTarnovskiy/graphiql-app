@@ -1,5 +1,5 @@
 import { t } from 'i18next';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { stack as Menu } from 'react-burger-menu';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
@@ -13,7 +13,7 @@ interface IState {
   isOpen: boolean;
 }
 
-export const BurgerMenu = () => {
+export const BurgerMenu: FC = () => {
   const [settingsFlag, setSettingsFlag] = useState(false);
   const [user] = useAuthState(auth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);

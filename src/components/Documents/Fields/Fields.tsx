@@ -1,11 +1,12 @@
+import { FC } from 'react';
 import { FieldsInfo } from '../types';
 
-interface MyProps {
+interface IFieldsComponent {
   docs: FieldsInfo;
   getField: (el: string) => void;
 }
 
-export const FieldsComponent = ({ docs, getField }: MyProps) => {
+export const FieldsComponent: FC<IFieldsComponent> = ({ docs, getField }) => {
   return (
     <>
       <div className="title text-2xl pr-8 mb-4 text-base_green">{docs.name}</div>

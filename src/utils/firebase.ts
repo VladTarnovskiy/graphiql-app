@@ -24,18 +24,22 @@ const registerNewUser = async (email: string, password: string) => {
   } catch (error) {
     return error;
   }
+
   return null;
 };
+
 const loginUser = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
     return error;
   }
+
   return null;
 };
 
 const logout = async () => {
   signOut(auth);
 };
+
 export { registerNewUser, loginUser, logout, auth };

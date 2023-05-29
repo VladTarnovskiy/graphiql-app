@@ -7,7 +7,7 @@ enum PageEnum {
   Login = 'Login',
 }
 
-function AuthorizationPage(): JSX.Element {
+export default function AuthorizationPage() {
   const authorizationText = useSelector((state: RootState) => state.authorization.page);
 
   return (
@@ -23,5 +23,3 @@ function AuthorizationPage(): JSX.Element {
     </div>
   );
 }
-
-export default AuthorizationPage;

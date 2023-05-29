@@ -52,6 +52,7 @@ export const FormComponent: FC<IFormComponent> = ({ headerTitle, buttonTitle }) 
         setLoading(false);
       }
     }
+
     if (authorizationText === PageEnum.Login) {
       const error = await loginUser(data.email, data.password);
 

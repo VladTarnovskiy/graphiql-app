@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { setLanguage, setTheme, selectLanguage, selectTheme } from 'src/app/slice/SettingsSlice';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
@@ -12,7 +12,7 @@ function turnLeftButton(button: Element) {
   button.classList.add('translate-x-[100%]');
 }
 
-export const SettingModal = () => {
+export const SettingModal: FC = () => {
   const { t } = useTranslation();
   const languageFromStore = useAppSelector(selectLanguage);
   const themeFromStore = useAppSelector(selectTheme);

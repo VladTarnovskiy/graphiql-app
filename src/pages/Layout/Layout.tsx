@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from 'src/components/Header/Header';
 import { Footer } from 'src/components/Footer/Footer';
-import { Suspense } from 'react';
+import { FC, Suspense } from 'react';
 import { Loader } from 'src/components/Loader/Loader';
 import { ErrorBoundary } from 'src/components/ErrorBoundary/ErrorBoundary';
 import { BurgerMenu } from 'src/components/BurgerMenu/BurgerMenu';
@@ -9,7 +9,7 @@ import { FallBackUIComponent } from 'src/components/ErrorBoundary/FallBackUIComp
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from 'src/utils/firebase';
 
-export const Layout = () => {
+export const Layout: FC = () => {
   const [user, loading] = useAuthState(auth);
 
   return (

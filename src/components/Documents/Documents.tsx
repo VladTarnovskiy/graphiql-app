@@ -1,5 +1,5 @@
 import { buildClientSchema } from 'graphql';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import {
   selectDocsResponseError,
   selectDocsResponseStatus,
@@ -15,7 +15,7 @@ import { QueryDescription } from './QueryDescription/QueryDescription';
 import { FieldsComponent } from './Fields/Fields';
 import { ScalarTypeComponent } from './ScalarType/ScalarType';
 
-export const Documents = () => {
+export const Documents: FC = () => {
   const [history, setHistory] = useState<Array<[string, string]>>([
     ['', ''],
     ['root', 'Docs'],

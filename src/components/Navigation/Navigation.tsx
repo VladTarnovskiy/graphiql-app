@@ -2,8 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
 import { auth } from 'src/utils/firebase';
+import { FC } from 'react';
 
-export const Navigation = () => {
+export const Navigation: FC = () => {
   const [user] = useAuthState(auth);
   const { t } = useTranslation();
 

@@ -1,6 +1,7 @@
 import { t } from 'i18next';
+import { FC } from 'react';
 
-export const AboutProject = () => {
+export const AboutProject: FC = () => {
   return (
     <div
       className="graphqlInfo text-teal-500 pl-4 pr-4 flex flex-col gap-2 justify-center items-center text-center text-xl"

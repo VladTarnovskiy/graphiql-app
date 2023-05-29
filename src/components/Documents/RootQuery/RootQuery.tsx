@@ -1,10 +1,11 @@
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface IRootQueryComponent {
   getQueries: () => void;
 }
 
-export const RootQueryComponent = ({ getQueries }: IRootQueryComponent) => {
+export const RootQueryComponent: FC<IRootQueryComponent> = ({ getQueries }) => {
   const { t } = useTranslation();
 
   return (
