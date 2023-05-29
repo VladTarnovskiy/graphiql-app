@@ -70,7 +70,7 @@ export const Instruments: FC<InstrumentsProps> = ({ getData }) => {
           <img src={instrumentsImages.Docs} alt="Docs" />
         </button>
         <button
-          className="history rounded-full w-10 h-10 md:w-9 md:h-9 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+          className="history rounded-full ml-[1px] w-10 h-10 md:w-9 md:h-9 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
           type="button"
           data-tooltip-id="button-tooltip"
           data-tooltip-content={t('GraphQL.NavButtons.History')!}
@@ -83,7 +83,7 @@ export const Instruments: FC<InstrumentsProps> = ({ getData }) => {
           <img src={instrumentsImages.History} alt="History" />
         </button>
         <button
-          className="copy rounded-full w-10 h-10 hover:opacity-60 md:w-9 md:h-9 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
+          className="copy rounded-full ml-[1px] w-10 h-10 hover:opacity-60 md:w-9 md:h-9 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75"
           type="button"
           data-tooltip-id="button-tooltip"
           data-tooltip-content={t('GraphQL.NavButtons.Copy')!}
