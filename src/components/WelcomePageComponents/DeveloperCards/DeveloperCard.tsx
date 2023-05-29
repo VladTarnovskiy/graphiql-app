@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-function DeveloperCard({ developer }: { developer: string }): JSX.Element {
+export function DeveloperCard({ developer }: { developer: string }): JSX.Element {
   const { t } = useTranslation();
   const developersInfo = [
     {
@@ -43,5 +43,3 @@ function DeveloperCard({ developer }: { developer: string }): JSX.Element {
     </a>
   );
 }
-
-export default DeveloperCard;

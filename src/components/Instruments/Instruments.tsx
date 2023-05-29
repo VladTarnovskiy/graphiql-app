@@ -28,7 +28,10 @@ function Instruments({ getData }: MyProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="absolute left-0 top-0 instruments z-10 flex justify-start p-2 pl-[8px] md:pl-[7px] docs-nav h-full dark:bg-dark_textarea min-w-[60px] md:min-w-[50px] min-h-[79vh] shadow-lg shadow-base_green/50 rounded-md bg-base_white">
+    <div
+      className="absolute left-0 top-0 instruments z-10 flex justify-start p-2 pl-[8px] md:pl-[7px] docs-nav h-full dark:bg-dark_textarea min-w-[60px] md:min-w-[50px] min-h-[79vh] shadow-lg shadow-base_green/50 rounded-md bg-base_white"
+      data-testid="instruments-component"
+    >
       <div className="flex flex-col justify-start">
         <Tooltip
           id="button-tooltip"

@@ -6,7 +6,7 @@ import { store } from 'src/app/store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'src/i18n/i18n';
 import { BrowserRouter } from 'react-router-dom';
-import DeveloperCard from './DeveloperCard';
+import { DeveloperCard } from './DeveloperCard';
 
 describe('DeveloperCard component', () => {
   it('DeveloperCard is render', () => {
