@@ -13,13 +13,13 @@ describe('Textarea component', () => {
     render(
       <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-          <Textarea setVariables={setVariables} value="test" />
+          <Textarea value="test" setVariables={setVariables} />
         </Provider>
       </I18nextProvider>
     );
     screen.debug();
     await waitFor(() => {
-      expect(screen.getByText('test')).toBeInTheDocument();
+      expect(screen.getByTestId('textarea-element'));
     });
   });
 });

@@ -25,9 +25,9 @@ export const QueryDescription: FC<IQueryDescription> = ({ docs, getField }) => {
             {docs.type}
           </button>
           <div>- Args:</div>
-          {docs.args.map(({ name, type }, indexArg) => {
+          {docs.args.map(({ name, type }) => {
             return (
-              <span className="text-base_yellow" key={indexArg.toString()}>
+              <span className="text-base_yellow" key={name}>
                 <span className="text-base_red">{name}:</span>{' '}
                 <button
                   type="button"

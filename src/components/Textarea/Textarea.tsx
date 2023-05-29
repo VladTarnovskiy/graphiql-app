@@ -15,7 +15,10 @@ export const Textarea: FC<ITextarea> = ({ setVariables, value }) => {
   const themeFromStore = useAppSelector(selectTheme);
 
   return (
-    <div className="w-full overflow-auto variables h-[221px] rounded-br-md rounded-bl-md bg-base_white outline-0 resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white">
+    <div
+      className="w-full overflow-auto variables h-[221px] rounded-br-md rounded-bl-md bg-base_white outline-0 resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white"
+      data-testid="textarea-element"
+    >
       <CodeMirror
         value={value}
         className="my-code-mirror"

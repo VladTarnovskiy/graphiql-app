@@ -9,7 +9,7 @@ import {
   selectResponseStatus,
 } from 'src/app/slice/GraphiqlPageSlice';
 import { Documents } from 'src/components/Documents/Documents';
-import { HistoryComponent } from 'src/components/Documents/History/History';
+import { HistoryComponent } from 'src/components/Documents/index';
 import { Tooltip } from 'react-tooltip';
 import { useTranslation } from 'react-i18next';
 import { instrumentsImages } from 'src/assets/instrumentIcons';

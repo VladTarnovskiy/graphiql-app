@@ -15,9 +15,9 @@ export const QueriesComponent: FC<IQueriesComponent> = ({
   return (
     <>
       <div className="title text-2xl pr-8 mb-4 text-base_green">Queries</div>
-      {docs.map((item, index) => {
+      {docs.map(({ name, args, type, description }) => {
         return (
-          <div className="wrapper mb-4 text-base_dark dark:text-base_white" key={index.toString()}>
+          <div className="wrapper mb-4 text-base_dark dark:text-base_white" key={name}>
             <div>
               <button
                 type="button"
@@ -26,13 +26,13 @@ export const QueriesComponent: FC<IQueriesComponent> = ({
                   getQueryDescription(e.currentTarget.textContent!);
                 }}
               >
-                {item.name}
+                {name}
               </button>
               <span>(</span>
-              {item.args.map(({ name, type }, indexArg) => {
+              {args.map(({ name: argName, type: argType }, indexArg) => {
                 return (
-                  <span className="text-base_yellow" key={indexArg.toString()}>
-                    <span className="text-base_red">{name}:</span>{' '}
+                  <span className="text-base_yellow" key={argName}>
+                    <span className="text-base_red">{argName}:</span>{' '}
                     <button
                       type="button"
                       className="text-base_yellow_dark hover:underline"
@@ -41,9 +41,9 @@ export const QueriesComponent: FC<IQueriesComponent> = ({
                         getField(query);
                       }}
                     >
-                      {type}
+                      {argType}
                     </button>
-                    {indexArg === item.args.length - 1 ? (
+                    {indexArg === args.length - 1 ? (
                       ''
                     ) : (
                       <span className="text-base_dark dark:text-base_white">, </span>
@@ -60,10 +60,10 @@ export const QueriesComponent: FC<IQueriesComponent> = ({
                   getField(query);
                 }}
               >
-                {item.type}
+                {type}
               </button>
             </div>
-            <div>{item.description}</div>
+            <div>{description}</div>
           </div>
         );
       })}

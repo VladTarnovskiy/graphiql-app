@@ -9,24 +9,24 @@ import {
 import { FieldsInfo, Query, ScalarType } from './types';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { Loader } from '../Loader/Loader';
-import { QueriesComponent } from './Queries/Queries';
-import { RootQueryComponent } from './RootQuery/RootQuery';
-import { QueryDescription } from './QueryDescription/QueryDescription';
-import { FieldsComponent } from './Fields/Fields';
-import { ScalarTypeComponent } from './ScalarType/ScalarType';
+import {
+  QueriesComponent,
+  RootQueryComponent,
+  QueryDescription,
+  FieldsComponent,
+  ScalarTypeComponent,
+} from './index';
 
 export const Documents: FC = () => {
   const [history, setHistory] = useState<Array<[string, string]>>([
-    ['', ''],
+    ['default', 'Default'],
     ['root', 'Docs'],
   ]);
   const [docs, setDocs] = useState<Array<Query>>();
   const [queryItem, setQueryItem] = useState<Query>();
   const [fields, setFields] = useState<FieldsInfo>();
   const [scalarTypeInfo, setScalarTypeInfo] = useState<ScalarType>();
-
   const [queriesFlag, setQueriesFlag] = useState('root');
-
   const dispatch = useAppDispatch();
   const docsResponseValueFromStorage = useAppSelector(selectDocsResponseValue);
   const docsResponseStatusFromStorage = useAppSelector(selectDocsResponseStatus);
@@ -36,43 +36,41 @@ export const Documents: FC = () => {
     const schema = buildClientSchema(docsResponseValueFromStorage).getQueryType()?.getFields();
     const x = JSON.stringify(schema);
     const y: Query[] = Object.values(JSON.parse(x));
-
     setDocs(y);
     setQueriesFlag('queries');
     setHistory([...history, ['queries', 'Query']]);
   };
 
-  const getQueryDescription = (el: string) => {
+  const getQueryDescription = (type: string) => {
     const schema = buildClientSchema(docsResponseValueFromStorage).getQueryType()?.getFields();
     const x = JSON.stringify(schema);
-    const y: Query = JSON.parse(x)[el];
-
+    const y: Query = JSON.parse(x)[type];
     setQueryItem(y);
     setQueriesFlag('queryDescription');
-    setHistory([...history, ['queryDescription', el]]);
+    setHistory([...history, ['queryDescription', type]]);
   };
 
-  const getFields = (el: string) => {
-    const schema = buildClientSchema(docsResponseValueFromStorage).getType(el)?.toConfig();
+  const getFields = (type: string) => {
+    const schema = buildClientSchema(docsResponseValueFromStorage).getType(type)?.toConfig();
     const x = JSON.stringify(schema);
     const y = JSON.parse(x);
     const scalar = ['String', 'Boolean', 'ID', 'Int', 'Float'];
 
-    if (scalar.includes(el)) {
+    if (scalar.includes(type)) {
       setScalarTypeInfo(y);
       setQueriesFlag('scalarType');
-      setHistory([...history, ['scalarType', el]]);
+      setHistory([...history, ['scalarType', type]]);
     } else {
       const result = Object.entries(y.fields);
       y.fields = result;
-
       setFields(y);
       setQueriesFlag('fields');
-      setHistory([...history, ['fields', el]]);
+      setHistory([...history, ['fields', type]]);
     }
   };
 
-  const getHistoryPage = (el: Array<string>) => {
+  const getHistoryPage = (historyItem: Array<string>) => {
+    const value = historyItem[1];
     const obj: { [char: string]: () => void } = {
       root: () => {
         setQueriesFlag('root');
@@ -81,17 +79,17 @@ export const Documents: FC = () => {
         getQueries();
       },
       queryDescription: () => {
-        getQueryDescription(el[1]);
+        getQueryDescription(value);
       },
       fields: () => {
-        getFields(el[1]);
+        getFields(value);
       },
       scalarType: () => {
-        getFields(el[1]);
+        getFields(value);
       },
     };
 
-    const key = el[0];
+    const key = historyItem[0];
     obj[key]();
     const x = history.slice(0, -1);
 
