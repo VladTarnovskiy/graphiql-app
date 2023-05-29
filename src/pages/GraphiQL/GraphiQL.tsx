@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import './codemirror.scss';
+import clsx from 'clsx';
 import {
   selectHeadersValue,
   selectVariablesValue,
@@ -26,10 +27,11 @@ import Instruments from 'src/components/Instruments/Instruments';
 import Textarea from '../../components/Textarea/Textarea';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
+type Fields = 'headers' | 'variables';
+
 function GraphiQLPage(): JSX.Element {
-  const sliderRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
-  const [fieldFlag, setFieldFlag] = useState(false);
+  const [fieldFlag, setFieldFlag] = useState<Fields>('variables');
   const [variablesBlock, setVariablesBlock] = useState(true);
   const headersValueFromStorage = useAppSelector(selectHeadersValue);
   const variablesValueFromStorage = useAppSelector(selectVariablesValue);
@@ -59,17 +61,6 @@ function GraphiQLPage(): JSX.Element {
     );
   };
 
-  const changeRequestInputs = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const el = e.target as Element;
-    if (el.classList.contains('variables')) {
-      setFieldFlag(false);
-      sliderRef.current!.style.transform = 'translateX(0)';
-    } else {
-      setFieldFlag(true);
-      sliderRef.current!.style.transform = 'translateX(117%)';
-    }
-  };
-
   return (
     <div
       className="relative graphql basis-1/8 flex-grow-1 flex justify-center pl-[62px] md:pl-[54px] dark:bg-base_dark"
@@ -97,14 +88,11 @@ function GraphiQLPage(): JSX.Element {
             <div className="relative request__nav flex justify-left pl-4 pr-4 text-sm bg-base_white pb-2 rounded dark:bg-dark_textarea dark:text-base_white">
               <button
                 type="button"
-                className="butShow absolute top-1 right-2 text-2xl transition ease-in-out"
-                onClick={(e) => {
+                className={clsx('butShow absolute top-1 right-2 text-2xl transition ease-in-out', {
+                  'rotate-180': variablesBlock,
+                })}
+                onClick={() => {
                   setVariablesBlock(!variablesBlock);
-                  if (variablesBlock) {
-                    e.currentTarget.classList.add('rotate-180');
-                  } else {
-                    e.currentTarget.classList.remove('rotate-180');
-                  }
                 }}
               >
                 <svg className="w-6 h-6" focusable="false" aria-hidden="true" viewBox="0 0 24 24">
@@ -113,28 +101,30 @@ function GraphiQLPage(): JSX.Element {
               </button>
               <button
                 className="request__nav__item variables w-24 md:w-20 mr-4 hover:text-base_green cursor-pointer text-center"
-                onClick={changeRequestInputs}
+                onClick={() => setFieldFlag('variables')}
                 type="button"
               >
                 {t('GraphQL.Variables')}
               </button>
               <button
                 className="request__nav__item w-24 md:w-20 hover:text-base_green cursor-pointer text-center"
-                onClick={changeRequestInputs}
+                onClick={() => setFieldFlag('headers')}
                 type="button"
               >
                 {t('GraphQL.Headers')}
               </button>
               <div
-                className="switcher w-24 md:w-20 h-[1px] absolute left-4 bottom-2 bg-base_green_light transition ease-in-out"
-                ref={sliderRef}
+                className={clsx(
+                  'switcher w-24 md:w-20 h-[1px] absolute left-4 bottom-2 bg-base_green_light transition ease-in-out',
+                  fieldFlag === 'variables' ? 'translate-x-0' : 'translate-x-[117%]'
+                )}
               />
             </div>
             <div className="variables-wrapper">
-              {variablesBlock && !fieldFlag && (
+              {variablesBlock && fieldFlag === 'variables' && (
                 <Textarea value={variablesValueFromStorage} setVariables={setVariables} />
               )}
-              {variablesBlock && fieldFlag && (
+              {variablesBlock && fieldFlag === 'headers' && (
                 <Textarea value={headersValueFromStorage} setVariables={setHeaders} />
               )}
             </div>

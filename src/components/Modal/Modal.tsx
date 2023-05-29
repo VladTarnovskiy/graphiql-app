@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useRef, useState } from 'react';
 import style from './modal.module.scss';
 
 interface MyProps {
