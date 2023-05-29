@@ -26,7 +26,7 @@ export const Header: FC = () => {
     <header
       className={`${
         small ? 'is-sticky sm:h-40' : ''
-      } header animate__animated sticky top-0 w-full z-20 backdrop-blur-xl flex justify-between items-center shadow-lg bg-gray-400/20 pl-[2%] pr-[2%] mb-6 transition ease-in-out delay-100 dark:bg-dark_header/20`}
+      } header animate__animated top-0 w-full z-20 backdrop-blur-xl flex justify-between items-center shadow-lg bg-gray-400/20 pl-[2%] pr-[2%] mb-6 transition ease-in-out delay-100 dark:bg-dark_header/20`}
       ref={headerRef}
     >
       <NavLink to="/">
@@ -34,14 +34,14 @@ export const Header: FC = () => {
           <img
             src={LogoImg}
             alt="Rick and Morty"
-            className="logo block w-60 h-20 mt-[-10px] lg:hidden"
+            className="logo block w-[150px] h-[60px] mt-[-10px] lg:hidden"
           />
           <img
             src={LogoImg}
             alt="Rick and Morty"
             className="logo_small hidden w-[110px] h-[45px] lg:block mt-[-12px]"
           />
-          <div className="header__title lg:text-[11px] font-thin text-teal-500 shadow-yellow-300/60 shadow-lg mt-[-3px]">
+          <div className="header__title text-[13px] font-thin text-teal-500 shadow-yellow-300/60 shadow-lg mt-[-3px]">
             Playground/IDE
           </div>
         </div>
