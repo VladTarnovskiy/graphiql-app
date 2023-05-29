@@ -9,11 +9,10 @@ interface MyProps {
   setVariables: (value: string) => void;
 }
 
-function Textarea(props: MyProps): JSX.Element {
+const Textarea = ({ setVariables, value }: MyProps) => {
   const dispatch = useAppDispatch();
   const themeFromStore = useAppSelector(selectTheme);
 
-  const { setVariables, value } = props;
   return (
     <div className="w-full overflow-auto variables h-[221px] rounded-br-md rounded-bl-md bg-base_white outline-0 resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white">
       <CodeMirror
@@ -30,6 +29,6 @@ function Textarea(props: MyProps): JSX.Element {
       />
     </div>
   );
-}
+};
 
 export default Textarea;

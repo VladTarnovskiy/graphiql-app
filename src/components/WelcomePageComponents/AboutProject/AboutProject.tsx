@@ -1,6 +1,6 @@
 import { t } from 'i18next';
 
-export function AboutProject(): JSX.Element {
+export const AboutProject = () => {
   return (
     <div className="graphqlInfo text-teal-500 pl-4 pr-4 flex flex-col gap-2 justify-center items-center text-center text-xl">
       <img
@@ -31,4 +31,4 @@ export function AboutProject(): JSX.Element {
       </div>
     </div>
   );
-}
+};

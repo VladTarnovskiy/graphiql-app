@@ -6,8 +6,7 @@ interface MyProps {
   getQueryDescription: (el: string) => void;
 }
 
-function QueriesComponent(props: MyProps): JSX.Element {
-  const { docs, getField, getQueryDescription } = props;
+const QueriesComponent = ({ docs, getField, getQueryDescription }: MyProps) => {
   return (
     <>
       <div className="title text-2xl pr-8 mb-4 text-base_green">Queries</div>
@@ -65,6 +64,6 @@ function QueriesComponent(props: MyProps): JSX.Element {
       })}
     </>
   );
-}
+};
 
 export default QueriesComponent;

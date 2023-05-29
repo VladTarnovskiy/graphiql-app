@@ -9,7 +9,7 @@ import FallBackUIComponent from 'src/components/ErrorBoundary/FallBackUIComponen
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from 'src/utils/firebase';
 
-function Layout(): JSX.Element {
+const Layout = () => {
   const [user, loading] = useAuthState(auth);
   return (
     <>
@@ -42,6 +42,6 @@ function Layout(): JSX.Element {
       <Footer />
     </>
   );
-}
+};
 
 export default Layout;

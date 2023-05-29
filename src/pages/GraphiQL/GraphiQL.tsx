@@ -29,7 +29,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 type Fields = 'headers' | 'variables';
 
-function GraphiQLPage(): JSX.Element {
+const GraphiQLPage = () => {
   const { t } = useTranslation();
   const [fieldFlag, setFieldFlag] = useState<Fields>('variables');
   const [variablesBlock, setVariablesBlock] = useState(true);
@@ -152,6 +152,6 @@ function GraphiQLPage(): JSX.Element {
       </div>
     </div>
   );
-}
+};
 
 export default GraphiQLPage;

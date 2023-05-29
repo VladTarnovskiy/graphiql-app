@@ -1,7 +1,7 @@
 import { t } from 'i18next';
 import { DeveloperCard } from 'src/components/WelcomePageComponents/DeveloperCards/DeveloperCard';
 
-export function AboutDevelopers(): JSX.Element {
+export const AboutDevelopers = () => {
   return (
     <section className="developersSection text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-2xl sm:text-xl">
       <h1 className="text-4xl sm:text-2xl mb-4">{t(`Welcome.DevelopersAbout.Team`)}</h1>
@@ -12,4 +12,4 @@ export function AboutDevelopers(): JSX.Element {
       </div>
     </section>
   );
-}
+};

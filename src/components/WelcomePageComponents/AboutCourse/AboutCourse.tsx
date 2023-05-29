@@ -1,6 +1,6 @@
 import { t } from 'i18next';
 
-export function AboutCourse(): JSX.Element {
+export const AboutCourse = () => {
   return (
     <div className="rsschoolInfo text-teal-500 pl-4 pr-4 flex flex-col gap-2 justify-center items-center text-center text-xl  sm:text-sm">
       <img
@@ -36,4 +36,4 @@ export function AboutCourse(): JSX.Element {
       </div>
     </div>
   );
-}
+};

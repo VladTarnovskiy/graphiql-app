@@ -10,7 +10,7 @@ const GraphiQLPage = lazy(() => import('./pages/GraphiQL/GraphiQL'));
 const AuthorizationPage = lazy(() => import('./pages/Authorization/Authorization'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
-function App(): JSX.Element {
+const App = () => {
   useThemeAndLanguage();
 
   return (
@@ -39,6 +39,6 @@ function App(): JSX.Element {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

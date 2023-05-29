@@ -3,7 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
 import { auth } from 'src/utils/firebase';
 
-function Navigation(): JSX.Element {
+const Navigation = () => {
   const [user] = useAuthState(auth);
   const { t } = useTranslation();
 
@@ -30,6 +30,6 @@ function Navigation(): JSX.Element {
       )}
     </div>
   );
-}
+};
 
 export default Navigation;

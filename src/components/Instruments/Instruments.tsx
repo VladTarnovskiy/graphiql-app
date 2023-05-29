@@ -19,7 +19,7 @@ interface MyProps {
   getData: () => void;
 }
 
-function Instruments({ getData }: MyProps): JSX.Element {
+const Instruments = ({ getData }: MyProps) => {
   const { t } = useTranslation();
   const [docs, setDocs] = useState(false);
   const [history, setHistory] = useState(false);
@@ -123,6 +123,6 @@ function Instruments({ getData }: MyProps): JSX.Element {
       </div>
     </div>
   );
-}
+};
 
 export default Instruments;

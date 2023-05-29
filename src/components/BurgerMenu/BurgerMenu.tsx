@@ -13,7 +13,7 @@ interface Istate {
   isOpen: boolean;
 }
 
-function BurgerMenu(): JSX.Element {
+const BurgerMenu = () => {
   const [settingsFlag, setSettingsFlag] = useState(false);
   const [user] = useAuthState(auth);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -76,6 +76,6 @@ function BurgerMenu(): JSX.Element {
       )}
     </Menu>
   );
-}
+};
 
 export default BurgerMenu;

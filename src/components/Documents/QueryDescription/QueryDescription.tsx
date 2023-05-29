@@ -5,8 +5,7 @@ interface MyProps {
   getField: (el: string) => void;
 }
 
-function QueryDescription(props: MyProps): JSX.Element {
-  const { docs, getField } = props;
+const QueryDescription = ({ docs, getField }: MyProps) => {
   return (
     <>
       <div className="title text-2xl pr-8 mb-4 text-base_green">{docs.name}</div>
@@ -46,6 +45,6 @@ function QueryDescription(props: MyProps): JSX.Element {
       </div>
     </>
   );
-}
+};
 
 export default QueryDescription;

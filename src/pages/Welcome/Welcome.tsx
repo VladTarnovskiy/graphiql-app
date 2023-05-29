@@ -6,7 +6,7 @@ import {
   InfoNavigation,
 } from 'src/components/WelcomePageComponents/index';
 
-function WelcomePage(): JSX.Element {
+const WelcomePage = () => {
   const [fieldFlag, setFieldFlag] = useState('project');
 
   const changeRequestInputs = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -28,6 +28,6 @@ function WelcomePage(): JSX.Element {
       </div>
     </div>
   );
-}
+};
 
 export default WelcomePage;
