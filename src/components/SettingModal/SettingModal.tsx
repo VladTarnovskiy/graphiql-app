@@ -22,11 +22,14 @@ export const SettingModal: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const langButton = langRef.current!;
-    const themeButton = themeRef.current!;
-
-    languageFromStore === 'en' ? turnRightButton(langButton) : turnLeftButton(langButton);
-    themeFromStore === 'light' ? turnRightButton(themeButton) : turnLeftButton(themeButton);
+    const langButton = langRef.current;
+    const themeButton = themeRef.current;
+    if (langButton) {
+      languageFromStore === 'en' ? turnRightButton(langButton) : turnLeftButton(langButton);
+    }
+    if (themeButton) {
+      themeFromStore === 'light' ? turnRightButton(themeButton) : turnLeftButton(themeButton);
+    }
   });
 
   const switchTranslationEl = (e: React.MouseEvent<HTMLButtonElement>) => {

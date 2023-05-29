@@ -18,8 +18,10 @@ export const QueryDescription: FC<IQueryDescription> = ({ docs, getField }) => {
             type="button"
             className="text-base_green hover:underline mb-4"
             onClick={(e) => {
-              const query = e.currentTarget.textContent!.replace(/[^a-z]/gi, '');
-              getField(query);
+              const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
+              if (query) {
+                getField(query);
+              }
             }}
           >
             {docs.type}
@@ -33,8 +35,10 @@ export const QueryDescription: FC<IQueryDescription> = ({ docs, getField }) => {
                   type="button"
                   className="text-base_yellow_dark hover:underline"
                   onClick={(e) => {
-                    const query = e.currentTarget.textContent!.replace(/[^a-z]/gi, '');
-                    getField(query);
+                    const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
+                    if (query) {
+                      getField(query);
+                    }
                   }}
                 >
                   {type}

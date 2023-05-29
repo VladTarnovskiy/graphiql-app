@@ -21,8 +21,10 @@ export const FieldsComponent: FC<IFieldsComponent> = ({ docs, getField }) => {
                 type="button"
                 className="text-base_yellow_dark hover:underline"
                 onClick={(e) => {
-                  const query = e.currentTarget.textContent!.replace(/[^a-z]/gi, '');
-                  getField(query);
+                  const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
+                  if (query) {
+                    getField(query);
+                  }
                 }}
               >
                 {type}

@@ -117,7 +117,7 @@ export const garphiqlPageSlice = createSlice({
       })
       .addCase(fetchDataRequest.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message!;
+        state.error = action.error.message || 'error';
       });
   },
 });

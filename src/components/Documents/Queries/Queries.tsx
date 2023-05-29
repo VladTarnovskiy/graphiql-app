@@ -23,7 +23,10 @@ export const QueriesComponent: FC<IQueriesComponent> = ({
                 type="button"
                 className="text-base_green hover:underline"
                 onClick={(e) => {
-                  getQueryDescription(e.currentTarget.textContent!);
+                  const content = e.currentTarget.textContent;
+                  if (content) {
+                    getQueryDescription(content);
+                  }
                 }}
               >
                 {name}
@@ -37,8 +40,10 @@ export const QueriesComponent: FC<IQueriesComponent> = ({
                       type="button"
                       className="text-base_yellow_dark hover:underline"
                       onClick={(e) => {
-                        const query = e.currentTarget.textContent!.replace(/[^a-z]/gi, '');
-                        getField(query);
+                        const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
+                        if (query) {
+                          getField(query);
+                        }
                       }}
                     >
                       {argType}
@@ -56,8 +61,10 @@ export const QueriesComponent: FC<IQueriesComponent> = ({
                 type="button"
                 className="text-base_yellow_dark hover:underline"
                 onClick={(e) => {
-                  const query = e.currentTarget.textContent!.replace(/[^a-z]/gi, '');
-                  getField(query);
+                  const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
+                  if (query) {
+                    getField(query);
+                  }
                 }}
               >
                 {type}
