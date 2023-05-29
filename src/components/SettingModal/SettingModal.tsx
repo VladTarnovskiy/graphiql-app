@@ -3,15 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { setLanguage, setTheme, selectLanguage, selectTheme } from 'src/app/slice/SettingsSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-function turnRightButton(el: Element) {
-  el.classList.remove('translate-x-[100%]');
+function turnRightButton(button: Element) {
+  button.classList.remove('translate-x-[100%]');
 }
 
-function turnLeftButton(el: Element) {
-  el.classList.add('translate-x-[100%]');
+function turnLeftButton(button: Element) {
+  button.classList.add('translate-x-[100%]');
 }
 
-function SettingModal(): JSX.Element {
+const SettingModal = () => {
   const { t, i18n } = useTranslation();
   const languageFromStore = useAppSelector(selectLanguage);
   const themeFromStore = useAppSelector(selectTheme);
@@ -27,26 +27,26 @@ function SettingModal(): JSX.Element {
   });
 
   const switchTranslationEl = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const el = e.target as Element;
-    if (el.classList.contains('translate-x-[100%]')) {
-      turnRightButton(el);
+    const button = e.target as Element;
+    if (button.classList.contains('translate-x-[100%]')) {
+      turnRightButton(button);
       dispatch(setLanguage('en'));
       i18n.changeLanguage('en');
     } else {
-      turnLeftButton(el);
+      turnLeftButton(button);
       dispatch(setLanguage('ru'));
       i18n.changeLanguage('ru');
     }
   };
 
   const switchThemeEl = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const el = e.target as Element;
-    if (el.classList.contains('translate-x-[100%]')) {
-      turnRightButton(el);
+    const button = e.target as Element;
+    if (button.classList.contains('translate-x-[100%]')) {
+      turnRightButton(button);
       dispatch(setTheme('light'));
       document.body.classList.remove('dark');
     } else {
-      turnLeftButton(el);
+      turnLeftButton(button);
       dispatch(setTheme('dark'));
       document.body.classList.add('dark');
     }
@@ -101,6 +101,6 @@ function SettingModal(): JSX.Element {
       </div>
     </div>
   );
-}
+};
 
 export default SettingModal;

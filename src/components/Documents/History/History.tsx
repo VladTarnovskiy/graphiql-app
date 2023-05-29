@@ -11,11 +11,10 @@ interface MyProps {
   onClose: () => void;
 }
 
-function HistoryComponent(props: MyProps): JSX.Element {
+const HistoryComponent = ({ onClose }: MyProps) => {
   const historyFromStorage = useAppSelector(selectHistory);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const { onClose } = props;
 
   return (
     <div className="history__container flex flex-col border-l-[1px] border-base_green_light pl-2 ml-3 rounded-r-md text-base font-normal text-base_green docs xs:text-sm max-w-[45vh] h-[calc(100%+2px)] overflow-auto">
@@ -42,6 +41,6 @@ function HistoryComponent(props: MyProps): JSX.Element {
       </div>
     </div>
   );
-}
+};
 
 export default HistoryComponent;

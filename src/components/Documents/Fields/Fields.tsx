@@ -5,8 +5,7 @@ interface MyProps {
   getField: (el: string) => void;
 }
 
-function FieldsComponent(props: MyProps): JSX.Element {
-  const { docs, getField } = props;
+const FieldsComponent = ({ docs, getField }: MyProps) => {
   return (
     <>
       <div className="title text-2xl pr-8 mb-4 text-base_green">{docs.name}</div>
@@ -34,6 +33,6 @@ function FieldsComponent(props: MyProps): JSX.Element {
       })}
     </>
   );
-}
+};
 
 export default FieldsComponent;

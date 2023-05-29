@@ -15,7 +15,7 @@ import QueryDescription from './QueryDescription/QueryDescription';
 import FieldsComponent from './Fields/Fields';
 import ScalarTypeComponent from './ScalarType/ScalarType';
 
-function Documents(): JSX.Element {
+const Documents = () => {
   const [history, setHistory] = useState<Array<[string, string]>>([
     ['', ''],
     ['root', 'Docs'],
@@ -140,6 +140,6 @@ function Documents(): JSX.Element {
       </div>
     </div>
   );
-}
+};
 
 export default Documents;

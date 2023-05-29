@@ -10,7 +10,7 @@ import Modal from '../Modal/Modal';
 import SettingModal from '../SettingModal/SettingModal';
 import Settings from '../../assets/settings.svg';
 
-function Header(): JSX.Element {
+const Header = () => {
   const [user] = useAuthState(auth);
   const headerRef = useRef<HTMLDivElement>(null);
   const [settingsFlag, setSettingsFlag] = useState(false);
@@ -74,6 +74,6 @@ function Header(): JSX.Element {
       </div>
     </header>
   );
-}
+};
 
 export default Header;

@@ -8,7 +8,7 @@ interface IButtonProps {
   button?: boolean;
 }
 
-function Button(prop: IButtonProps): JSX.Element {
+const Button = (prop: IButtonProps) => {
   const dispatch = useDispatch();
 
   const { title, button } = prop;
@@ -44,6 +44,6 @@ function Button(prop: IButtonProps): JSX.Element {
       {t(`header.${title}`)}
     </div>
   );
-}
+};
 
 export default Button;

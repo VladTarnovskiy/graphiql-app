@@ -1,6 +1,6 @@
 import './loader.scss';
 
-function Loader(): JSX.Element {
+const Loader = () => {
   return (
     <div className="lds-roller" data-testid="lds-roller">
       <div />
@@ -13,6 +13,6 @@ function Loader(): JSX.Element {
       <div />
     </div>
   );
-}
+};
 
 export default Loader;

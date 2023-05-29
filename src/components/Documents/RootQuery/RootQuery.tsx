@@ -4,9 +4,8 @@ interface MyProps {
   getQueries: () => void;
 }
 
-function RootQueryComponent(props: MyProps): JSX.Element {
+const RootQueryComponent = ({ getQueries }: MyProps) => {
   const { t } = useTranslation();
-  const { getQueries } = props;
   return (
     <div className="root__wrapper">
       <div className="docs__title text-2xl pr-8 mb-4 text-base_green">{t('GraphQL.Documents')}</div>
@@ -26,6 +25,6 @@ function RootQueryComponent(props: MyProps): JSX.Element {
       </div>
     </div>
   );
-}
+};
 
 export default RootQueryComponent;

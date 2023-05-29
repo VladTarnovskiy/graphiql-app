@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useRef, useState } from 'react';
 import style from './modal.module.scss';
 
 interface MyProps {
@@ -7,8 +7,7 @@ interface MyProps {
   setCloseFlag: Dispatch<SetStateAction<boolean>>;
 }
 
-function Modal(props: MyProps): JSX.Element {
-  const { setCloseFlag } = props;
+const Modal = ({ setCloseFlag, children }: MyProps) => {
   const modalWindow = useRef<HTMLDivElement>(null);
   const [modal, setModal] = useState(true);
 
@@ -37,12 +36,12 @@ function Modal(props: MyProps): JSX.Element {
         tabIndex={0}
       >
         <div className={style.container} ref={modalWindow}>
-          {props.children}
+          {children}
         </div>
       </div>
     ),
     document.body
   );
-}
+};
 
 export default Modal;
