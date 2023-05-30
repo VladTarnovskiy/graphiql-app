@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run --coverage",
     "lint": "eslint . --ext .ts,.tsx",
-    "prettier": "npx prettier --write ."
+    "prettier": "npx prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.1.8",
@@ -57,7 +58,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "jsdom": "^21.1.1",
     "lint-staged": "^13.2.0",
     "postcss": "^8.4.23",
