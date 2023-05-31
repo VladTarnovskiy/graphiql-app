@@ -1,23 +1,23 @@
 .error_wrapper {
-    margin-top: 40px;
-    color: #000000;
-    text-align: center;
+  margin-top: 40px;
+  color: #000000;
+  text-align: center;
 
-    .error_code {
-        font-family: 'Roboto', sans-serif;
-        font-size: 4rem;
-    }
+  .error_code {
+    font-family: 'Roboto', sans-serif;
+    font-size: 4rem;
+  }
 
-    .error_description {
-        font-family: 'Roboto Light', sans-serif;
-        font-size: 3rem;
-        margin-bottom: 80px;
-    }
+  .error_description {
+    font-family: 'Roboto Light', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 80px;
+  }
 
-    .error_animation {
-        background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-        background-repeat: no-repeat;
-        height: 400px;
-        background-position: center;
-    }
+  .error_animation {
+    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    background-repeat: no-repeat;
+    height: 400px;
+    background-position: center;
+  }
 }

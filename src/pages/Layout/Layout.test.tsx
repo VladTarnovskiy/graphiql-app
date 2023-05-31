@@ -16,7 +16,7 @@ describe('Layout component', () => {
             <Layout />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     await waitFor(() => {

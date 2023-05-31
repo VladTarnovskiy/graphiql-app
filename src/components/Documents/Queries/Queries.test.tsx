@@ -37,9 +37,13 @@ describe('Queries component', () => {
     render(
       <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-          <QueriesComponent docs={mock} getField={() => {}} getQueryDescription={() => {}} />
+          <QueriesComponent
+            docs={mock}
+            getField={() => {}}
+            getQueryDescription={() => {}}
+          />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     await waitFor(() => {

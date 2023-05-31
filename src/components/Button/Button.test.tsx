@@ -11,9 +11,9 @@ describe('Button component', () => {
     render(
       <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-          <Button title="Sign In" />
+          <Button title='Sign In' />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     expect(screen.getByText(/Sign In/i)).toBeInTheDocument();

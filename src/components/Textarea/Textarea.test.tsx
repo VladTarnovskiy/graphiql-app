@@ -13,9 +13,12 @@ describe('Textarea component', () => {
     render(
       <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-          <Textarea value="test" setVariables={setVariables} />
+          <Textarea
+            value='test'
+            setVariables={setVariables}
+          />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
     screen.debug();
     await waitFor(() => {

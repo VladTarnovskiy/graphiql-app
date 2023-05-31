@@ -13,11 +13,11 @@ export const InfoNavigation: FC<InfoNavigationProps> = ({ changeRequestInputs, f
       <button
         className={clsx(
           'project mr-4 xs:mr-2 hover:text-base_green cursor-pointer',
-          fieldFlag === 'project' ? ['border-b-[1px] border-base_green'] : ''
+          fieldFlag === 'project' ? ['border-b-[1px] border-base_green'] : '',
         )}
         onClick={changeRequestInputs}
-        type="button"
-        data-testid="infoNavigation-button"
+        type='button'
+        data-testid='infoNavigation-button'
       >
         {t(`Welcome.Buttons.Project`)}
       </button>
@@ -25,10 +25,10 @@ export const InfoNavigation: FC<InfoNavigationProps> = ({ changeRequestInputs, f
       <button
         className={clsx(
           'developers mr-4 xs:mr-2 hover:text-base_green cursor-pointer',
-          fieldFlag === 'developers' ? ['border-b-[1px] border-base_green'] : ''
+          fieldFlag === 'developers' ? ['border-b-[1px] border-base_green'] : '',
         )}
         onClick={changeRequestInputs}
-        type="button"
+        type='button'
       >
         {t(`Welcome.Buttons.Developers`)}
       </button>
@@ -36,10 +36,10 @@ export const InfoNavigation: FC<InfoNavigationProps> = ({ changeRequestInputs, f
       <button
         className={clsx(
           'course mr-4 xs:mr-2 hover:text-base_green cursor-pointer',
-          fieldFlag === 'course' ? ['border-b-[1px] border-base_green'] : ''
+          fieldFlag === 'course' ? ['border-b-[1px] border-base_green'] : '',
         )}
         onClick={changeRequestInputs}
-        type="button"
+        type='button'
       >
         {t(`Welcome.Buttons.Course`)}
       </button>

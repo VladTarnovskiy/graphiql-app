@@ -4,13 +4,13 @@ import { FC } from 'react';
 export const AboutCourse: FC = () => {
   return (
     <div
-      className="rsschoolInfo text-teal-500 pl-4 pr-4 flex flex-col gap-2 justify-center items-center text-center text-xl  sm:text-sm"
-      data-testid="aboutCourse-component"
+      className='rsschoolInfo text-teal-500 pl-4 pr-4 flex flex-col gap-2 justify-center items-center text-center text-xl  sm:text-sm'
+      data-testid='aboutCourse-component'
     >
       <img
-        src="https://rs.school/images/partners/logo-rs.svg"
-        className="max-w-[280px] lg:max-w-[180px] md:max-w-[140px] xs:max-w-[100px] pr-6 xs:pr-3 shadow-xl rounded-md"
-        alt="RSSchool logo"
+        src='https://rs.school/images/partners/logo-rs.svg'
+        className='max-w-[280px] lg:max-w-[180px] md:max-w-[140px] xs:max-w-[100px] pr-6 xs:pr-3 shadow-xl rounded-md'
+        alt='RSSchool logo'
       />
       <div>
         {t(`Welcome.RSSAbout.1`)}

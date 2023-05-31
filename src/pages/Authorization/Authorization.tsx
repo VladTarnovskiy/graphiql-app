@@ -12,13 +12,19 @@ export default function AuthorizationPage() {
 
   return (
     <div
-      className="text-teal-500 m-auto text-2xl max-w-[600px]"
-      data-testid="authorization-element"
+      className='text-teal-500 m-auto text-2xl max-w-[600px]'
+      data-testid='authorization-element'
     >
       {authorizationText === PageEnum.Registration ? (
-        <FormComponent headerTitle="Registration" buttonTitle="Registration" />
+        <FormComponent
+          headerTitle='Registration'
+          buttonTitle='Registration'
+        />
       ) : (
-        <FormComponent headerTitle="Login" buttonTitle="Login" />
+        <FormComponent
+          headerTitle='Login'
+          buttonTitle='Login'
+        />
       )}
     </div>
   );

@@ -14,14 +14,17 @@ export const QueriesComponent: FC<IQueriesComponent> = ({
 }) => {
   return (
     <>
-      <div className="title text-2xl pr-8 mb-4 text-base_green">Queries</div>
+      <div className='title text-2xl pr-8 mb-4 text-base_green'>Queries</div>
       {docs.map(({ name, args, type, description }) => {
         return (
-          <div className="wrapper mb-4 text-base_dark dark:text-base_white" key={name}>
+          <div
+            className='wrapper mb-4 text-base_dark dark:text-base_white'
+            key={name}
+          >
             <div>
               <button
-                type="button"
-                className="text-base_green hover:underline"
+                type='button'
+                className='text-base_green hover:underline'
                 onClick={(e) => {
                   const content = e.currentTarget.textContent;
                   if (content) {
@@ -34,11 +37,14 @@ export const QueriesComponent: FC<IQueriesComponent> = ({
               <span>(</span>
               {args.map(({ name: argName, type: argType }, indexArg) => {
                 return (
-                  <span className="text-base_yellow" key={argName}>
-                    <span className="text-base_red">{argName}:</span>{' '}
+                  <span
+                    className='text-base_yellow'
+                    key={argName}
+                  >
+                    <span className='text-base_red'>{argName}:</span>{' '}
                     <button
-                      type="button"
-                      className="text-base_yellow_dark hover:underline"
+                      type='button'
+                      className='text-base_yellow_dark hover:underline'
                       onClick={(e) => {
                         const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
                         if (query) {
@@ -51,15 +57,15 @@ export const QueriesComponent: FC<IQueriesComponent> = ({
                     {indexArg === args.length - 1 ? (
                       ''
                     ) : (
-                      <span className="text-base_dark dark:text-base_white">, </span>
+                      <span className='text-base_dark dark:text-base_white'>, </span>
                     )}
                   </span>
                 );
               })}
               <span>): </span>
               <button
-                type="button"
-                className="text-base_yellow_dark hover:underline"
+                type='button'
+                className='text-base_yellow_dark hover:underline'
                 onClick={(e) => {
                   const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
                   if (query) {

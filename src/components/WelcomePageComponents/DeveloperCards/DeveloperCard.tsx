@@ -26,13 +26,13 @@ export const DeveloperCard = ({ developer }: { developer: string }) => {
   return (
     <a
       href={developerInfo[0].githubLink}
-      className=" shadow-lg shadow-base_green/50 rounded-md p-2"
+      className=' shadow-lg shadow-base_green/50 rounded-md p-2'
     >
-      <div className="max-w-[300px] sm:max-w-[200px] flex flex-col items-center">
+      <div className='max-w-[300px] sm:max-w-[200px] flex flex-col items-center'>
         <img
           src={developerInfo[0].logoLink}
-          className="max-w-[150px] sm:max-w-[130px] shadow-xl rounded-md"
-          alt=""
+          className='max-w-[150px] sm:max-w-[130px] shadow-xl rounded-md'
+          alt=''
         />
         <div>
           {t(`Welcome.DevelopersAbout.${developerInfo[0].name}`)}

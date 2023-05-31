@@ -1,17 +1,17 @@
 .header.is-sticky {
-    position: sticky;
-    height: 60px;
-    animation: fadeInDown 0.5s ease-out;
+  position: sticky;
+  height: 60px;
+  animation: fadeInDown 0.5s ease-out;
 
-    .header__title {
-        display: none;
-    }
+  .header__title {
+    display: none;
+  }
 
-    .logo {
-        margin-top: -15px;
-    }
+  .logo {
+    margin-top: -15px;
+  }
 
-    @media (max-width: 576px) {
-        height: 45px;
-    }
+  @media (max-width: 576px) {
+    height: 45px;
+  }
 }

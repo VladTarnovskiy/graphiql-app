@@ -20,9 +20,12 @@ describe('Fields component', () => {
     render(
       <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-          <FieldsComponent docs={fieldsInfo} getField={() => {}} />
+          <FieldsComponent
+            docs={fieldsInfo}
+            getField={() => {}}
+          />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     await waitFor(() => {

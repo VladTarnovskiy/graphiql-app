@@ -18,7 +18,7 @@ describe('Instruments component', () => {
             <Instruments getData={getData} />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     await waitFor(() => {

@@ -24,9 +24,12 @@ describe('QueryDescription component', () => {
     render(
       <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-          <QueryDescription docs={mock} getField={() => {}} />
+          <QueryDescription
+            docs={mock}
+            getField={() => {}}
+          />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     await waitFor(() => {

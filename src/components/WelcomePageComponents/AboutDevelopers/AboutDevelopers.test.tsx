@@ -16,7 +16,7 @@ describe('AboutDevelopers component', () => {
             <AboutDevelopers />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     await waitFor(() => {
       expect(screen.getByTestId('aboutDevelopers-component'));

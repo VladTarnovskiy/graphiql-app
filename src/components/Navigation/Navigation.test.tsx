@@ -17,7 +17,7 @@ describe('Navigation component', () => {
             <Navigation />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     await waitFor(() => {

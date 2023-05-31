@@ -14,10 +14,13 @@ describe('InfoNavigation component', () => {
       <BrowserRouter>
         <I18nextProvider i18n={i18n}>
           <Provider store={store}>
-            <InfoNavigation changeRequestInputs={mock} fieldFlag="project" />
+            <InfoNavigation
+              changeRequestInputs={mock}
+              fieldFlag='project'
+            />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     await waitFor(() => {
       expect(screen.getByTestId('infoNavigation-button'));

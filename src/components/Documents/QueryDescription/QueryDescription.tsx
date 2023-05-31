@@ -9,14 +9,14 @@ interface IQueryDescription {
 export const QueryDescription: FC<IQueryDescription> = ({ docs, getField }) => {
   return (
     <>
-      <div className="title text-2xl pr-8 mb-4 text-base_green">{docs.name}</div>
-      <div className="mb-4">{docs.description}</div>
-      <div className="wrapper mb-4 text-base_dark dark:text-base_white">
-        <div className="flex flex-col items-start">
-          <div className="type__title">- Type:</div>
+      <div className='title text-2xl pr-8 mb-4 text-base_green'>{docs.name}</div>
+      <div className='mb-4'>{docs.description}</div>
+      <div className='wrapper mb-4 text-base_dark dark:text-base_white'>
+        <div className='flex flex-col items-start'>
+          <div className='type__title'>- Type:</div>
           <button
-            type="button"
-            className="text-base_green hover:underline mb-4"
+            type='button'
+            className='text-base_green hover:underline mb-4'
             onClick={(e) => {
               const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
               if (query) {
@@ -29,11 +29,14 @@ export const QueryDescription: FC<IQueryDescription> = ({ docs, getField }) => {
           <div>- Args:</div>
           {docs.args.map(({ name, type }) => {
             return (
-              <span className="text-base_yellow" key={name}>
-                <span className="text-base_red">{name}:</span>{' '}
+              <span
+                className='text-base_yellow'
+                key={name}
+              >
+                <span className='text-base_red'>{name}:</span>{' '}
                 <button
-                  type="button"
-                  className="text-base_yellow_dark hover:underline"
+                  type='button'
+                  className='text-base_yellow_dark hover:underline'
                   onClick={(e) => {
                     const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
                     if (query) {

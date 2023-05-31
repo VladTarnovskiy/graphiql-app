@@ -79,7 +79,7 @@ export const fetchDataRequest = createAsyncThunk<string, FetchInputs>(
     const datax = await response.json();
     const editData = JSON.stringify(datax, null, '\t');
     return editData;
-  }
+  },
 );
 
 export const garphiqlPageSlice = createSlice({

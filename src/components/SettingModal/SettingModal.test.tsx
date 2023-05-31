@@ -16,7 +16,7 @@ describe('SettingModal component', () => {
             <SettingModal />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     await waitFor(() => {

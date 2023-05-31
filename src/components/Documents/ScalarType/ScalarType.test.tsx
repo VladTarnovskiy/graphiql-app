@@ -19,7 +19,7 @@ describe('ScalarType component', () => {
         <Provider store={store}>
           <ScalarTypeComponent docs={mock} />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     await waitFor(() => {

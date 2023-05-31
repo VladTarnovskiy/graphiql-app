@@ -16,7 +16,7 @@ describe('NotFound component', () => {
             <NotFound />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     await waitFor(() => {

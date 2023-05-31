@@ -17,7 +17,7 @@ export const Modal: FC<IModal> = ({ setCloseFlag, children }) => {
   };
 
   const closeWithOverlayClick = (
-    e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>
+    e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>,
   ) => {
     const target = e.target as HTMLDivElement;
     const modalEl = modalWindow.current;
@@ -33,14 +33,17 @@ export const Modal: FC<IModal> = ({ setCloseFlag, children }) => {
         className={style.overlay}
         onClick={closeWithOverlayClick}
         onKeyDown={closeWithOverlayClick}
-        role="button"
+        role='button'
         tabIndex={0}
       >
-        <div className={style.container} ref={modalWindow}>
+        <div
+          className={style.container}
+          ref={modalWindow}
+        >
           {children}
         </div>
       </div>
     ),
-    document.body
+    document.body,
   );
 };

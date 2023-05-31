@@ -13,10 +13,13 @@ describe('FormComponent component', () => {
       <BrowserRouter>
         <I18nextProvider i18n={i18n}>
           <Provider store={store}>
-            <FormComponent headerTitle="Registration" buttonTitle="Registration" />
+            <FormComponent
+              headerTitle='Registration'
+              buttonTitle='Registration'
+            />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     await waitFor(() => {
       expect(screen.queryAllByText(/Registration/i)[0]).toBeInTheDocument();

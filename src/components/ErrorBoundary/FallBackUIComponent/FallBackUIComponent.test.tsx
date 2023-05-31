@@ -13,7 +13,7 @@ describe('FallBackUIComponent component', () => {
         <Provider store={store}>
           <FallBackUIComponent />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     await waitFor(() => {

@@ -13,7 +13,7 @@ describe('History component', () => {
         <Provider store={store}>
           <HistoryComponent onClose={() => {}} />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     await waitFor(() => {

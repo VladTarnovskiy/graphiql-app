@@ -16,7 +16,7 @@ describe('About Us Page', () => {
             <WelcomePage />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     await waitFor(() => {
