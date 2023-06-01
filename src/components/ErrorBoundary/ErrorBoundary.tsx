@@ -1,16 +1,16 @@
 import { ReactNode, Component } from 'react';
 
-interface Props {
+interface ErrorBoundaryProps {
   children?: ReactNode;
   fallBackUIComponent: ReactNode;
 }
 
-interface State {
+interface ErrorBoundaryState {
   hasError: boolean;
 }
 
-export class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
+export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = {
       hasError: false,

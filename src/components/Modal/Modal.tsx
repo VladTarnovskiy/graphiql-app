@@ -2,12 +2,12 @@ import { createPortal } from 'react-dom';
 import { Dispatch, FC, SetStateAction, useRef, useState, MouseEvent, KeyboardEvent } from 'react';
 import style from './modal.module.scss';
 
-interface IModal {
+interface ModalErrorBoundary {
   children: string | JSX.Element[] | JSX.Element;
   setCloseFlag: Dispatch<SetStateAction<boolean>>;
 }
 
-export const Modal: FC<IModal> = ({ setCloseFlag, children }) => {
+export const Modal: FC<ModalErrorBoundary> = ({ setCloseFlag, children }) => {
   const modalWindow = useRef<HTMLDivElement>(null);
   const [modal, setModal] = useState(true);
 

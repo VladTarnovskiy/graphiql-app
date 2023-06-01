@@ -5,12 +5,12 @@ import { myDarkTheme, myLightTheme } from 'src/utils/codemirror-set';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { FC } from 'react';
 
-interface ITextarea {
+interface TextareaProps {
   value: string;
   setVariables: (value: string) => void;
 }
 
-export const Textarea: FC<ITextarea> = ({ setVariables, value }) => {
+export const Textarea: FC<TextareaProps> = ({ setVariables, value }) => {
   const dispatch = useAppDispatch();
   const themeFromStore = useAppSelector(selectTheme);
 

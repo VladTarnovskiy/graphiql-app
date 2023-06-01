@@ -8,11 +8,11 @@ import {
 import { useTranslation } from 'react-i18next';
 import { FC } from 'react';
 
-interface IHistoryComponent {
+interface HistoryComponentProps {
   onClose: () => void;
 }
 
-export const HistoryComponent: FC<IHistoryComponent> = ({ onClose }) => {
+export const HistoryComponent: FC<HistoryComponentProps> = ({ onClose }) => {
   const historyFromStorage = useAppSelector(selectHistory);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();

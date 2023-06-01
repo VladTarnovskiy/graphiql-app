@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { Query } from '../types';
 
-interface IQueriesComponent {
+interface QueriesComponentProps {
   docs: Array<Query>;
   getField: (el: string) => void;
   getQueryDescription: (el: string) => void;
 }
 
-export const QueriesComponent: FC<IQueriesComponent> = ({
+export const QueriesComponent: FC<QueriesComponentProps> = ({
   docs,
   getField,
   getQueryDescription,
