@@ -1,70 +1,85 @@
+import { FC } from 'react';
 import { Query } from '../types';
 
-interface MyProps {
+interface IQueriesComponent {
   docs: Array<Query>;
   getField: (el: string) => void;
   getQueryDescription: (el: string) => void;
 }
 
-function QueriesComponent(props: MyProps): JSX.Element {
-  const { docs, getField, getQueryDescription } = props;
+export const QueriesComponent: FC<IQueriesComponent> = ({
+  docs,
+  getField,
+  getQueryDescription,
+}) => {
   return (
     <>
-      <div className="title text-2xl pr-8 mb-4 text-base_green">Queries</div>
-      {docs.map((item, index) => {
+      <div className='title text-2xl pr-8 mb-4 text-base_green'>Queries</div>
+      {docs.map(({ name, args, type, description }) => {
         return (
-          <div className="wrapper mb-4 text-base_dark dark:text-base_white" key={index.toString()}>
+          <div
+            className='wrapper mb-4 text-base_dark dark:text-base_white'
+            key={name}
+          >
             <div>
               <button
-                type="button"
-                className="text-base_green hover:underline"
+                type='button'
+                className='text-base_green hover:underline'
                 onClick={(e) => {
-                  getQueryDescription(e.currentTarget.textContent!);
+                  const content = e.currentTarget.textContent;
+                  if (content) {
+                    getQueryDescription(content);
+                  }
                 }}
               >
-                {item.name}
+                {name}
               </button>
               <span>(</span>
-              {item.args.map((itemArg, indexArg) => {
+              {args.map(({ name: argName, type: argType }, indexArg) => {
                 return (
-                  <span className="text-base_yellow" key={indexArg.toString()}>
-                    <span className="text-base_red">{itemArg.name}:</span>{' '}
+                  <span
+                    className='text-base_yellow'
+                    key={argName}
+                  >
+                    <span className='text-base_red'>{argName}:</span>{' '}
                     <button
-                      type="button"
-                      className="text-base_yellow_dark hover:underline"
+                      type='button'
+                      className='text-base_yellow_dark hover:underline'
                       onClick={(e) => {
-                        const query = e.currentTarget.textContent!.replace(/[^a-z]/gi, '');
-                        getField(query);
+                        const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
+                        if (query) {
+                          getField(query);
+                        }
                       }}
                     >
-                      {itemArg.type}
+                      {argType}
                     </button>
-                    {indexArg === item.args.length - 1 ? (
+                    {indexArg === args.length - 1 ? (
                       ''
                     ) : (
-                      <span className="text-base_dark dark:text-base_white">, </span>
+                      <span className='text-base_dark dark:text-base_white'>, </span>
                     )}
                   </span>
                 );
               })}
               <span>): </span>
               <button
-                type="button"
-                className="text-base_yellow_dark hover:underline"
+                type='button'
+                className='text-base_yellow_dark hover:underline'
                 onClick={(e) => {
-                  const query = e.currentTarget.textContent!.replace(/[^a-z]/gi, '');
-                  getField(query);
+                  const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
+                  if (query) {
+                    getField(query);
+                  }
                 }}
               >
-                {item.type}
+                {type}
               </button>
             </div>
-            <div>{item.description}</div>
+            <div>{description}</div>
           </div>
         );
       })}
     </>
   );
-}
-
-export default QueriesComponent;
+};

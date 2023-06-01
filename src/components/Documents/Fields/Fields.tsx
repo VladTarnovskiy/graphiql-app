@@ -1,39 +1,42 @@
+import { FC } from 'react';
 import { FieldsInfo } from '../types';
 
-interface MyProps {
+interface IFieldsComponent {
   docs: FieldsInfo;
   getField: (el: string) => void;
 }
 
-function FieldsComponent(props: MyProps): JSX.Element {
-  const { docs, getField } = props;
+export const FieldsComponent: FC<IFieldsComponent> = ({ docs, getField }) => {
   return (
     <>
-      <div className="title text-2xl pr-8 mb-4 text-base_green">{docs.name}</div>
-      <div className="mb-4">- Fields:</div>
-      {docs.fields.map((item, index) => {
+      <div className='title text-2xl pr-8 mb-4 text-base_green'>{docs.name}</div>
+      <div className='mb-4'>- Fields:</div>
+      {docs.fields.map(([item, { type, description }]) => {
         return (
-          <div className="wrapper mb-4 text-base_dark dark:text-base_white" key={index.toString()}>
+          <div
+            className='wrapper mb-4 text-base_dark dark:text-base_white'
+            key={item}
+          >
             <div>
-              <div className="text-base_green inline">{item[0]}</div>
+              <div className='text-base_green inline'>{item}</div>
               <span>: </span>
               <button
-                type="button"
-                className="text-base_yellow_dark hover:underline"
+                type='button'
+                className='text-base_yellow_dark hover:underline'
                 onClick={(e) => {
-                  const query = e.currentTarget.textContent!.replace(/[^a-z]/gi, '');
-                  getField(query);
+                  const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
+                  if (query) {
+                    getField(query);
+                  }
                 }}
               >
-                {item[1].type}
+                {type}
               </button>
             </div>
-            <div>{item[1].description}</div>
+            <div>{description}</div>
           </div>
         );
       })}
     </>
   );
-}
-
-export default FieldsComponent;
+};

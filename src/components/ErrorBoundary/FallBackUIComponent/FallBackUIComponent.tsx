@@ -1,5 +1,5 @@
-function FallBackUIComponent(): JSX.Element {
-  return <div className="dark:text-base_white">Something went wrong...</div>;
-}
+import { FC } from 'react';
 
-export default FallBackUIComponent;
+export const FallBackUIComponent: FC = () => {
+  return <div className='dark:text-base_white'>Something went wrong...</div>;
+};

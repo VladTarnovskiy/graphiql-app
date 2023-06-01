@@ -7,12 +7,12 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCSSORVWJF1r0PaAK7jzi02w2QPKzgCBHk',
-  authDomain: 'react-graphiql-app.firebaseapp.com',
-  projectId: 'react-graphiql-app',
-  storageBucket: 'react-graphiql-app.appspot.com',
-  messagingSenderId: '326693732870',
-  appId: '1:326693732870:web:f358d775bcd98b8ce3b987',
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -24,18 +24,22 @@ const registerNewUser = async (email: string, password: string) => {
   } catch (error) {
     return error;
   }
+
   return null;
 };
+
 const loginUser = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
     return error;
   }
+
   return null;
 };
 
 const logout = async () => {
   signOut(auth);
 };
+
 export { registerNewUser, loginUser, logout, auth };

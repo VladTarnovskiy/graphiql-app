@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { store } from 'src/app/store';
 import { BrowserRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '../../i18n/i18n';
-import FormComponent from './FormComponent';
+import i18n from 'src/i18n/i18n';
+import { FormComponent } from './FormComponent';
 
 describe('FormComponent component', () => {
   it('FormComponent is render', async () => {
@@ -13,10 +13,13 @@ describe('FormComponent component', () => {
       <BrowserRouter>
         <I18nextProvider i18n={i18n}>
           <Provider store={store}>
-            <FormComponent headerTitle="Registration" buttonTitle="Registration" />
+            <FormComponent
+              headerTitle='Registration'
+              buttonTitle='Registration'
+            />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     await waitFor(() => {
       expect(screen.queryAllByText(/Registration/i)[0]).toBeInTheDocument();

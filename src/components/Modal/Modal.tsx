@@ -1,14 +1,13 @@
 import ReactDOM from 'react-dom';
-import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useRef, useState } from 'react';
 import style from './modal.module.scss';
 
-interface MyProps {
+interface IModal {
   children: string | JSX.Element[] | JSX.Element;
   setCloseFlag: Dispatch<SetStateAction<boolean>>;
 }
 
-function Modal(props: MyProps): JSX.Element {
-  const { setCloseFlag } = props;
+export const Modal: FC<IModal> = ({ setCloseFlag, children }) => {
   const modalWindow = useRef<HTMLDivElement>(null);
   const [modal, setModal] = useState(true);
 
@@ -18,10 +17,11 @@ function Modal(props: MyProps): JSX.Element {
   };
 
   const closeWithOverlayClick = (
-    e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>
+    e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>,
   ) => {
     const target = e.target as HTMLDivElement;
     const modalEl = modalWindow.current;
+
     if (modalEl?.contains && !modalEl.contains(target)) {
       closeModalWindow();
     }
@@ -33,16 +33,17 @@ function Modal(props: MyProps): JSX.Element {
         className={style.overlay}
         onClick={closeWithOverlayClick}
         onKeyDown={closeWithOverlayClick}
-        role="button"
+        role='button'
         tabIndex={0}
       >
-        <div className={style.container} ref={modalWindow}>
-          {props.children}
+        <div
+          className={style.container}
+          ref={modalWindow}
+        >
+          {children}
         </div>
       </div>
     ),
-    document.body
+    document.body,
   );
-}
-
-export default Modal;
+};

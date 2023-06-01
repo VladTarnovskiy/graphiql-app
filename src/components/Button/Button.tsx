@@ -1,24 +1,33 @@
 import { t } from 'i18next';
+import { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import { authorizationPageText } from '../../app/slice/AuthorizationPage.slice';
-import { logout } from '../../utils/firebase';
+import { authorizationPageText } from 'src/app/slice/AuthorizationPage.slice';
+import { logout } from 'src/utils/firebase';
 
 interface IButtonProps {
   title: string;
   button?: boolean;
 }
 
-function Button(prop: IButtonProps): JSX.Element {
+enum ButtonsEnum {
+  SignIn = 'Sign In',
+  SignUp = 'Sign Up',
+  Logout = 'Logout',
+}
+
+export const Button: FC<IButtonProps> = ({ title, button }) => {
   const dispatch = useDispatch();
 
-  const { title, button } = prop;
-
   const changePage = () => {
-    if (title === 'Sign In') {
+    if (title === ButtonsEnum.SignIn) {
       dispatch(authorizationPageText('Login'));
-    } else if (title === 'Sign Up') {
+    }
+
+    if (title === ButtonsEnum.SignUp) {
       dispatch(authorizationPageText('Registration'));
-    } else {
+    }
+
+    if (title === ButtonsEnum.Logout) {
       logout();
     }
   };
@@ -26,10 +35,10 @@ function Button(prop: IButtonProps): JSX.Element {
   return button === false ? (
     <div
       onClick={changePage}
-      role="button"
+      role='button'
       onKeyPress={changePage}
       tabIndex={0}
-      className="button hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white"
+      className='button hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white'
     >
       {t(`header.${title}`)}
     </div>
@@ -37,13 +46,11 @@ function Button(prop: IButtonProps): JSX.Element {
     <div
       onClick={changePage}
       onKeyPress={changePage}
-      role="button"
+      role='button'
       tabIndex={0}
-      className="button h-[40px] min-w-[100px] w-fit m-2 pt-1 p-2 bg-teal-400 rounded text-center text-gray-700 hover:shadow-md hover:shadow-yellow-300/60 hover:cursor-pointer active:scale-[95%] transition ease-in-out delay-75"
+      className='button h-[40px] min-w-[100px] w-fit m-2 pt-1 p-2 bg-teal-400 rounded text-center text-gray-700 hover:shadow-md hover:shadow-yellow-300/60 hover:cursor-pointer active:scale-[95%] transition ease-in-out delay-75'
     >
       {t(`header.${title}`)}
     </div>
   );
-}
-
-export default Button;
+};

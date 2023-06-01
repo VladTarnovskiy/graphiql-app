@@ -1,5 +1,5 @@
 import { buildClientSchema } from 'graphql';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import {
   selectDocsResponseError,
   selectDocsResponseStatus,
@@ -8,25 +8,25 @@ import {
 } from 'src/app/slice/DocsSlice';
 import { FieldsInfo, Query, ScalarType } from './types';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import Loader from '../Loader/Loader';
-import QueriesComponent from './Queries/Queries';
-import RootQueryComponent from './RootQuery/RootQuery';
-import QueryDescription from './QueryDescription/QueryDescription';
-import FieldsComponent from './Fields/Fields';
-import ScalarTypeComponent from './ScalarType/ScalarType';
+import { Loader } from '../Loader/Loader';
+import {
+  QueriesComponent,
+  RootQueryComponent,
+  QueryDescription,
+  FieldsComponent,
+  ScalarTypeComponent,
+} from './index';
 
-function Documents(): JSX.Element {
+export const Documents: FC = () => {
   const [history, setHistory] = useState<Array<[string, string]>>([
-    ['', ''],
+    ['default', 'Default'],
     ['root', 'Docs'],
   ]);
   const [docs, setDocs] = useState<Array<Query>>();
   const [queryItem, setQueryItem] = useState<Query>();
   const [fields, setFields] = useState<FieldsInfo>();
   const [scalarTypeInfo, setScalarTypeInfo] = useState<ScalarType>();
-
   const [queriesFlag, setQueriesFlag] = useState('root');
-
   const dispatch = useAppDispatch();
   const docsResponseValueFromStorage = useAppSelector(selectDocsResponseValue);
   const docsResponseStatusFromStorage = useAppSelector(selectDocsResponseStatus);
@@ -41,34 +41,36 @@ function Documents(): JSX.Element {
     setHistory([...history, ['queries', 'Query']]);
   };
 
-  const getQueryDescription = (el: string) => {
+  const getQueryDescription = (type: string) => {
     const schema = buildClientSchema(docsResponseValueFromStorage).getQueryType()?.getFields();
     const x = JSON.stringify(schema);
-    const y: Query = JSON.parse(x)[el];
+    const y: Query = JSON.parse(x)[type];
     setQueryItem(y);
     setQueriesFlag('queryDescription');
-    setHistory([...history, ['queryDescription', el]]);
+    setHistory([...history, ['queryDescription', type]]);
   };
 
-  const getFields = (el: string) => {
-    const schema = buildClientSchema(docsResponseValueFromStorage).getType(el)?.toConfig();
+  const getFields = (type: string) => {
+    const schema = buildClientSchema(docsResponseValueFromStorage).getType(type)?.toConfig();
     const x = JSON.stringify(schema);
     const y = JSON.parse(x);
     const scalar = ['String', 'Boolean', 'ID', 'Int', 'Float'];
-    if (scalar.includes(el)) {
+
+    if (scalar.includes(type)) {
       setScalarTypeInfo(y);
       setQueriesFlag('scalarType');
-      setHistory([...history, ['scalarType', el]]);
+      setHistory([...history, ['scalarType', type]]);
     } else {
       const result = Object.entries(y.fields);
       y.fields = result;
       setFields(y);
       setQueriesFlag('fields');
-      setHistory([...history, ['fields', el]]);
+      setHistory([...history, ['fields', type]]);
     }
   };
 
-  const getHistoryPage = (el: Array<string>) => {
+  const getHistoryPage = (historyItem: Array<string>) => {
+    const value = historyItem[1];
     const obj: { [char: string]: () => void } = {
       root: () => {
         setQueriesFlag('root');
@@ -77,19 +79,20 @@ function Documents(): JSX.Element {
         getQueries();
       },
       queryDescription: () => {
-        getQueryDescription(el[1]);
+        getQueryDescription(value);
       },
       fields: () => {
-        getFields(el[1]);
+        getFields(value);
       },
       scalarType: () => {
-        getFields(el[1]);
+        getFields(value);
       },
     };
 
-    const key = el[0];
+    const key = historyItem[0];
     obj[key]();
     const x = history.slice(0, -1);
+
     setHistory(x);
   };
 
@@ -98,18 +101,18 @@ function Documents(): JSX.Element {
   }, []);
 
   return (
-    <div className="docs__container flex flex-col border-l-[1px] border-base_green_light pl-2 ml-3 rounded-r-md text-base docs font-normal text-base_green docs xs:text-sm max-w-[45vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] overflow-auto">
-      <div className="docs__content text-base_dark whitespace-break-spaces dark:text-base_white">
+    <div className='docs__container flex flex-col border-l-[1px] border-base_green_light pl-2 ml-3 rounded-r-md text-base docs font-normal text-base_green docs xs:text-sm max-w-[45vh] top-[-1px] left-[53px] z-10 h-[calc(100%+2px)] overflow-auto'>
+      <div className='docs__content text-base_dark whitespace-break-spaces dark:text-base_white'>
         {history.length >= 3 && (
           <button
-            type="button"
-            className="text-sm hover:underline"
+            type='button'
+            className='text-sm hover:underline'
             onClick={() => {
               const prevPage = history[history.length - 2];
               getHistoryPage(prevPage);
             }}
           >
-            <span className="text-md">&#8249;</span> {history[history.length - 2][1]}
+            <span className='text-md'>&#8249;</span> {history[history.length - 2][1]}
           </button>
         )}
         {queriesFlag === 'root' && docsResponseStatusFromStorage === 'succeeded' && (
@@ -123,16 +126,22 @@ function Documents(): JSX.Element {
           />
         )}
         {queriesFlag === 'queryDescription' && queryItem && (
-          <QueryDescription docs={queryItem} getField={getFields} />
+          <QueryDescription
+            docs={queryItem}
+            getField={getFields}
+          />
         )}
         {queriesFlag === 'fields' && fields && (
-          <FieldsComponent docs={fields} getField={getFields} />
+          <FieldsComponent
+            docs={fields}
+            getField={getFields}
+          />
         )}
         {queriesFlag === 'scalarType' && scalarTypeInfo && (
           <ScalarTypeComponent docs={scalarTypeInfo} />
         )}
         {docsResponseStatusFromStorage === 'loading' && (
-          <div className="m-auto w-fit mt-[20vh]">
+          <div className='m-auto w-fit mt-[20vh]'>
             <Loader />
           </div>
         )}
@@ -140,6 +149,4 @@ function Documents(): JSX.Element {
       </div>
     </div>
   );
-}
-
-export default Documents;
+};

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from 'src/app/store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'src/i18n/i18n';
-import FallBackUIComponent from './FallBackUIComponent';
+import { FallBackUIComponent } from './FallBackUIComponent';
 
 describe('FallBackUIComponent component', () => {
   it('FallBackUIComponent is render', async () => {
@@ -13,7 +13,7 @@ describe('FallBackUIComponent component', () => {
         <Provider store={store}>
           <FallBackUIComponent />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     await waitFor(() => {

@@ -79,7 +79,7 @@ export const fetchDataRequest = createAsyncThunk<string, FetchInputs>(
     const datax = await response.json();
     const editData = JSON.stringify(datax, null, '\t');
     return editData;
-  }
+  },
 );
 
 export const garphiqlPageSlice = createSlice({
@@ -117,7 +117,7 @@ export const garphiqlPageSlice = createSlice({
       })
       .addCase(fetchDataRequest.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message!;
+        state.error = action.error.message || 'error';
       });
   },
 });

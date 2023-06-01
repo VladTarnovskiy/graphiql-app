@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from 'src/app/store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'src/i18n/i18n';
-import QueriesComponent from './Queries';
+import { QueriesComponent } from './Queries';
 import { Query } from '../types';
 
 const mock: Array<Query> = [
@@ -37,9 +37,13 @@ describe('Queries component', () => {
     render(
       <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-          <QueriesComponent docs={mock} getField={() => {}} getQueryDescription={() => {}} />
+          <QueriesComponent
+            docs={mock}
+            getField={() => {}}
+            getQueryDescription={() => {}}
+          />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     await waitFor(() => {

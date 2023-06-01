@@ -55,11 +55,11 @@
     "Documents": "Документация",
     "RootDescription": "Схема GraphQL предоставляет корневой тип для каждого вида операций.",
     "RootTypes": "- Корневой тип",
-    "Toasts":{
+    "Toasts": {
       "Copy": "Запрос скопирован!",
       "Clean": "Поля очищены!"
     },
-    "NavButtons":{
+    "NavButtons": {
       "Play": "Запуск",
       "Documents": "Документация",
       "History": "История",

@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-function DeveloperCard({ developer }: { developer: string }): JSX.Element {
+export const DeveloperCard = ({ developer }: { developer: string }) => {
   const { t } = useTranslation();
+
   const developersInfo = [
     {
       name: 'Vlad',
@@ -19,18 +20,19 @@ function DeveloperCard({ developer }: { developer: string }): JSX.Element {
       githubLink: 'https://github.com/DenisKa13051992',
     },
   ];
+
   const developerInfo = developersInfo.filter((dev) => dev.name.includes(developer));
 
   return (
     <a
       href={developerInfo[0].githubLink}
-      className=" shadow-lg shadow-base_green/50 rounded-md p-2"
+      className=' shadow-lg shadow-base_green/50 rounded-md p-2'
     >
-      <div className="max-w-[300px] sm:max-w-[200px] flex flex-col items-center">
+      <div className='max-w-[300px] sm:max-w-[200px] flex flex-col items-center'>
         <img
           src={developerInfo[0].logoLink}
-          className="max-w-[150px] sm:max-w-[130px] shadow-xl rounded-md"
-          alt=""
+          className='max-w-[150px] sm:max-w-[130px] shadow-xl rounded-md'
+          alt=''
         />
         <div>
           {t(`Welcome.DevelopersAbout.${developerInfo[0].name}`)}
@@ -42,6 +44,4 @@ function DeveloperCard({ developer }: { developer: string }): JSX.Element {
       </div>
     </a>
   );
-}
-
-export default DeveloperCard;
+};

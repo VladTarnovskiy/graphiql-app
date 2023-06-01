@@ -5,7 +5,7 @@ import { store } from 'src/app/store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'src/i18n/i18n';
 import { ScalarType } from '../types';
-import ScalarTypeComponent from './ScalarType';
+import { ScalarTypeComponent } from './ScalarType';
 
 const mock: ScalarType = {
   name: 'episodes',
@@ -19,7 +19,7 @@ describe('ScalarType component', () => {
         <Provider store={store}>
           <ScalarTypeComponent docs={mock} />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     await waitFor(() => {

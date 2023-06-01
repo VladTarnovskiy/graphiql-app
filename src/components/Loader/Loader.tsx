@@ -1,8 +1,12 @@
+import { FC } from 'react';
 import './loader.scss';
 
-function Loader(): JSX.Element {
+export const Loader: FC = () => {
   return (
-    <div className="lds-roller" data-testid="lds-roller">
+    <div
+      className='lds-roller'
+      data-testid='lds-roller'
+    >
       <div />
       <div />
       <div />
@@ -13,6 +17,4 @@ function Loader(): JSX.Element {
       <div />
     </div>
   );
-}
-
-export default Loader;
+};

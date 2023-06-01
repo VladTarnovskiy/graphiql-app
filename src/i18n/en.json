@@ -55,11 +55,11 @@
     "Documents": "Documents",
     "RootDescription": "A GraphQL schema provides a root type for each kind of operation.",
     "RootTypes": "- Root Types",
-    "Toasts":{
+    "Toasts": {
       "Copy": "Request copied!",
       "Clean": "Fields cleared!"
     },
-    "NavButtons":{
+    "NavButtons": {
       "Play": "Play",
       "Documents": "Documents",
       "History": "History",

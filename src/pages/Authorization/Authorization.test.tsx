@@ -16,7 +16,7 @@ describe('Authorization component', () => {
             <AuthorizationPage />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     await waitFor(() => {
