@@ -13,7 +13,7 @@ describe('Documents component', () => {
         <Provider store={store}>
           <Documents />
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     await waitFor(() => {

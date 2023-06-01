@@ -49,7 +49,7 @@ export const docsSlice = createSlice({
       })
       .addCase(fetchDocsRequest.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message!;
+        state.error = action.error.message || 'error';
       });
   },
 });

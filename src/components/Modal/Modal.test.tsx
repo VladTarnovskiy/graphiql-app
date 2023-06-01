@@ -19,7 +19,7 @@ describe('Modal component', () => {
             <SettingModal />
           </Modal>
         </Provider>
-      </I18nextProvider>
+      </I18nextProvider>,
     );
 
     expect(screen.getByText('Language')).toBeInTheDocument();

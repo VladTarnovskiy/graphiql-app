@@ -34,31 +34,31 @@ export const BurgerMenu: FC = () => {
   return (
     <Menu
       right
-      width="100%"
-      pageWrapId="page-wrap"
-      outerContainerId="outer-container"
+      width='100%'
+      pageWrapId='page-wrap'
+      outerContainerId='outer-container'
       isOpen={isMenuOpen}
       onStateChange={handleStateChange}
     >
       <NavLink
-        className="navigation__item hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white"
-        to="/"
+        className='navigation__item hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white'
+        to='/'
         onClick={handleCloseMenu}
       >
-        <span className="hover:text-base_green_light">{t(`header.Welcome`)}</span>
+        <span className='hover:text-base_green_light'>{t(`header.Welcome`)}</span>
       </NavLink>
       {user && (
         <NavLink
-          className="navigation__item hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white"
-          to="/graphi-ql"
+          className='navigation__item hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white'
+          to='/graphi-ql'
           onClick={handleCloseMenu}
         >
-          <span className="hover:text-base_green_light">{t(`header.Main`)}</span>
+          <span className='hover:text-base_green_light'>{t(`header.Main`)}</span>
         </NavLink>
       )}
       <button
-        className="setting hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white"
-        type="button"
+        className='setting hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white'
+        type='button'
         onClick={openSettings}
       >
         {t(`Setting.Title`)}
@@ -69,11 +69,24 @@ export const BurgerMenu: FC = () => {
         </Modal>
       )}
       {user ? (
-        <Button title="Logout" button={false} />
+        <Button
+          title='Logout'
+          button={false}
+        />
       ) : (
-        <NavLink className="header__buttons flex" to="/authorization" onClick={handleCloseMenu}>
-          <Button title="Sign In" button={false} />
-          <Button title="Sign Up" button={false} />
+        <NavLink
+          className='header__buttons flex'
+          to='/authorization'
+          onClick={handleCloseMenu}
+        >
+          <Button
+            title='Sign In'
+            button={false}
+          />
+          <Button
+            title='Sign Up'
+            button={false}
+          />
         </NavLink>
       )}
     </Menu>

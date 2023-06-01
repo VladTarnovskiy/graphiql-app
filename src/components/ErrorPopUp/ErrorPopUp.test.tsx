@@ -4,7 +4,7 @@ import { ErrorPopUp } from './ErrorPopUp';
 
 describe('ErrorPopUp component', () => {
   it('ErrorPopUp is render', () => {
-    render(<ErrorPopUp message="Test message" />);
+    render(<ErrorPopUp message='Test message' />);
     expect(screen.getByText(/Test message/i)).toBeInTheDocument();
   });
 });

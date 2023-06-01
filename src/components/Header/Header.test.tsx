@@ -16,7 +16,7 @@ describe('Header component', () => {
             <Header />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     await waitFor(() => {
       expect(screen.getByText('Playground/IDE')).toBeInTheDocument();

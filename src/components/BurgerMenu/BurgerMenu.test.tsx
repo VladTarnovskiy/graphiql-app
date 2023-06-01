@@ -16,7 +16,7 @@ describe('BurgerMenu component', () => {
             <BurgerMenu />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     await waitFor(() => {

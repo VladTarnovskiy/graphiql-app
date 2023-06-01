@@ -15,10 +15,16 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="" element={<WelcomePage />} />
+        <Route
+          path='/'
+          element={<Layout />}
+        >
           <Route
-            path="graphi-ql"
+            path=''
+            element={<WelcomePage />}
+          />
+          <Route
+            path='graphi-ql'
             element={
               <CloseRoute>
                 <GraphiQLPage />
@@ -26,14 +32,17 @@ const App: FC = () => {
             }
           />
           <Route
-            path="authorization"
+            path='authorization'
             element={
               <OpenRoute>
                 <AuthorizationPage />
               </OpenRoute>
             }
           />
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path='*'
+            element={<NotFound />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

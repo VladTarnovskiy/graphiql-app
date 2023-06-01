@@ -11,11 +11,11 @@ interface IRoutes {
 export const CloseRoute: FC<IRoutes> = ({ children }) => {
   const [user] = useAuthState(auth);
 
-  return user ? children : <Navigate to="/" />;
+  return user ? children : <Navigate to='/' />;
 };
 
 export const OpenRoute: FC<IRoutes> = ({ children }) => {
   const [user] = useAuthState(auth);
 
-  return !user ? children : <Navigate to="/graphi-ql" />;
+  return !user ? children : <Navigate to='/graphi-ql' />;
 };

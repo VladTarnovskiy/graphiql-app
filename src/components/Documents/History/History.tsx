@@ -7,7 +7,6 @@ import {
 } from 'src/app/slice/GraphiqlPageSlice';
 import { useTranslation } from 'react-i18next';
 import { FC } from 'react';
-import uniqid from 'uniqid';
 
 interface IHistoryComponent {
   onClose: () => void;
@@ -19,15 +18,15 @@ export const HistoryComponent: FC<IHistoryComponent> = ({ onClose }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="history__container flex flex-col border-l-[1px] border-base_green_light pl-2 ml-3 rounded-r-md text-base font-normal text-base_green docs xs:text-sm max-w-[45vh] h-[calc(100%+2px)] overflow-auto">
-      <div className="history__title text-2xl pr-8 mb-2">{t('GraphQL.History')}</div>
-      <div className="history__content text-base_dark whitespace-break-spaces dark:text-base_white flex flex-col">
-        {historyFromStorage.map(({ variable, inputData, header }) => {
+    <div className='history__container flex flex-col border-l-[1px] border-base_green_light pl-2 ml-3 rounded-r-md text-base font-normal text-base_green docs xs:text-sm max-w-[45vh] h-[calc(100%+2px)] overflow-auto'>
+      <div className='history__title text-2xl pr-8 mb-2'>{t('GraphQL.History')}</div>
+      <div className='history__content text-base_dark whitespace-break-spaces dark:text-base_white flex flex-col'>
+        {historyFromStorage.map(({ variable, inputData, header }, index) => {
           return (
             <button
-              className="text-left hover:bg-base_grey rounded-sm mb-1 h-8 sm:h-6 overflow-hidden"
-              type="button"
-              key={uniqid()}
+              className='text-left hover:bg-base_grey rounded-sm mb-1 h-8 sm:h-6 overflow-hidden'
+              type='button'
+              key={index.toString()}
               onClick={() => {
                 onClose();
                 dispatch(setVariables(variable));
@@ -35,7 +34,7 @@ export const HistoryComponent: FC<IHistoryComponent> = ({ onClose }) => {
                 dispatch(setHeaders(header));
               }}
             >
-              <span className="text-base_green_light">&#8644; </span>
+              <span className='text-base_green_light'>&#8644; </span>
               {JSON.stringify(inputData)}
             </button>
           );

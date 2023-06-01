@@ -8,7 +8,7 @@ describe('Footer component', () => {
     render(
       <BrowserRouter>
         <Footer />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     expect(screen.getByText(/©2023/i)).toBeInTheDocument();
   });

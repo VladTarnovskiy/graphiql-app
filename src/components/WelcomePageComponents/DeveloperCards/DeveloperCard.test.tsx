@@ -13,10 +13,10 @@ describe('DeveloperCard component', () => {
       <BrowserRouter>
         <I18nextProvider i18n={i18n}>
           <Provider store={store}>
-            <DeveloperCard developer="Vlad" />
+            <DeveloperCard developer='Vlad' />
           </Provider>
         </I18nextProvider>
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(screen.getByText(/Vlad/i)).toBeInTheDocument();
