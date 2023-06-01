@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 import {
   AboutCourse,
   AboutDevelopers,
   AboutProject,
   InfoNavigation,
-} from 'src/components/WelcomePageComponents/index';
+} from 'src/components/WelcomePageComponents';
 
 export default function WelcomePage() {
   const [fieldFlag, setFieldFlag] = useState('project');
 
-  const changeRequestInputs = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const changeRequestInputs = (e: MouseEvent<HTMLButtonElement>) => {
     const el = e.target as HTMLElement;
     setFieldFlag(el.className.split(' ')[0]);
   };

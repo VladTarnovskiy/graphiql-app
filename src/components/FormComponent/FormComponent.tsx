@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { Tooltip } from 'react-tooltip';
-import toast, { Toaster } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 import { FC, useState } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 import { checkEmail, checkPassword } from 'src/utils/validation';
@@ -12,12 +12,12 @@ import { auth, loginUser, registerNewUser } from 'src/utils/firebase';
 import { RootState } from 'src/app/store';
 import { ErrorPopUp } from '../ErrorPopUp/ErrorPopUp';
 
-interface IFormComponent {
+interface FormComponentProps {
   headerTitle: string;
   buttonTitle: string;
 }
 
-interface ISubmitData {
+interface SubmitData {
   email: string;
   password: string;
 }
@@ -27,7 +27,7 @@ enum PageEnum {
   Login = 'Login',
 }
 
-export const FormComponent: FC<IFormComponent> = ({ headerTitle, buttonTitle }) => {
+export const FormComponent: FC<FormComponentProps> = ({ headerTitle, buttonTitle }) => {
   const [user] = useAuthState(auth);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -37,11 +37,11 @@ export const FormComponent: FC<IFormComponent> = ({ headerTitle, buttonTitle }) 
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISubmitData>({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
+  } = useForm<SubmitData>({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
 
   const authorizationText = useSelector((state: RootState) => state.authorization.page);
 
-  const onSubmit: SubmitHandler<ISubmitData> = async (data) => {
+  const onSubmit: SubmitHandler<SubmitData> = async (data) => {
     setLoading(true);
 
     if (authorizationText === PageEnum.Registration) {

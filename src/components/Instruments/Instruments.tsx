@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import toast from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import {
   setInputData,
   setHeaders,

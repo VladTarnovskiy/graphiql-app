@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
 import { auth } from 'src/utils/firebase';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { FC } from 'react';
 
 export const Navigation: FC = () => {

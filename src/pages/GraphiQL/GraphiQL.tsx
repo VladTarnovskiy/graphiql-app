@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import './codemirror.scss';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import {
   selectHeadersValue,
   selectVariablesValue,

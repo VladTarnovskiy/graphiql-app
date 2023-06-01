@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { setLanguage, setTheme, selectLanguage, selectTheme } from 'src/app/slice/SettingsSlice';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
@@ -32,7 +32,7 @@ export const SettingModal: FC = () => {
     }
   });
 
-  const switchTranslationEl = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const switchTranslationEl = (e: MouseEvent<HTMLButtonElement>) => {
     const button = e.target as Element;
 
     if (button.classList.contains('translate-x-[100%]')) {
@@ -46,7 +46,7 @@ export const SettingModal: FC = () => {
     }
   };
 
-  const switchThemeEl = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const switchThemeEl = (e: MouseEvent<HTMLButtonElement>) => {
     const button = e.target as Element;
     if (button.classList.contains('translate-x-[100%]')) {
       turnRightButton(button);
