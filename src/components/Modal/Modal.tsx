@@ -1,5 +1,5 @@
-import ReactDOM from 'react-dom';
-import { Dispatch, FC, SetStateAction, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { Dispatch, FC, SetStateAction, useRef, useState, MouseEvent, KeyboardEvent } from 'react';
 import style from './modal.module.scss';
 
 interface IModal {
@@ -16,9 +16,7 @@ export const Modal: FC<IModal> = ({ setCloseFlag, children }) => {
     setCloseFlag(false);
   };
 
-  const closeWithOverlayClick = (
-    e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>,
-  ) => {
+  const closeWithOverlayClick = (e: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
     const modalEl = modalWindow.current;
 
@@ -27,7 +25,7 @@ export const Modal: FC<IModal> = ({ setCloseFlag, children }) => {
     }
   };
 
-  return ReactDOM.createPortal(
+  return createPortal(
     modal && (
       <div
         className={style.overlay}

@@ -4,17 +4,17 @@ import { Navigate } from 'react-router-dom';
 
 import { auth } from 'src/utils/firebase';
 
-interface IRoutes {
+interface RoutesProps {
   children: JSX.Element;
 }
 
-export const CloseRoute: FC<IRoutes> = ({ children }) => {
+export const CloseRoute: FC<RoutesProps> = ({ children }) => {
   const [user] = useAuthState(auth);
 
   return user ? children : <Navigate to='/' />;
 };
 
-export const OpenRoute: FC<IRoutes> = ({ children }) => {
+export const OpenRoute: FC<RoutesProps> = ({ children }) => {
   const [user] = useAuthState(auth);
 
   return !user ? children : <Navigate to='/graphi-ql' />;

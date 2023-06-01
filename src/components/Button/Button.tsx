@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { authorizationPageText } from 'src/app/slice/AuthorizationPage.slice';
 import { logout } from 'src/utils/firebase';
 
-interface IButtonProps {
+interface ButtonProps {
   title: string;
   button?: boolean;
 }
@@ -15,7 +15,7 @@ enum ButtonsEnum {
   Logout = 'Logout',
 }
 
-export const Button: FC<IButtonProps> = ({ title, button }) => {
+export const Button: FC<ButtonProps> = ({ title, button }) => {
   const dispatch = useDispatch();
 
   const changePage = () => {
