@@ -8,12 +8,12 @@ export const ErrorPopUp: FC<ErrorPopUpProps> = ({ message }) => {
   return (
     <section className='fixed bottom-20 right-10'>
       <div
-        className='flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800'
+        className='mb-4 flex rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400'
         role='alert'
       >
         <svg
           aria-hidden='true'
-          className='flex-shrink-0 inline w-5 h-5 mr-3'
+          className='mr-3 inline h-5 w-5 flex-shrink-0'
           fill='currentColor'
           viewBox='0 0 20 20'
           xmlns='http://www.w3.org/2000/svg'

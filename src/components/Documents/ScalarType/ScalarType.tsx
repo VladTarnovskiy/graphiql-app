@@ -8,7 +8,7 @@ interface IScalarTypeComponent {
 export const ScalarTypeComponent: FC<IScalarTypeComponent> = ({ docs: { name, description } }) => {
   return (
     <>
-      <div className='title text-2xl pr-8 mb-4 text-base_green'>{name}</div>
+      <div className='title mb-4 pr-8 text-2xl text-base_green'>{name}</div>
       <div className='mb-4'>{description}</div>
     </>
   );

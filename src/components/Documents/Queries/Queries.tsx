@@ -14,7 +14,7 @@ export const QueriesComponent: FC<QueriesComponentProps> = ({
 }) => {
   return (
     <>
-      <div className='title text-2xl pr-8 mb-4 text-base_green'>Queries</div>
+      <div className='title mb-4 pr-8 text-2xl text-base_green'>Queries</div>
       {docs.map(({ name, args, type, description }) => {
         return (
           <div

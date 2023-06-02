@@ -12,7 +12,7 @@ export default function AuthorizationPage() {
 
   return (
     <div
-      className='text-teal-500 m-auto text-2xl max-w-[600px]'
+      className='m-auto max-w-[600px] text-2xl text-teal-500'
       data-testid='authorization-element'
     >
       {authorizationText === PageEnum.Registration ? (

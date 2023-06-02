@@ -16,7 +16,7 @@ export const Textarea: FC<TextareaProps> = ({ setVariables, value }) => {
 
   return (
     <div
-      className='w-full overflow-auto variables h-[221px] rounded-br-md rounded-bl-md bg-base_white outline-0 resize-none xs:text-sm dark:bg-dark_textarea dark:text-base_white'
+      className='variables h-[221px] w-full resize-none overflow-auto rounded-bl-md rounded-br-md bg-base_white outline-0 dark:bg-dark_textarea dark:text-base_white xs:text-sm'
       data-testid='textarea-element'
     >
       <CodeMirror

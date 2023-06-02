@@ -60,21 +60,21 @@ export const SettingModal: FC = () => {
   };
 
   return (
-    <div className='setting-modal shadow-base_green/50 shadow-xl pb-8 xs:p-2 xs:pb-6  w-full rounded-md bg-base_white  dark:bg-dark_textarea dark:text-base_white'>
-      <h1 className='title text-2xl text-center font-normal text-base_green'>
+    <div className='setting-modal w-full rounded-md bg-base_white pb-8 shadow-xl  shadow-base_green/50 dark:bg-dark_textarea dark:text-base_white  xs:p-2 xs:pb-6'>
+      <h1 className='title text-center text-2xl font-normal text-base_green'>
         {t('Setting.Title')}
       </h1>
       <div className='setting__options flex flex-col'>
         <div className='setting__item language'>
-          <div className='mx-8 sm:mx-2 shadow rounded-full h-10 mt-4 flex p-1 relative items-center dark:bg-base_dark w-fit'>
-            <div className='w-[155px] sm:w-[120px] flex justify-center'>
+          <div className='relative mx-8 mt-4 flex h-10 w-fit items-center rounded-full p-1 shadow dark:bg-base_dark sm:mx-2'>
+            <div className='flex w-[155px] justify-center sm:w-[120px]'>
               <button type='button'>RU</button>
             </div>
-            <div className='w-[155px] sm:w-[120px] flex justify-center'>
+            <div className='flex w-[155px] justify-center sm:w-[120px]'>
               <button type='button'>EN</button>
             </div>
             <button
-              className='elSwitchLang bg-base_green_light shadow text-white flex items-center justify-center w-[155px] sm:w-[120px] rounded-full h-8 transition-all top-[4px] absolute left-1'
+              className='elSwitchLang absolute left-1 top-[4px] flex h-8 w-[155px] items-center justify-center rounded-full bg-base_green_light text-white shadow transition-all sm:w-[120px]'
               type='button'
               ref={langRef}
               onClick={(e) => {
@@ -86,15 +86,15 @@ export const SettingModal: FC = () => {
           </div>
         </div>
         <div className='setting__item theme'>
-          <div className='mx-8 sm:mx-2 shadow rounded-full h-10 mt-4 flex p-1 relative items-center w-fit dark:bg-base_dark'>
-            <div className='w-[155px] sm:w-[120px] flex justify-center'>
+          <div className='relative mx-8 mt-4 flex h-10 w-fit items-center rounded-full p-1 shadow dark:bg-base_dark sm:mx-2'>
+            <div className='flex w-[155px] justify-center sm:w-[120px]'>
               <button type='button'>{t('Setting.Dark')}</button>
             </div>
-            <div className='w-[155px] sm:w-[120px] flex justify-center'>
+            <div className='flex w-[155px] justify-center sm:w-[120px]'>
               <button type='button'>{t('Setting.Light')}</button>
             </div>
             <button
-              className='elSwitchTheme bg-base_green_light shadow text-white flex items-center justify-center w-[155px] sm:w-[120px]  rounded-full h-8 transition-all top-[4px] absolute left-1'
+              className='elSwitchTheme absolute left-1 top-[4px] flex h-8 w-[155px] items-center justify-center  rounded-full bg-base_green_light text-white shadow transition-all sm:w-[120px]'
               type='button'
               ref={themeRef}
               onClick={(e) => {

@@ -5,11 +5,11 @@ import { DeveloperCard } from 'src/components/WelcomePageComponents/DeveloperCar
 export const AboutDevelopers: FC = () => {
   return (
     <section
-      className='developersSection text-teal-500 pl-4 pr-4 flex flex-col justify-center items-center text-center text-2xl sm:text-xl'
+      className='developersSection flex flex-col items-center justify-center pl-4 pr-4 text-center text-2xl text-teal-500 sm:text-xl'
       data-testid='aboutDevelopers-component'
     >
-      <h1 className='text-4xl sm:text-2xl mb-4'>{t(`Welcome.DevelopersAbout.Team`)}</h1>
-      <div className='developersCards text-teal-500 grid gap-4 grid-cols-3 grid-rows-1 lg:grid-cols-1 lg:grid-rows-3 text-center text-2xl sm:text-sm'>
+      <h1 className='mb-4 text-4xl sm:text-2xl'>{t(`Welcome.DevelopersAbout.Team`)}</h1>
+      <div className='developersCards grid grid-cols-3 grid-rows-1 gap-4 text-center text-2xl text-teal-500 sm:text-sm lg:grid-cols-1 lg:grid-rows-3'>
         {['Vlad', 'Aleksei', 'Denis'].map((dev) => (
           <DeveloperCard
             developer={dev}

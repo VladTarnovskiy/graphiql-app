@@ -41,7 +41,7 @@ export const BurgerMenu: FC = () => {
       onStateChange={handleStateChange}
     >
       <NavLink
-        className='navigation__item hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white'
+        className='navigation__item cursor-pointer text-[#374151] transition delay-75 ease-in-out hover:scale-105 hover:text-base_green_light active:scale-100 dark:text-base_white'
         to='/'
         onClick={handleCloseMenu}
       >
@@ -49,7 +49,7 @@ export const BurgerMenu: FC = () => {
       </NavLink>
       {user && (
         <NavLink
-          className='navigation__item hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white'
+          className='navigation__item cursor-pointer text-[#374151] transition delay-75 ease-in-out hover:scale-105 hover:text-base_green_light active:scale-100 dark:text-base_white'
           to='/graphi-ql'
           onClick={handleCloseMenu}
         >
@@ -57,7 +57,7 @@ export const BurgerMenu: FC = () => {
         </NavLink>
       )}
       <button
-        className='setting hover:text-base_green_light hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75 text-[#374151] dark:text-base_white'
+        className='setting cursor-pointer text-[#374151] transition delay-75 ease-in-out hover:scale-105 hover:text-base_green_light active:scale-100 dark:text-base_white'
         type='button'
         onClick={openSettings}
       >

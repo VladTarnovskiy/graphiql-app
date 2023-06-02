@@ -29,7 +29,7 @@ export const Instruments: FC<InstrumentsProps> = ({ getData }) => {
 
   return (
     <div
-      className='absolute left-0 top-0 instruments z-10 flex justify-start p-2 pl-[8px] md:pl-[7px] docs-nav h-full dark:bg-dark_textarea min-w-[60px] md:min-w-[50px] min-h-[79vh] shadow-lg shadow-base_green/50 rounded-md bg-base_white'
+      className='instruments docs-nav absolute left-0 top-0 z-10 flex h-full min-h-[79vh] min-w-[60px] justify-start rounded-md bg-base_white p-2 pl-[8px] shadow-lg shadow-base_green/50 dark:bg-dark_textarea md:min-w-[50px] md:pl-[7px]'
       data-testid='instruments-component'
     >
       <div className='flex flex-col justify-start'>
@@ -39,7 +39,7 @@ export const Instruments: FC<InstrumentsProps> = ({ getData }) => {
           className='dark:bg-base_white dark:text-base_dark'
         />
         <button
-          className='play rounded-full pl-[7px] md:pl-[6px] w-11 h-11 md:w-9 md:h-9 mb-6 hover:scale-105 bg-base_green_light active:scale-100 cursor-pointer transition ease-in-out delay-75'
+          className='play mb-6 h-11 w-11 cursor-pointer rounded-full bg-base_green_light pl-[7px] transition delay-75 ease-in-out hover:scale-105 active:scale-100 md:h-9 md:w-9 md:pl-[6px]'
           type='button'
           data-tooltip-id='button-tooltip'
           data-tooltip-content={t('GraphQL.NavButtons.Play')!}
@@ -65,7 +65,7 @@ export const Instruments: FC<InstrumentsProps> = ({ getData }) => {
           )}
         </button>
         <button
-          className='docs rounded-full w-11 h-11 md:w-9 md:h-9 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75'
+          className='docs mb-4 h-11 w-11 cursor-pointer rounded-full transition delay-75 ease-in-out hover:scale-105 hover:opacity-60 active:scale-100 md:h-9 md:w-9'
           type='button'
           data-tooltip-id='button-tooltip'
           data-tooltip-content={t('GraphQL.NavButtons.Documents')!}
@@ -81,7 +81,7 @@ export const Instruments: FC<InstrumentsProps> = ({ getData }) => {
           />
         </button>
         <button
-          className='history rounded-full ml-[1px] w-10 h-10 md:w-9 md:h-9 hover:opacity-60 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75'
+          className='history mb-4 ml-[1px] h-10 w-10 cursor-pointer rounded-full transition delay-75 ease-in-out hover:scale-105 hover:opacity-60 active:scale-100 md:h-9 md:w-9'
           type='button'
           data-tooltip-id='button-tooltip'
           data-tooltip-content={t('GraphQL.NavButtons.History')!}
@@ -97,7 +97,7 @@ export const Instruments: FC<InstrumentsProps> = ({ getData }) => {
           />
         </button>
         <button
-          className='copy rounded-full ml-[1px] w-10 h-10 hover:opacity-60 md:w-9 md:h-9 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75'
+          className='copy mb-4 ml-[1px] h-10 w-10 cursor-pointer rounded-full transition delay-75 ease-in-out hover:scale-105 hover:opacity-60 active:scale-100 md:h-9 md:w-9'
           type='button'
           data-tooltip-id='button-tooltip'
           data-tooltip-content={t('GraphQL.NavButtons.Copy')!}
@@ -113,7 +113,7 @@ export const Instruments: FC<InstrumentsProps> = ({ getData }) => {
           />
         </button>
         <button
-          className='cleaner rounded-full w-10 h-10 hover:opacity-60 md:w-9 md:h-9 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out mb-4 delay-75'
+          className='cleaner mb-4 h-10 w-10 cursor-pointer rounded-full transition delay-75 ease-in-out hover:scale-105 hover:opacity-60 active:scale-100 md:h-9 md:w-9'
           type='button'
           data-tooltip-id='button-tooltip'
           data-tooltip-content={t('GraphQL.NavButtons.Clean')!}

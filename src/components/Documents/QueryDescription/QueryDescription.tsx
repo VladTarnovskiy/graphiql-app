@@ -9,14 +9,14 @@ interface QueryDescriptionProps {
 export const QueryDescription: FC<QueryDescriptionProps> = ({ docs, getField }) => {
   return (
     <>
-      <div className='title text-2xl pr-8 mb-4 text-base_green'>{docs.name}</div>
+      <div className='title mb-4 pr-8 text-2xl text-base_green'>{docs.name}</div>
       <div className='mb-4'>{docs.description}</div>
       <div className='wrapper mb-4 text-base_dark dark:text-base_white'>
         <div className='flex flex-col items-start'>
           <div className='type__title'>- Type:</div>
           <button
             type='button'
-            className='text-base_green hover:underline mb-4'
+            className='mb-4 text-base_green hover:underline'
             onClick={(e) => {
               const query = e.currentTarget.textContent?.replace(/[^a-z]/gi, '');
               if (query) {

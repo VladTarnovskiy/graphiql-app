@@ -26,7 +26,7 @@ export const Header: FC = () => {
     <header
       className={`${
         small ? 'is-sticky sm:h-40' : ''
-      } header animate__animated top-0 w-full z-20 backdrop-blur-xl flex justify-between items-center shadow-lg bg-gray-400/20 pl-[2%] pr-[2%] mb-6 transition ease-in-out delay-100 dark:bg-dark_header/20`}
+      } header animate__animated top-0 z-20 mb-6 flex w-full items-center justify-between bg-gray-400/20 pl-[2%] pr-[2%] shadow-lg backdrop-blur-xl transition delay-100 ease-in-out dark:bg-dark_header/20`}
       ref={headerRef}
     >
       <NavLink to='/'>
@@ -34,14 +34,14 @@ export const Header: FC = () => {
           <img
             src={LogoImg}
             alt='Rick and Morty'
-            className='logo block w-[150px] h-[60px] mt-[-10px] lg:hidden'
+            className='logo mt-[-10px] block h-[60px] w-[150px] lg:hidden'
           />
           <img
             src={LogoImg}
             alt='Rick and Morty'
-            className='logo_small hidden w-[110px] h-[45px] lg:block mt-[-12px]'
+            className='logo_small mt-[-12px] hidden h-[45px] w-[110px] lg:block'
           />
-          <div className='header__title text-[13px] font-thin text-teal-500 shadow-yellow-300/60 shadow-lg mt-[-3px]'>
+          <div className='header__title mt-[-3px] text-[13px] font-thin text-teal-500 shadow-lg shadow-yellow-300/60'>
             Playground/IDE
           </div>
         </div>
@@ -61,7 +61,7 @@ export const Header: FC = () => {
           </NavLink>
         )}
         <button
-          className='setting rounded-full w-7 h-7 m-2 hover:scale-105 active:scale-100 cursor-pointer transition ease-in-out delay-75'
+          className='setting m-2 h-7 w-7 cursor-pointer rounded-full transition delay-75 ease-in-out hover:scale-105 active:scale-100'
           type='button'
           onClick={() => {
             setSettingsFlag(true);

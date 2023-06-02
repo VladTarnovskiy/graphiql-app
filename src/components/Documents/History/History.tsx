@@ -18,13 +18,13 @@ export const HistoryComponent: FC<HistoryComponentProps> = ({ onClose }) => {
   const { t } = useTranslation();
 
   return (
-    <div className='history__container flex flex-col border-l-[1px] border-base_green_light pl-2 ml-3 rounded-r-md text-base font-normal text-base_green docs xs:text-sm max-w-[45vh] h-[calc(100%+2px)] overflow-auto'>
-      <div className='history__title text-2xl pr-8 mb-2'>{t('GraphQL.History')}</div>
-      <div className='history__content text-base_dark whitespace-break-spaces dark:text-base_white flex flex-col'>
+    <div className='history__container docs ml-3 flex h-[calc(100%+2px)] max-w-[45vh] flex-col overflow-auto rounded-r-md border-l-[1px] border-base_green_light pl-2 text-base font-normal text-base_green xs:text-sm'>
+      <div className='history__title mb-2 pr-8 text-2xl'>{t('GraphQL.History')}</div>
+      <div className='history__content flex flex-col whitespace-break-spaces text-base_dark dark:text-base_white'>
         {historyFromStorage.map(({ variable, inputData, header }, index) => {
           return (
             <button
-              className='text-left hover:bg-base_grey rounded-sm mb-1 h-8 sm:h-6 overflow-hidden'
+              className='mb-1 h-8 overflow-hidden rounded-sm text-left hover:bg-base_grey sm:h-6'
               type='button'
               key={index.toString()}
               onClick={() => {

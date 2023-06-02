@@ -20,17 +20,17 @@ export const Layout: FC = () => {
       <Header />
       <ErrorBoundary fallBackUIComponent={<FallBackUIComponent />}>
         <main
-          className='wrapper pl-[2%] pr-[2%] w-full mb-[13px] dark:bg-base_dark min-h-[79vh]'
+          className='wrapper mb-[13px] min-h-[79vh] w-full pl-[2%] pr-[2%] dark:bg-base_dark'
           data-testid='main-element'
         >
           {loading && !user ? (
-            <div className='m-auto w-fit mt-[30vh]'>
+            <div className='m-auto mt-[30vh] w-fit'>
               <Loader />
             </div>
           ) : (
             <Suspense
               fallback={
-                <div className='m-auto w-fit mt-[30vh]'>
+                <div className='m-auto mt-[30vh] w-fit'>
                   <Loader />
                 </div>
               }

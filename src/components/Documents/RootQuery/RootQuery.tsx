@@ -10,7 +10,7 @@ export const RootQueryComponent: FC<RootQueryComponentProps> = ({ getQueries }) 
 
   return (
     <div className='root__wrapper'>
-      <div className='docs__title text-2xl pr-8 mb-4 text-base_green'>{t('GraphQL.Documents')}</div>
+      <div className='docs__title mb-4 pr-8 text-2xl text-base_green'>{t('GraphQL.Documents')}</div>
       <div className='root__description mb-2'>{t('GraphQL.RootDescription')}</div>
       <div className='root__title mb-2'>{t('GraphQL.RootTypes')}</div>
       <div className='root__link'>

@@ -9,7 +9,7 @@ interface FieldsComponentProps {
 export const FieldsComponent: FC<FieldsComponentProps> = ({ docs, getField }) => {
   return (
     <>
-      <div className='title text-2xl pr-8 mb-4 text-base_green'>{docs.name}</div>
+      <div className='title mb-4 pr-8 text-2xl text-base_green'>{docs.name}</div>
       <div className='mb-4'>- Fields:</div>
       {docs.fields.map(([item, { type, description }]) => {
         return (
@@ -18,7 +18,7 @@ export const FieldsComponent: FC<FieldsComponentProps> = ({ docs, getField }) =>
             key={item}
           >
             <div>
-              <div className='text-base_green inline'>{item}</div>
+              <div className='inline text-base_green'>{item}</div>
               <span>: </span>
               <button
                 type='button'
