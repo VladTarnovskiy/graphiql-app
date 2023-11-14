@@ -19,7 +19,7 @@ export const Footer: FC = () => {
           to='https://github.com/DenisKa13051992'
         />
       </div>
-      <div className='account__img h-fit font-thin text-teal-500 dark:font-semibold dark:text-base_green_light  md:hidden'>
+      <div className='account__img h-fit font-thin text-teal-500 dark:text-base_green_light md:hidden'>
         ©2023
       </div>
       <NavLink

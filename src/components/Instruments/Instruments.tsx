@@ -9,7 +9,7 @@ import {
   selectResponseStatus,
 } from 'src/app/slice/GraphiqlPageSlice';
 import { Documents } from 'src/components/Documents/Documents';
-import { HistoryComponent } from 'src/components/Documents/index';
+import { HistoryComponent } from 'src/components/Documents/History/index';
 import { Tooltip } from 'react-tooltip';
 import { useTranslation } from 'react-i18next';
 import { instrumentsImages } from 'src/assets/instrumentIcons';
@@ -53,7 +53,7 @@ export const Instruments: FC<InstrumentsProps> = ({ getData }) => {
             <img
               src={instrumentsImages.Play}
               alt='Play'
-              className='w-[30px] md:w-[24px]'
+              className='ml-[1px] w-[30px] md:w-[24px]'
             />
           )}
           {responseStatusFromStorage === 'loading' && (
