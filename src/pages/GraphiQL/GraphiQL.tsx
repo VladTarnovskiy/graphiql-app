@@ -57,7 +57,7 @@ export default function GraphiQLPage() {
       <Instruments getData={getData} />
       <Toaster />
       <div className='ml-2 flex w-full md:flex-col'>
-        <div className='request mr-4 flex h-[79vh] w-[50%] flex-col rounded-md shadow-lg shadow-base_green/50 md:mb-2 md:w-full'>
+        <div className='request mr-4 flex h-[79vh] w-[50%] flex-col rounded-md shadow-md shadow-base_green/50 md:mb-2 md:w-full'>
           <div className='request__wrap relative h-full overflow-y-auto rounded-tl-md rounded-tr-md bg-base_white shadow-xl dark:bg-dark_textarea xs:text-sm'>
             <CodeMirror
               value={inputDataValueFromStorage}
@@ -132,7 +132,7 @@ export default function GraphiQLPage() {
             </div>
           </div>
         </div>
-        <div className='response max-h-[79vh] min-h-[50px] w-[50%] overflow-y-auto whitespace-break-spaces rounded-md bg-base_white shadow-lg shadow-base_green/50 dark:bg-dark_textarea dark:text-base_white md:w-full xs:text-sm'>
+        <div className='response max-h-[79vh] min-h-[50px] w-[50%] overflow-y-auto whitespace-break-spaces rounded-md bg-base_white shadow-md shadow-base_green/50 dark:bg-dark_textarea dark:text-base_white md:w-full xs:text-sm'>
           {responseStatusFromStorage === 'succeeded' && (
             <CodeMirror
               value={responseValueFromStorage}

@@ -26,7 +26,7 @@ export const DeveloperCard = ({ developer }: { developer: string }) => {
   return (
     <a
       href={developerInfo[0].githubLink}
-      className=' rounded-md p-2 shadow-lg shadow-base_green/50'
+      className=' rounded-md p-2 shadow-md shadow-base_green/50'
     >
       <div className='flex max-w-[300px] flex-col items-center sm:max-w-[200px]'>
         <img

@@ -29,7 +29,7 @@ export const Instruments: FC<InstrumentsProps> = ({ getData }) => {
 
   return (
     <div
-      className='instruments docs-nav absolute left-0 top-0 z-10 flex h-full min-h-[79vh] min-w-[60px] justify-start rounded-md bg-base_white p-2 pl-[8px] shadow-lg shadow-base_green/50 dark:bg-dark_textarea md:min-w-[50px] md:pl-[7px]'
+      className='instruments docs-nav absolute left-0 top-0 z-10 flex h-full min-h-[79vh] min-w-[60px] justify-start rounded-md bg-base_white p-2 pl-[8px] shadow-md shadow-base_green/50 dark:bg-dark_textarea md:min-w-[50px] md:pl-[7px]'
       data-testid='instruments-component'
     >
       <div className='flex flex-col justify-start'>

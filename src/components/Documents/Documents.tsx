@@ -99,7 +99,7 @@ export const Documents: FC = () => {
   }, [dispatch]);
 
   return (
-    <div className='docs__container docs docs left-[53px] top-[-1px] z-10 ml-3 flex h-[calc(100%+2px)] max-w-[45vh] flex-col overflow-auto rounded-r-md border-l-[1px] border-base_green_light pl-2 text-base font-normal text-base_green xs:text-sm'>
+    <div className='docs__container docs docs left-[53px] top-[-1px] z-10 ml-2 flex h-[calc(100%+2px)] max-w-[45vh] flex-col overflow-auto rounded-r-md border-l-[1px] border-base_green_light pl-2 text-base font-normal text-base_green xs:text-sm'>
       <div className='docs__content whitespace-break-spaces text-base_dark dark:text-base_white'>
         {history.length >= 3 && (
           <button
